@@ -1,6 +1,13 @@
 import Head from "next/head";
 import DisplayLocations from "@/components/DisplayLocations";
-
+import {
+  MealType,
+  DietType,
+  Search,
+  SearchItem,
+  MealAnalytics,
+  OverallAnalytics,
+} from "../components";
 export default function Home() {
   return (
     <>
@@ -13,9 +20,15 @@ export default function Home() {
       <main>
         <DisplayLocations />
         <div className="flex">
-          <div className="w-full">diet type</div>
-          <div className="w-full">meal type</div>
-          <div className="w-full">search</div>
+          <div className="w-full">
+            <DietType />
+          </div>
+          <div className="w-full">
+            <MealType />
+          </div>
+          <div className="w-full">
+            <Search />
+          </div>
           <div className="w-full">
             <button type="submit" className="bg-emerald-400 px-20 rounded ">
               Add
@@ -25,20 +38,34 @@ export default function Home() {
         <div className="flex">
           <div className="w-full">
             breakfast
-            <div>search item</div>
-            <div>analytics</div>
+            <div>
+              <SearchItem />
+            </div>
+            <div>
+              <MealAnalytics />
+            </div>
           </div>
           <div className="w-full">
             lunch
-            <div>search item</div>
-            <div>analytics</div>
+            <div>
+              <SearchItem />
+            </div>
+            <div>
+              <MealAnalytics />
+            </div>
           </div>
           <div className="w-full">
             dinner
-            <div>search item</div>
-            <div>analytics</div>
+            <div>
+              <SearchItem />
+            </div>
+            <div>
+              <MealAnalytics />
+            </div>
           </div>
-          <div className="w-full">analytics</div>
+          <div className="w-full">
+            <OverallAnalytics />
+          </div>
         </div>
       </main>
     </>
