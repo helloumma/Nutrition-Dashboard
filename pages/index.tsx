@@ -7,6 +7,9 @@ import {
   SearchItem,
   MealAnalytics,
   OverallAnalytics,
+  Breakfast,
+  Lunch,
+  Dinner,
 } from "../components";
 export default function Home() {
   return (
@@ -37,31 +40,13 @@ export default function Home() {
         </div>
         <div className="flex">
           <div className="w-full">
-            breakfast
-            <div>
-              <SearchItem />
-            </div>
-            <div>
-              <MealAnalytics />
-            </div>
+            <Breakfast />
           </div>
           <div className="w-full">
-            lunch
-            <div>
-              <SearchItem />
-            </div>
-            <div>
-              <MealAnalytics />
-            </div>
+            <Lunch />
           </div>
           <div className="w-full">
-            dinner
-            <div>
-              <SearchItem />
-            </div>
-            <div>
-              <MealAnalytics />
-            </div>
+            <Dinner />
           </div>
           <div className="w-full">
             <OverallAnalytics />

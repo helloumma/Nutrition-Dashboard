@@ -8,10 +8,16 @@ const DietType = () => (
       className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
     >
       <li>
-        <a>Item 1</a>
+        <a href="">All</a>
       </li>
       <li>
-        <a>Item 2</a>
+        <a href="">Vegetarian</a>
+      </li>
+      <li>
+        <a href="">Vegean</a>
+      </li>
+      <li>
+        <a href="">Non-gluten</a>
       </li>
     </ul>
   </div>
