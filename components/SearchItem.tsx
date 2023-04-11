@@ -1,16 +1,18 @@
 interface props {
-  dietType: string;
-  mealType: string;
-  searchDetails: string;
+  search: string;
+  diet: string;
+  meal: string;
 }
 
-const SearchItem = ({ dietType, mealType, searchDetails }: props) => (
-  <div>
-    Search Item
-    {dietType}
-    {mealType}
-    {searchDetails}
-  </div>
-);
+const SearchItem = ({ search, diet, meal }: props) => {
+  return (
+    <div>
+      Search Item
+      {search}
+      {diet}
+      {meal}
+    </div>
+  );
+};
 
 export default SearchItem;

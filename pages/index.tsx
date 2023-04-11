@@ -12,11 +12,12 @@ import {
 import { ChangeEvent, useState } from "react";
 
 export default function Home() {
-  const [dietType, setDietType] = useState(false);
-  const [mealType, setMealType] = useState(false);
-  const [diet, setDiet] = useState("");
-  const [meal, setMeal] = useState("");
-  const [search, setSearch] = useState("");
+  const [dietType, setDietType] = useState<Boolean>(false);
+  const [mealType, setMealType] = useState<Boolean>(false);
+  const [diet, setDiet] = useState<string>("");
+  const [meal, setMeal] = useState<string>("");
+  const [search, setSearch] = useState<string>("");
+  const [searchItems, setSearchItems] = useState(null);
 
   const allDiet = () => {
     setDietType(true);
@@ -63,11 +64,20 @@ export default function Home() {
       diet,
       meal,
     });
-    return {
+
+    /*setSearchItems({
       search,
       diet,
       meal,
-    };
+    });*/
+
+    return [
+      {
+        search,
+        diet,
+        meal,
+      },
+    ];
   };
 
   return (
@@ -114,7 +124,7 @@ export default function Home() {
             <Breakfast />
           </div>
           <div className="w-full">
-            <Lunch searchItems={onSubmit} />
+            <Lunch searchItems={onSubmit()} />
           </div>
           <div className="w-full">
             <Dinner />
