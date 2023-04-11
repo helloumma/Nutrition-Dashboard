@@ -9,7 +9,48 @@ import {
   Lunch,
   Dinner,
 } from "../components";
+import { useState } from "react";
+
 export default function Home() {
+  const [dietType, setDietType] = useState(false);
+  const [mealType, setMealType] = useState(false);
+  const [diet, setDiet] = useState("");
+  const [meal, setMeal] = useState("");
+
+  const allDiet = () => {
+    setDietType(true);
+    setDiet("all");
+  };
+
+  const vegDiet = () => {
+    setDietType(true);
+    setDiet("vegetarian");
+  };
+
+  const veganDiet = () => {
+    setDietType(true);
+    setDiet("vegan");
+  };
+
+  const nonGlutenDiet = () => {
+    setDietType(true);
+    setDiet("non-gluten");
+  };
+
+  const breakfastMeal = () => {
+    setMealType(true);
+    setMeal("breakfast");
+  };
+
+  const lunchMeal = () => {
+    setMealType(true);
+    setMeal("lunch");
+  };
+
+  const dinnertMeal = () => {
+    setMealType(true);
+    setMeal("dinner");
+  };
   return (
     <>
       <Head>
@@ -22,10 +63,19 @@ export default function Home() {
         <DisplayLocations />
         <div className="flex">
           <div className="w-full">
-            <DietType />
+            <DietType
+              all={allDiet}
+              vegetarian={vegDiet}
+              vegan={veganDiet}
+              nonGluten={nonGlutenDiet}
+            />
           </div>
           <div className="w-full">
-            <MealType />
+            <MealType
+              breakfast={breakfastMeal}
+              lunch={lunchMeal}
+              dinner={dinnertMeal}
+            />
           </div>
           <div className="w-full">
             <Search />
