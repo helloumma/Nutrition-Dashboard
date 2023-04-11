@@ -58,6 +58,11 @@ export default function Home() {
   };
 
   const onSubmit = () => {
+    console.log({
+      search,
+      diet,
+      meal,
+    });
     return {
       search,
       diet,
@@ -109,7 +114,7 @@ export default function Home() {
             <Breakfast />
           </div>
           <div className="w-full">
-            <Lunch />
+            <Lunch searchItems={onSubmit} />
           </div>
           <div className="w-full">
             <Dinner />
