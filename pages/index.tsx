@@ -9,13 +9,14 @@ import {
   Lunch,
   Dinner,
 } from "../components";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 export default function Home() {
   const [dietType, setDietType] = useState(false);
   const [mealType, setMealType] = useState(false);
   const [diet, setDiet] = useState("");
   const [meal, setMeal] = useState("");
+  const [search, setSearch] = useState("");
 
   const allDiet = () => {
     setDietType(true);
@@ -51,6 +52,19 @@ export default function Home() {
     setMealType(true);
     setMeal("dinner");
   };
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
+  const onSubmit = () => {
+    return {
+      search,
+      diet,
+      meal,
+    };
+  };
+
   return (
     <>
       <Head>
@@ -78,10 +92,14 @@ export default function Home() {
             />
           </div>
           <div className="w-full">
-            <Search />
+            <Search onChange={onChange} />
           </div>
           <div className="w-full">
-            <button type="submit" className="bg-emerald-400 px-20 rounded ">
+            <button
+              type="submit"
+              className="bg-emerald-400 px-20 rounded"
+              onClick={onSubmit}
+            >
               Add
             </button>
           </div>
