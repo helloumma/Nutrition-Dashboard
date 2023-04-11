@@ -80,6 +80,8 @@ export default function Home() {
     ];
   };
 
+  // TO DO: Find a way to know where the submitted values should go to after meal selection (breakfast, lunch or dinner board)
+
   return (
     <>
       <Head>
@@ -124,7 +126,7 @@ export default function Home() {
             <Breakfast />
           </div>
           <div className="w-full">
-            <Lunch searchItems={onSubmit()} />
+            <Lunch searchItems={meal === "lunch" ? onSubmit() : null} />
           </div>
           <div className="w-full">
             <Dinner />
