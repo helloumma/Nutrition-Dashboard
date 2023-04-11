@@ -81,7 +81,12 @@ export default function Home() {
   };
 
   // TO DO: Find a way to know where the submitted values should go to after meal selection (breakfast, lunch or dinner board)
+  // above done but replicate to breakfast/dinner (reusability)
 
+  // find a good api
+  // have auto complete on the search so users can select the item
+  // and then have that item go to the correct board
+  // then do the meal analytics (basic stuff for now)
   return (
     <>
       <Head>
