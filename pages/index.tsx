@@ -4,8 +4,6 @@ import {
   MealType,
   DietType,
   Search,
-  SearchItem,
-  MealAnalytics,
   OverallAnalytics,
   Breakfast,
   Lunch,
