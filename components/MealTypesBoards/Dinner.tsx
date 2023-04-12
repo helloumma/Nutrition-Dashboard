@@ -5,7 +5,7 @@ interface props {
   searchItems: { search: string; diet: string; meal: string }[] | null;
 }
 const Dinner = ({ searchItems }: props) => {
-  console.log(searchItems, "searchitems");
+  //console.log(searchItems, "searchitems");
 
   return (
     <div>

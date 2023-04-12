@@ -65,7 +65,6 @@ export default function Home() {
   };
 
   const onSubmit = () => {
-    setSearch("");
     const newItem = { search, diet, meal };
     setSearchItems((prevItems) => [...prevItems, newItem]);
     setSearch("");
@@ -105,7 +104,7 @@ export default function Home() {
             />
           </div>
           <div className="w-full">
-            <Search onChange={onChange} />
+            <Search onChange={onChange} search={search} />
           </div>
           <div className="w-full">
             <button
