@@ -128,13 +128,13 @@ export default function Home() {
         </div>
         <div className="flex">
           <div className="w-full">
-            <Breakfast />
+            <Breakfast searchItems={meal === "breakfast" ? onSubmit() : null} />
           </div>
           <div className="w-full">
             <Lunch searchItems={meal === "lunch" ? onSubmit() : null} />
           </div>
           <div className="w-full">
-            <Dinner />
+            <Dinner searchItems={meal === "dinner" ? onSubmit() : null} />
           </div>
           <div className="w-full">
             <OverallAnalytics />

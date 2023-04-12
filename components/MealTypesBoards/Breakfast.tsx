@@ -1,12 +1,29 @@
 import SearchItem from "../SearchItem";
 import { MealAnalytics } from "..";
 
-const Breakfast = () => (
-  <div>
-    Breakfast
-    <SearchItem />
-    <MealAnalytics />
-  </div>
-);
+interface props {
+  searchItems: { search: string; diet: string; meal: string }[] | null;
+}
+const Breakfast = ({ searchItems }: props) => {
+  console.log(searchItems, "searchitems");
+
+  return (
+    <div>
+      Breakfast
+      {searchItems?.map((a) => (
+        // eslint-disable-next-line react/jsx-key
+        <SearchItem search={a.search} diet={a.diet} meal={a.meal} />
+      ))}
+      {/*searchItems[0] && (
+        <SearchItem
+          search={searchItems[0].search}
+          diet={searchItems[0].diet}
+          meal={searchItems[0].meal}
+        />
+      )*/}
+      <MealAnalytics />
+    </div>
+  );
+};
 
 export default Breakfast;
