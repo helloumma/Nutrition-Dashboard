@@ -17,7 +17,13 @@ export default function Home() {
   const [diet, setDiet] = useState<string>("");
   const [meal, setMeal] = useState<string>("");
   const [search, setSearch] = useState<string>("");
-  const [searchItems, setSearchItems] = useState({});
+  const [searchItems, setSearchItems] = useState<
+    {
+      search: string;
+      diet: string;
+      meal: string;
+    }[]
+  >([]);
 
   const allDiet = () => {
     setDietType(true);
@@ -59,14 +65,10 @@ export default function Home() {
   };
 
   const onSubmit = () => {
-    return [
-      {
-        search,
-        diet,
-        meal,
-      },
-    ];
-    //setSearch("");
+    setSearch("");
+    const newItem = { search, diet, meal };
+    setSearchItems((prevItems) => [...prevItems, newItem]);
+    setSearch("");
   };
 
   // TO DO: Find a way to know where the submitted values should go to after meal selection (breakfast, lunch or dinner board)
@@ -117,13 +119,21 @@ export default function Home() {
         </div>
         <div className="flex">
           <div className="w-full">
-            <Breakfast searchItems={meal === "breakfast" ? onSubmit() : null} />
+            <Breakfast
+              searchItems={searchItems.filter(
+                (item) => item.meal === "breakfast"
+              )}
+            />
           </div>
           <div className="w-full">
-            <Lunch searchItems={meal === "lunch" ? onSubmit() : null} />
+            <Lunch
+              searchItems={searchItems.filter((item) => item.meal === "lunch")}
+            />
           </div>
           <div className="w-full">
-            <Dinner searchItems={meal === "dinner" ? onSubmit() : null} />
+            <Dinner
+              searchItems={searchItems.filter((item) => item.meal === "dinner")}
+            />
           </div>
           <div className="w-full">
             <OverallAnalytics />
