@@ -17,7 +17,7 @@ export default function Home() {
   const [diet, setDiet] = useState<string>("");
   const [meal, setMeal] = useState<string>("");
   const [search, setSearch] = useState<string>("");
-  const [searchItems, setSearchItems] = useState(null);
+  const [searchItems, setSearchItems] = useState({});
 
   const allDiet = () => {
     setDietType(true);
@@ -59,18 +59,6 @@ export default function Home() {
   };
 
   const onSubmit = () => {
-    console.log({
-      search,
-      diet,
-      meal,
-    });
-
-    /*setSearchItems({
-      search,
-      diet,
-      meal,
-    });*/
-
     return [
       {
         search,
@@ -78,6 +66,7 @@ export default function Home() {
         meal,
       },
     ];
+    //setSearch("");
   };
 
   // TO DO: Find a way to know where the submitted values should go to after meal selection (breakfast, lunch or dinner board)

@@ -7,10 +7,9 @@ interface props {
 const SearchItem = ({ search, diet, meal }: props) => {
   return (
     <div>
-      Search Item
-      {search}
-      {diet}
-      {meal}
+      <p>search: {search}</p>
+      <p>diet: {diet}</p>
+      <p>meal: {meal}</p>
     </div>
   );
 };
