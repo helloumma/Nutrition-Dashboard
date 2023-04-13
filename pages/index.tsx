@@ -1,5 +1,4 @@
 import Head from "next/head";
-import DisplayLocations from "@/components/DisplayLocations";
 import {
   MealType,
   DietType,
@@ -70,6 +69,22 @@ export default function Home() {
     setSearch("");
   };
 
+  /*const data = await fetch(
+    "https://trackapi.nutritionix.com/v2/search/instant?query=apple",
+    {
+      headers: {
+        method: "GET",
+        "Content-Type": "application/json",
+        "x-app-id": `${process.env.NEXT_PUBLIC_ID}`,
+        "x-app-key": `${process.env.NEXT_PUBLIC_API_KEY}`,
+      },
+    }
+  );
+
+  const responseData = await data.json();
+  const commonArray = responseData.common;
+  console.log(commonArray);*/
+
   // TO DO: Find a way to know where the submitted values should go to after meal selection (breakfast, lunch or dinner board)
   // above done but replicate to breakfast/dinner (reusability)
 
@@ -86,7 +101,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <DisplayLocations />
         <div className="flex">
           <div className="w-full">
             <DietType
