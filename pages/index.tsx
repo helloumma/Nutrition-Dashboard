@@ -10,7 +10,7 @@ import {
 } from "../components";
 import { ChangeEvent, useState } from "react";
 
-export default async function Home() {
+export default function Home() {
   const [dietType, setDietType] = useState<Boolean>(false);
   const [mealType, setMealType] = useState<Boolean>(false);
   const [diet, setDiet] = useState<string>("");
@@ -69,22 +69,24 @@ export default async function Home() {
     setSearch("");
   };
 
-  const data = await fetch(
-    "https://trackapi.nutritionix.com/v2/search/instant?query=apple",
-    {
-      headers: {
-        method: "GET",
-        "Content-Type": "application/json",
-        "x-app-id": `${process.env.NEXT_PUBLIC_ID}`,
-        "x-app-key": `${process.env.NEXT_PUBLIC_API_KEY}`,
-      },
-    }
-  );
-
-  const responseData = await data.json();
-  const commonArray = responseData.common;
-  console.log(commonArray);
-
+  const fetchData = async(): Promise<any> => {
+    const data = await fetch(
+      "https://trackapi.nutritionix.com/v2/search/instant?query=apple",
+      {
+        headers: {
+          method: "GET",
+          "Content-Type": "application/json",
+          "x-app-id": `${process.env.ID}`,
+          "x-app-key": `${process.env.API_KEY}`,
+        },
+      }
+    );
+    const responseData = await data.json();
+    const commonArray = responseData.common;
+    console.log(commonArray);
+    return commonArray
+  }
+fetchData()
   // TO DO: Find a way to know where the submitted values should go to after meal selection (breakfast, lunch or dinner board)
   // above done but replicate to breakfast/dinner (reusability)
 
