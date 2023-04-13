@@ -10,7 +10,7 @@ import {
 } from "../components";
 import { ChangeEvent, useState } from "react";
 
-export default function Home() {
+export default async function Home() {
   const [dietType, setDietType] = useState<Boolean>(false);
   const [mealType, setMealType] = useState<Boolean>(false);
   const [diet, setDiet] = useState<string>("");
@@ -69,7 +69,7 @@ export default function Home() {
     setSearch("");
   };
 
-  /*const data = await fetch(
+  const data = await fetch(
     "https://trackapi.nutritionix.com/v2/search/instant?query=apple",
     {
       headers: {
@@ -83,7 +83,7 @@ export default function Home() {
 
   const responseData = await data.json();
   const commonArray = responseData.common;
-  console.log(commonArray);*/
+  console.log(commonArray);
 
   // TO DO: Find a way to know where the submitted values should go to after meal selection (breakfast, lunch or dinner board)
   // above done but replicate to breakfast/dinner (reusability)
