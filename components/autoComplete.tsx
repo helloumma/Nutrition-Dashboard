@@ -56,7 +56,7 @@ const AutoComplete = () => {
         if (response.ok) {
           const data = await response.json();
           // Extract and use the nutrients data as needed
-          console.log('Nutrients data:', data);
+          console.log('Nutrients data:', data.foods);
         } else {
           console.error('Error fetching nutrients data:', response);
         }
