@@ -23,8 +23,13 @@ const mockData = [
   {"full_name": "test 20"},
 ]
 
+interface test {
+  data: any
+}
+
 const AutoComplete = () => {
   const [value, setValue] = useState<string>('')
+  const [data, setData] = useState<[]>([])
 
   const onChange = (e:any) => {
     setValue(e.target.value)
@@ -33,7 +38,32 @@ const AutoComplete = () => {
   const onSubmit = (searchTerm:any) => {
     setValue(searchTerm)
     console.log('search', searchTerm)
+    
   }
+
+
+
+  const  fetchData = async()=> {
+    const data = await fetch(
+      `https://trackapi.nutritionix.com/v2/search/instant?query=${value}`,
+      {
+        headers: {
+         
+          "x-app-id": `${process.env.ID}`,
+          "x-app-key": `${process.env.API_KEY}`,
+        },
+      }
+    ).then((res) => res.json())
+    //const responseData = await data.json();
+    //const commonArray = responseData.common;
+    console.log(data.common);
+   setData(data.common)
+    return data.common
+  }
+
+
+  fetchData()
+
   return (
     <>
     <input type="text"  className="rounded border-2 border-red-400" value={value} onChange={onChange}/>
@@ -48,7 +78,13 @@ const AutoComplete = () => {
         <div key={item.full_name} onClick={() => onSubmit(item.full_name)}> 
          {item.full_name}
         </div>))}
+        
     </div>
+    <div>
+     {data?.map(a => a.food_name)}
+     
+    </div>
+   
     </>
   )
 }
