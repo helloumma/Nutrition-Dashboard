@@ -33,6 +33,8 @@ const AutoComplete = () => {
 
   const onChange = (e:any) => {
     setValue(e.target.value)
+    fetchData()
+
   }
 
   const onSubmit = (searchTerm:any) => {
@@ -62,8 +64,6 @@ const AutoComplete = () => {
   }
 
 
-  fetchData()
-
   return (
     <>
     <input type="text"  className="rounded border-2 border-red-400" value={value} onChange={onChange}/>
@@ -80,11 +80,19 @@ const AutoComplete = () => {
         </div>))}
         
     </div>
-    <div>
-     {data?.map(a => a.food_name)}
-     
-    </div>
    
+   <div>
+   {data?.filter(item => {
+        const searchTerm = value.toLowerCase()
+        const fullName = item.food_name.toLowerCase()
+
+        return searchTerm && fullName.startsWith(searchTerm) && fullName !== searchTerm
+      }).slice(0,5)?.map((item) => (
+        <div key={item.food_name} onClick={() => onSubmit(item.food_name)}> 
+         {item.food_name}
+        </div>))}
+        
+   </div>
     </>
   )
 }
