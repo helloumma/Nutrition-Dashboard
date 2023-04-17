@@ -68,28 +68,17 @@ const AutoComplete = () => {
     <>
     <input type="text"  className="rounded border-2 border-red-400" value={value} onChange={onChange}/>
     <button type="submit" className="bg-red-400" onClick={onSubmit}>add</button>
-    <div>
-      {mockData?.filter(item => {
-        const searchTerm = value.toLowerCase()
-        const fullName = item.full_name.toLowerCase()
-
-        return searchTerm && fullName.startsWith(searchTerm) && fullName !== searchTerm
-      }).slice(0,5)?.map((item) => (
-        <div key={item.full_name} onClick={() => onSubmit(item.full_name)}> 
-         {item.full_name}
-        </div>))}
-        
-    </div>
-   
+  
    <div>
    {data?.filter(item => {
         const searchTerm = value.toLowerCase()
         const fullName = item.food_name.toLowerCase()
 
-        return searchTerm && fullName.startsWith(searchTerm) && fullName !== searchTerm
-      }).slice(0,5)?.map((item) => (
+        return searchTerm  && fullName !== searchTerm
+      })?.map((item) => (
         <div key={item.food_name} onClick={() => onSubmit(item.food_name)}> 
          {item.food_name}
+         <img src={item.photo.thumb} />
         </div>))}
         
    </div>

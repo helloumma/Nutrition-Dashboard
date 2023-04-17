@@ -71,29 +71,12 @@ export default function Home() {
     setSearch("");
   };
 
-  // rome-ignore lint/suspicious/noExplicitAny: <explanation>
-const  fetchData = async(): Promise<any> => {
-    const data = await fetch(
-      "https://trackapi.nutritionix.com/v2/search/instant?query=apple",
-      {
-        headers: {
-          method: "GET",
-          "Content-Type": "application/json",
-          "x-app-id": `${process.env.ID}`,
-          "x-app-key": `${process.env.API_KEY}`,
-        },
-      }
-    );
-    const responseData = await data.json();
-    const commonArray = responseData.common;
-    console.log(commonArray);
-    return commonArray
-  }
-fetchData()
 
-  // have auto complete on the search so users can select the item
-  // and then have that item go to the correct board
+  // TO DO 
+  // have that item go to the correct board
+  // make an api call to get the data for servings, nutrition data etc. 
   // then do the meal analytics (basic stuff for now)
+  
   return (
     <>
       <Head>
