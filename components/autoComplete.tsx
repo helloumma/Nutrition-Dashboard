@@ -35,6 +35,8 @@ const AutoComplete = () => {
   }
 
   const onSubmit = async  (searchTerm:any) => {
+    setValue(searchTerm)
+    console.log('search', searchTerm)
       try {
         // Make API call to fetch nutrients data
         const response = await fetch(
