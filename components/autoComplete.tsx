@@ -1,27 +1,5 @@
 import { useState } from "react"
 
-const mockData = [
-  {"full_name": "test 1"},
-  {"full_name": "test 2"},
-  {"full_name": "test 3"},
-  {"full_name": "test 4"},
-  {"full_name": "test 5"},
-  {"full_name": "test 6"},
-  {"full_name": "test 7"},
-  {"full_name": "test 8"},
-  {"full_name": "test 9"},
-  {"full_name": "test 10"},
-  {"full_name": "test 11"},
-  {"full_name": "test 12"},
-  {"full_name": "test 13"},
-  {"full_name": "test 14"},
-  {"full_name": "test 15"},
-  {"full_name": "test 16"},
-  {"full_name": "test 17"},
-  {"full_name": "test 18"},
-  {"full_name": "test 19"},
-  {"full_name": "test 20"},
-]
 
 interface test {
   data: any
@@ -37,14 +15,7 @@ const AutoComplete = () => {
 
   }
 
-  const onSubmit = (searchTerm:any) => {
-    setValue(searchTerm)
-    console.log('search', searchTerm)
-    
-  }
-
-
-
+  
   const  fetchData = async()=> {
     const data = await fetch(
       `https://trackapi.nutritionix.com/v2/search/instant?query=${value}`,
@@ -58,11 +29,40 @@ const AutoComplete = () => {
     ).then((res) => res.json())
     //const responseData = await data.json();
     //const commonArray = responseData.common;
-    console.log(data.common);
-   setData(data.common)
+    console.log(data);
+    setData(data.common)
     return data.common
   }
 
+  const onSubmit = async  (searchTerm:any) => {
+      try {
+        // Make API call to fetch nutrients data
+        const response = await fetch(
+          `https://trackapi.nutritionix.com/v2/natural/nutrients`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-app-id': `${process.env.ID}`,
+              'x-app-key': `${process.env.API_KEY}`,
+            },
+            body: JSON.stringify({ query: value }),
+          }
+        );
+    
+        // Check if response is successful
+        if (response.ok) {
+          const data = await response.json();
+          // Extract and use the nutrients data as needed
+          console.log('Nutrients data:', data);
+        } else {
+          console.error('Error fetching nutrients data:', response);
+        }
+      } catch (error) {
+        console.error('Error fetching nutrients data:', error);
+      }
+    
+  }
 
   return (
     <>
@@ -71,10 +71,10 @@ const AutoComplete = () => {
   
    <div>
    {data?.filter(item => {
-        const searchTerm = value.toLowerCase()
+        const searchTerm = value
         const fullName = item.food_name.toLowerCase()
 
-        return searchTerm  && fullName !== searchTerm
+        return searchTerm && fullName.startsWith(searchTerm) && fullName !== searchTerm ||  fullName == searchTerm 
       })?.map((item) => (
         <div key={item.food_name} onClick={() => onSubmit(item.food_name)}> 
          {item.food_name}
