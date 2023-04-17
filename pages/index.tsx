@@ -10,6 +10,8 @@ import {
 } from "../components";
 import { ChangeEvent, useState } from "react";
 
+import MockAutoComplete from '../components/autoComplete'
+
 export default function Home() {
   const [dietType, setDietType] = useState<Boolean>(false);
   const [mealType, setMealType] = useState<Boolean>(false);
@@ -69,7 +71,8 @@ export default function Home() {
     setSearch("");
   };
 
-  const fetchData = async(): Promise<any> => {
+  // rome-ignore lint/suspicious/noExplicitAny: <explanation>
+const  fetchData = async(): Promise<any> => {
     const data = await fetch(
       "https://trackapi.nutritionix.com/v2/search/instant?query=apple",
       {
@@ -87,10 +90,7 @@ export default function Home() {
     return commonArray
   }
 fetchData()
-  // TO DO: Find a way to know where the submitted values should go to after meal selection (breakfast, lunch or dinner board)
-  // above done but replicate to breakfast/dinner (reusability)
 
-  // find a good api
   // have auto complete on the search so users can select the item
   // and then have that item go to the correct board
   // then do the meal analytics (basic stuff for now)
@@ -154,6 +154,7 @@ fetchData()
             <OverallAnalytics />
           </div>
         </div>
+        <MockAutoComplete/>
       </main>
     </>
   );
