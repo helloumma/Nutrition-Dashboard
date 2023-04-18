@@ -20,12 +20,14 @@ export default function Home() {
   const [search, setSearch] = useState<string>("");
   const [value, setValue] = useState<string>("");
   const [data, setData] = useState<[]>([]);
+  const [name, setName] = useState("");
 
   const [searchItems, setSearchItems] = useState<
     {
       search: string;
       diet: string;
       meal: string;
+      name: any;
     }[]
   >([]);
 
@@ -69,7 +71,7 @@ export default function Home() {
   };
 
   const onSubmit = () => {
-    const newItem = { search, diet, meal };
+    const newItem = { search, diet, meal, name };
     setSearchItems((prevItems) => [...prevItems, newItem]);
     setSearch("");
   };
@@ -93,6 +95,7 @@ export default function Home() {
     //const commonArray = responseData.common;
     console.log(data);
     setData(data.common);
+    setName(data.common?.map((a: any) => a.food_name));
     return data.common;
   };
 
@@ -125,6 +128,9 @@ export default function Home() {
     } catch (error) {
       console.error("Error fetching nutrients data:", error);
     }
+    const newItem = { search, diet, meal, name };
+    setSearchItems((prevItems) => [...prevItems, newItem]);
+    setSearch("");
   };
 
   // TO DO

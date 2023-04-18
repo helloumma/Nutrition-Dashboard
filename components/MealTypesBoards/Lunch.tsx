@@ -2,7 +2,7 @@ import SearchItem from "../SearchItem";
 import { MealAnalytics } from "..";
 
 interface props {
-  searchItems: { search: string; diet: string; meal: string }[] | null;
+  searchItems: { search: string; diet: string; meal: string; name: any }[];
 }
 const Lunch = ({ searchItems }: props) => {
   //console.log(searchItems, "searchitems");
@@ -16,6 +16,7 @@ const Lunch = ({ searchItems }: props) => {
           search={a.search}
           diet={a.diet}
           meal={a.meal}
+          name={a.name}
         />
       ))}
       <MealAnalytics />
