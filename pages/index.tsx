@@ -10,7 +10,7 @@ import {
 } from "../components";
 import { ChangeEvent, useState } from "react";
 
-import MockAutoComplete from '../components/autoComplete'
+import MockAutoComplete from "../components/autoComplete";
 
 export default function Home() {
   const [dietType, setDietType] = useState<Boolean>(false);
@@ -18,6 +18,9 @@ export default function Home() {
   const [diet, setDiet] = useState<string>("");
   const [meal, setMeal] = useState<string>("");
   const [search, setSearch] = useState<string>("");
+  const [value, setValue] = useState<string>("");
+  const [data, setData] = useState<[]>([]);
+
   const [searchItems, setSearchItems] = useState<
     {
       search: string;
@@ -71,12 +74,64 @@ export default function Home() {
     setSearch("");
   };
 
+  const onChangeAC = (e: any) => {
+    setValue(e.target.value);
+    fetchData();
+  };
 
-  // TO DO 
+  const fetchData = async () => {
+    const data = await fetch(
+      `https://trackapi.nutritionix.com/v2/search/instant?query=${value}`,
+      {
+        headers: {
+          "x-app-id": `${process.env.ID}`,
+          "x-app-key": `${process.env.API_KEY}`,
+        },
+      }
+    ).then((res) => res.json());
+    //const responseData = await data.json();
+    //const commonArray = responseData.common;
+    console.log(data);
+    setData(data.common);
+    return data.common;
+  };
+
+  const onSubmitAC = async (searchTerm: any) => {
+    setValue(searchTerm);
+    console.log("search", searchTerm);
+    try {
+      // Make API call to fetch nutrients data
+      const response = await fetch(
+        `https://trackapi.nutritionix.com/v2/natural/nutrients`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-app-id": `${process.env.ID}`,
+            "x-app-key": `${process.env.API_KEY}`,
+          },
+          body: JSON.stringify({ query: value }),
+        }
+      );
+
+      // Check if response is successful
+      if (response.ok) {
+        const data = await response.json();
+        // Extract and use the nutrients data as needed
+        console.log("Nutrients data:", data.foods);
+      } else {
+        console.error("Error fetching nutrients data:", response);
+      }
+    } catch (error) {
+      console.error("Error fetching nutrients data:", error);
+    }
+  };
+
+  // TO DO
   // have that item go to the correct board
-  // make an api call to get the data for servings, nutrition data etc. 
+  // make an api call to get the data for servings, nutrition data etc.
   // then do the meal analytics (basic stuff for now)
-  
+
   return (
     <>
       <Head>
@@ -104,6 +159,12 @@ export default function Home() {
           </div>
           <div className="w-full">
             <Search onChange={onChange} search={search} />
+            <MockAutoComplete
+              onChangeAC={onChangeAC}
+              dataAC={data}
+              onSubmitAC={onSubmitAC}
+              valueAC={value}
+            />
           </div>
           <div className="w-full">
             <button
@@ -137,7 +198,30 @@ export default function Home() {
             <OverallAnalytics />
           </div>
         </div>
-        <MockAutoComplete/>
+
+        <div>
+          {data
+            ?.filter((item) => {
+              const searchTerm = value;
+              const fullName = item.food_name.toLowerCase();
+
+              return (
+                (searchTerm &&
+                  fullName.startsWith(searchTerm) &&
+                  fullName !== searchTerm) ||
+                fullName == searchTerm
+              );
+            })
+            ?.map((item) => (
+              <div
+                key={item.food_name}
+                onClick={() => onSubmit(item.food_name)}
+              >
+                {item.food_name}
+                <img src={item.photo.thumb} />
+              </div>
+            ))}
+        </div>
       </main>
     </>
   );
