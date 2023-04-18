@@ -21,6 +21,7 @@ export default function Home() {
   const [value, setValue] = useState<string>("");
   const [data, setData] = useState<[]>([]);
   const [name, setName] = useState("");
+  const [nutrients, setNutrients] = useState();
 
   const [searchItems, setSearchItems] = useState<
     {
@@ -112,13 +113,14 @@ export default function Home() {
         const data = await response.json();
         // Extract and use the nutrients data as needed
         console.log("Nutrients data:", data.foods);
+        setNutrients(data.foods);
       } else {
         console.error("Error fetching nutrients data:", response);
       }
     } catch (error) {
       console.error("Error fetching nutrients data:", error);
     }
-    const newItem = { search, diet, meal, name };
+    const newItem = { search, diet, meal, name, nutrients };
     setSearchItems((prevItems) => [...prevItems, newItem]);
     setValue("");
   };
@@ -168,6 +170,7 @@ export default function Home() {
               searchItems={searchItems.filter(
                 (item) => item.meal === "breakfast"
               )}
+              nurtrients={nutrients}
             />
           </div>
           <div className="w-full">

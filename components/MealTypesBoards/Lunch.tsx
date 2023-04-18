@@ -19,6 +19,7 @@ const Lunch = ({ searchItems }: props) => {
           name={a.name}
         />
       ))}
+      {/* nutrient data array needs to be sent to meal analytics component */}
       <MealAnalytics />
     </div>
   );
