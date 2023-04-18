@@ -1,13 +1,15 @@
 interface props {
-  meal: string;
   name: string;
+  image: string;
 }
 
-const SearchItem = ({ meal, name }: props) => {
+const SearchItem = ({ name, image }: props) => {
   return (
     <div className="bg-emerald-400 p-4 m-6 rounded text-white">
-      <p>meal: {meal}</p>
-      <p>data: {name}</p>
+      <p>{name}</p>
+      <p>
+        <img src={image} />
+      </p>
     </div>
   );
 };

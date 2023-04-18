@@ -2,7 +2,7 @@ import SearchItem from "../SearchItem";
 import { MealAnalytics } from "..";
 
 interface props {
-  searchItems: { meal: string; name: string }[] | null;
+  searchItems: { meal: string; name: string; image: string }[] | null;
   nurtrients: any;
   diet: string;
 }
@@ -13,7 +13,7 @@ const Dinner = ({ searchItems, nurtrients, diet }: props) => {
     <div>
       Dinner
       {searchItems?.map((a) => (
-        <SearchItem key={a.name[0]} meal={a.meal} name={a.name[0]} />
+        <SearchItem key={a.name[0]} image={a.image[0]} name={a.name[0]} />
       ))}
       <MealAnalytics data={nurtrients} diet={diet} />
     </div>

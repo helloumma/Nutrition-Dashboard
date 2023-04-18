@@ -20,13 +20,15 @@ export default function Home() {
   const [search, setSearch] = useState<string>("");
   const [value, setValue] = useState<string>("");
   const [data, setData] = useState<[]>([]);
-  const [name, setName] = useState("");
+  const [name, setName] = useState<string>("");
+  const [image, setImage] = useState<string>("");
   const [nutrients, setNutrients] = useState();
 
   const [searchItems, setSearchItems] = useState<
     {
       meal: string;
       name: string;
+      image: string;
     }[]
   >([]);
 
@@ -65,6 +67,7 @@ export default function Home() {
     //console.log(data);
     setData(data.common);
     setName(data.common?.map((a: any) => a.food_name));
+    setImage(data.common?.map((a: any) => a.photo.thumb));
     return data.common;
   };
 
@@ -98,7 +101,7 @@ export default function Home() {
     } catch (error) {
       console.error("Error fetching nutrients data:", error);
     }
-    const newItem = { meal, name, nutrients };
+    const newItem = { meal, name, image };
     setSearchItems((prevItems) => [...prevItems, newItem]);
     setValue("");
   };
