@@ -126,9 +126,9 @@ export default function Home() {
   };
 
   // TO DO
-  // have that item go to the correct board
-  // make an api call to get the data for servings, nutrition data etc.
   // then do the meal analytics (basic stuff for now)
+  // show correct nutrients for correct items on correct board [bug]
+  // pass through and render the name of item clicked on auto-complete with picture [bug]
 
   return (
     <>
@@ -176,11 +176,13 @@ export default function Home() {
           <div className="w-full">
             <Lunch
               searchItems={searchItems.filter((item) => item.meal === "lunch")}
+              nurtrients={nutrients}
             />
           </div>
           <div className="w-full">
             <Dinner
               searchItems={searchItems.filter((item) => item.meal === "dinner")}
+              nurtrients={nutrients}
             />
           </div>
           <div className="w-full">
