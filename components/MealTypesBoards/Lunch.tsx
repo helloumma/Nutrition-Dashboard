@@ -4,8 +4,9 @@ import { MealAnalytics } from "..";
 interface props {
   searchItems: { search: string; diet: string; meal: string; name: string }[];
   nurtrients: any;
+  diet: string;
 }
-const Lunch = ({ searchItems, nurtrients }: props) => {
+const Lunch = ({ searchItems, nurtrients, diet }: props) => {
   //console.log(searchItems, "searchitems");
 
   return (
@@ -21,7 +22,7 @@ const Lunch = ({ searchItems, nurtrients }: props) => {
         />
       ))}
       {/* nutrient data array needs to be sent to meal analytics component */}
-      <MealAnalytics data={nurtrients} />
+      <MealAnalytics data={nurtrients} diet={diet} />
     </div>
   );
 };

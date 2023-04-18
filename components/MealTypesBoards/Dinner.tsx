@@ -6,8 +6,9 @@ interface props {
     | { search: string; diet: string; meal: string; name: string }[]
     | null;
   nurtrients: any;
+  diet: string;
 }
-const Dinner = ({ searchItems, nurtrients }: props) => {
+const Dinner = ({ searchItems, nurtrients, diet }: props) => {
   //console.log(searchItems, "searchitems");
 
   return (
@@ -22,7 +23,7 @@ const Dinner = ({ searchItems, nurtrients }: props) => {
           name={a.name}
         />
       ))}
-      <MealAnalytics data={nurtrients} />
+      <MealAnalytics data={nurtrients} diet={diet} />
     </div>
   );
 };

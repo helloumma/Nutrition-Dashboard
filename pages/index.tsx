@@ -173,18 +173,21 @@ export default function Home() {
                 (item) => item.meal === "breakfast"
               )}
               nurtrients={nutrients}
+              diet={"breakfast"}
             />
           </div>
           <div className="w-full">
             <Lunch
               searchItems={searchItems.filter((item) => item.meal === "lunch")}
               nurtrients={nutrients}
+              diet={"lunch"}
             />
           </div>
           <div className="w-full">
             <Dinner
               searchItems={searchItems.filter((item) => item.meal === "dinner")}
               nurtrients={nutrients}
+              diet={"dinner"}
             />
           </div>
           <div className="w-full">
