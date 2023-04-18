@@ -25,32 +25,10 @@ export default function Home() {
 
   const [searchItems, setSearchItems] = useState<
     {
-      search: string;
-      diet: string;
       meal: string;
       name: string;
     }[]
   >([]);
-
-  const allDiet = () => {
-    setDietType(true);
-    setDiet("all");
-  };
-
-  const vegDiet = () => {
-    setDietType(true);
-    setDiet("vegetarian");
-  };
-
-  const veganDiet = () => {
-    setDietType(true);
-    setDiet("vegan");
-  };
-
-  const nonGlutenDiet = () => {
-    setDietType(true);
-    setDiet("non-gluten");
-  };
 
   const breakfastMeal = () => {
     setMealType(true);
@@ -120,7 +98,7 @@ export default function Home() {
     } catch (error) {
       console.error("Error fetching nutrients data:", error);
     }
-    const newItem = { search, diet, meal, name, nutrients };
+    const newItem = { meal, name, nutrients };
     setSearchItems((prevItems) => [...prevItems, newItem]);
     setValue("");
   };
@@ -141,14 +119,7 @@ export default function Home() {
       </Head>
       <main>
         <div className="flex">
-          <div className="w-full">
-            <DietType
-              all={allDiet}
-              vegetarian={vegDiet}
-              vegan={veganDiet}
-              nonGluten={nonGlutenDiet}
-            />
-          </div>
+          <div className="w-full"></div>
           <div className="w-full">
             <MealType
               breakfast={breakfastMeal}

@@ -2,7 +2,7 @@ import SearchItem from "../SearchItem";
 import { MealAnalytics } from "..";
 
 interface props {
-  searchItems: { search: string; diet: string; meal: string; name: string }[];
+  searchItems: { meal: string; name: string }[];
   nurtrients: any;
   diet: string;
 }
@@ -13,13 +13,7 @@ const Lunch = ({ searchItems, nurtrients, diet }: props) => {
     <div>
       Lunch
       {searchItems?.map((a) => (
-        <SearchItem
-          key={a.search}
-          search={a.search}
-          diet={a.diet}
-          meal={a.meal}
-          name={a.name[0]}
-        />
+        <SearchItem key={a.name[0]} meal={a.meal} name={a.name[0]} />
       ))}
       {/* nutrient data array needs to be sent to meal analytics component */}
       <MealAnalytics data={nurtrients} diet={diet} />
