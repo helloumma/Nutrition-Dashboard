@@ -66,16 +66,6 @@ export default function Home() {
     setMeal("dinner");
   };
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
-
-  const onSubmit = () => {
-    const newItem = { search, diet, meal, name };
-    setSearchItems((prevItems) => [...prevItems, newItem]);
-    setSearch("");
-  };
-
   const onChangeAC = (e: any) => {
     setValue(e.target.value);
     fetchData();
@@ -164,22 +154,12 @@ export default function Home() {
             />
           </div>
           <div className="w-full">
-            <Search onChange={onChange} search={search} />
             <MockAutoComplete
               onChangeAC={onChangeAC}
               dataAC={data}
               onSubmitAC={onSubmitAC}
               valueAC={value}
             />
-          </div>
-          <div className="w-full">
-            <button
-              type="submit"
-              className="bg-emerald-400 px-20 rounded"
-              onClick={onSubmit}
-            >
-              Add
-            </button>
           </div>
         </div>
         <div className="flex">
@@ -221,7 +201,7 @@ export default function Home() {
             ?.map((item) => (
               <div
                 key={item.food_name}
-                onClick={() => onSubmit(item.food_name)}
+                onClick={() => onSubmitAC(item.food_name)}
               >
                 {item.food_name}
                 <img src={item.photo.thumb} />
