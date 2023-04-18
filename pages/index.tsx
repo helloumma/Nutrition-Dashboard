@@ -27,7 +27,7 @@ export default function Home() {
       search: string;
       diet: string;
       meal: string;
-      name: any;
+      name: string;
     }[]
   >([]);
 
@@ -120,7 +120,7 @@ export default function Home() {
     }
     const newItem = { search, diet, meal, name };
     setSearchItems((prevItems) => [...prevItems, newItem]);
-    setSearch("");
+    setValue("");
   };
 
   // TO DO

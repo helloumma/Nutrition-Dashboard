@@ -2,7 +2,7 @@ interface props {
   search: string;
   diet: string;
   meal: string;
-  name: any;
+  name: string;
 }
 
 const SearchItem = ({ search, diet, meal, name }: props) => {
