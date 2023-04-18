@@ -129,7 +129,9 @@ export default function Home() {
   // then do the meal analytics (basic stuff for now)
   // show correct nutrients for correct items on correct board [bug]
   // pass through and render the name of item clicked on auto-complete with picture [bug]
-
+  // create data hooks [wait until state management/react-query etc resolved tho]
+  // add a charting library for the analytics
+  // send all the data that comes through meal analytics to overall to render charts too
   return (
     <>
       <Head>
