@@ -74,7 +74,7 @@ export default function Home() {
 
   const fetchData = async () => {
     const data = await fetch(
-      `https://trackapi.nutritionix.com/v2/search/instant?query=${value}`,
+      `https://trackapi.nutritionix.com/v2/search/instant?query=${value}&common=true&branded=true`,
       {
         headers: {
           "x-app-id": `${process.env.ID}`,
@@ -84,11 +84,13 @@ export default function Home() {
     ).then((res) => res.json());
     //const responseData = await data.json();
     //const commonArray = responseData.common;
-    console.log(data);
+    //console.log(data);
     setData(data.common);
     setName(data.common?.map((a: any) => a.food_name));
     return data.common;
   };
+
+  //console.log(name.at(0));
 
   const onSubmitAC = async (searchTerm: any) => {
     setValue(searchTerm);
@@ -112,7 +114,7 @@ export default function Home() {
       if (response.ok) {
         const data = await response.json();
         // Extract and use the nutrients data as needed
-        console.log("Nutrients data:", data.foods);
+        //console.log("Nutrients data:", data.foods);
         setNutrients(data.foods);
       } else {
         console.error("Error fetching nutrients data:", response);
@@ -124,7 +126,6 @@ export default function Home() {
     setSearchItems((prevItems) => [...prevItems, newItem]);
     setValue("");
   };
-
   // TO DO
   // then do the meal analytics (basic stuff for now)
   // show correct nutrients for correct items on correct board [bug]
@@ -160,8 +161,8 @@ export default function Home() {
           <div className="w-full">
             <MockAutoComplete
               onChangeAC={onChangeAC}
-              dataAC={data}
-              onSubmitAC={onSubmitAC}
+              dataAC={Array.isArray(data) ? data : []}
+              onSubmitAC={() => onSubmitAC(value)}
               valueAC={value}
             />
           </div>

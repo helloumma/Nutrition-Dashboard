@@ -18,7 +18,7 @@ const Lunch = ({ searchItems, nurtrients, diet }: props) => {
           search={a.search}
           diet={a.diet}
           meal={a.meal}
-          name={a.name}
+          name={a.name[0]}
         />
       ))}
       {/* nutrient data array needs to be sent to meal analytics component */}

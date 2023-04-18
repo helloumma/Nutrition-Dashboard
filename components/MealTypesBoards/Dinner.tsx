@@ -20,7 +20,7 @@ const Dinner = ({ searchItems, nurtrients, diet }: props) => {
           search={a.search}
           diet={a.diet}
           meal={a.meal}
-          name={a.name}
+          name={a.name[0]}
         />
       ))}
       <MealAnalytics data={nurtrients} diet={diet} />
