@@ -7,7 +7,7 @@ interface props {
 
 const SearchItem = ({ search, diet, meal, name }: props) => {
   return (
-    <div>
+    <div className="bg-emerald-400 p-4 m-6 rounded text-white">
       <p>search: {search}</p>
       <p>diet: {diet}</p>
       <p>meal: {meal}</p>

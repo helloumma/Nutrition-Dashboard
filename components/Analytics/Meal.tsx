@@ -8,7 +8,7 @@ interface props {
 const Meal = ({ data, diet }: props) => {
   //console.log(data);
   return (
-    <div>
+    <div className="bg-blue-400 p-4 m-6 rounded text-white">
       Meal Analytics
       {/*you need to attach the search with the nutrients for each
       query*/}
