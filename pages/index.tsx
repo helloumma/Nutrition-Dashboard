@@ -90,8 +90,6 @@ export default function Home() {
     return data.common;
   };
 
-  //console.log(name.at(0));
-
   const onSubmitAC = async (searchTerm: any) => {
     setValue(searchTerm);
     console.log("search", searchTerm);
@@ -114,7 +112,7 @@ export default function Home() {
       if (response.ok) {
         const data = await response.json();
         // Extract and use the nutrients data as needed
-        //console.log("Nutrients data:", data.foods);
+        console.log("Nutrients data:", data.foods);
         setNutrients(data.foods);
       } else {
         console.error("Error fetching nutrients data:", response);
