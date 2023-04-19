@@ -1,7 +1,12 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
-const Chart = () => {
+interface props {
+  data: any;
+}
+
+const Chart = ({ data }: props) => {
   const COLORS = ["#8884d8", "#82ca9d", "#FFBB28", "#FF8042", "#AF19FF"];
+  console.log(data);
   const pieData = [
     {
       name: "Apple",
@@ -24,21 +29,23 @@ const Chart = () => {
       value: 10.25,
     },
   ];
-  /*const CustomTooltip = ({ active, payload, label }) => {
+  const CustomTooltip = ({ active, payload, label }) => {
     if (active) {
-      <div
-        className="custom-tooltip"
-        style={{
-          backgroundColor: "#ffff",
-          padding: "5px",
-          border: "1px solid #cccc",
-        }}
-      >
-        <label>{`${payload[0].name} : ${payload[0].value}%`}</label>
-      </div>;
+      return (
+        <div
+          className="custom-tooltip"
+          style={{
+            backgroundColor: "#ffff",
+            padding: "5px",
+            border: "1px solid #cccc",
+          }}
+        >
+          <label>{`${payload[0].name} : ${payload[0].value}%`}</label>
+        </div>
+      );
     }
     return null;
-  };*/
+  };
   return (
     <PieChart width={730} height={300}>
       <Pie
@@ -55,7 +62,7 @@ const Chart = () => {
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
-
+      <Tooltip content={CustomTooltip} />
       <Legend />
     </PieChart>
   );

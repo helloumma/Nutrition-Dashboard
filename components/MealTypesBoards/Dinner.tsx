@@ -13,7 +13,12 @@ const Dinner = ({ searchItems, nurtrients, diet }: props) => {
     <div>
       Dinner
       {searchItems?.map((a) => (
-        <SearchItem key={a.name[0]} image={a.image[0]} name={a.name[0]} />
+        <SearchItem
+          key={a.name[0]}
+          image={a.image[0]}
+          name={a.name[0]}
+          nutrients={nurtrients}
+        />
       ))}
       <MealAnalytics data={nurtrients} diet={diet} />
     </div>

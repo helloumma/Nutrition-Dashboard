@@ -20,7 +20,7 @@ const Meal = ({ data, diet }: props) => {
       Meal Analytics
       {/*you need to attach the search with the nutrients for each
       query*/}
-      {diet === "breakfast" || diet === "lunch" || diet === "dinner"
+      {/*diet === "breakfast" || diet === "lunch" || diet === "dinner"
         ? data?.map((a: any) => (
             <div key={a.food_name}>
               <p>food name: {a.food_name}</p>
@@ -36,10 +36,10 @@ const Meal = ({ data, diet }: props) => {
               <p>carbohydrates: {a.nf_total_carbohydrate}</p>
             </div>
           ))
-        : ""}
+        : ""*/}
       {/*diet === "lunch" && data?.map((a) => a.nf_calories)*/}
       {/*data?.map((a) => a.nf_calories)*/}
-      <Chart />
+      <Chart data={data} />
     </div>
   );
 };
