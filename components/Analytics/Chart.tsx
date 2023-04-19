@@ -59,6 +59,13 @@ const Chart = ({ data }: props) => {
       value: 10.25,
     },
   ];
+
+  const legendWrapperStyle = {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  };
+
   const CustomTooltip = ({ active, payload, label }) => {
     if (active) {
       return (
@@ -77,7 +84,7 @@ const Chart = ({ data }: props) => {
     return null;
   };
   return (
-    <PieChart width={730} height={300}>
+    <PieChart width={350} height={350}>
       <Pie
         data={test}
         color="#000000"
@@ -85,15 +92,14 @@ const Chart = ({ data }: props) => {
         nameKey="name"
         cx="50%"
         cy="50%"
-        outerRadius={120}
-        fill="#8884d8"
+        outerRadius={75}
       >
         {pieData.map((entry, index) => (
           <Cell key={`cell-${index}`} />
         ))}
       </Pie>
       <Tooltip content={CustomTooltip} />
-      <Legend />
+      <Legend wrapperStyle={legendWrapperStyle} />
     </PieChart>
   );
 };
