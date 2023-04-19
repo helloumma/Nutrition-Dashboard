@@ -24,7 +24,7 @@ const Chart = () => {
       value: 10.25,
     },
   ];
-  const CustomTooltip = ({ active, payload, label }) => {
+  /*const CustomTooltip = ({ active, payload, label }) => {
     if (active) {
       <div
         className="custom-tooltip"
@@ -38,7 +38,7 @@ const Chart = () => {
       </div>;
     }
     return null;
-  };
+  };*/
   return (
     <PieChart width={730} height={300}>
       <Pie
