@@ -5,20 +5,35 @@ interface props {
 }
 
 const Chart = ({ data }: props) => {
-  const COLORS = ["#8884d8", "#82ca9d", "#FFBB28", "#FF8042", "#AF19FF"];
+  const COLORS = [
+    "#8884d8",
+    "#82ca9d",
+    "#FFBB28",
+    "#FF8042",
+    "#AF19FF",
+    "#ffb0ab",
+    "#30f0bd",
+    "#a8b8e6",
+    "#f7e948",
+    "#f748b1",
+  ];
 
   const test = data
     ?.map((a) => [
-      { name: "calories", value: a.nf_calories },
-      { name: "cholesterol", value: a.nf_cholesterol },
-      { name: "fiber", value: a.nf_dietary_fiber },
-      { name: "potassium", value: a.nf_potassium },
-      { name: "protein", value: a.nf_protein },
-      { name: "saturated fat", value: a.nf_saturated_fat },
-      { name: "sodium", value: a.nf_sodium },
-      { name: "sugars", value: a.nf_sugars },
-      { name: "carbohydrates", value: a.nf_total_carbohydrate },
-      { name: "total fats", value: a.nf_total_fat },
+      { name: "calories", value: a.nf_calories, fill: "#8884d8" },
+      { name: "cholesterol", value: a.nf_cholesterol, fill: "#82ca9d" },
+      { name: "fiber", value: a.nf_dietary_fiber, fill: "#FFBB28" },
+      { name: "potassium", value: a.nf_potassium, fill: "#FF8042" },
+      { name: "protein", value: a.nf_protein, fill: "#AF19FF" },
+      { name: "saturated fat", value: a.nf_saturated_fat, fill: "#ffb0ab" },
+      { name: "sodium", value: a.nf_sodium, fill: "#30f0bd" },
+      { name: "sugars", value: a.nf_sugars, fill: "#a8b8e6" },
+      {
+        name: "carbohydrates",
+        value: a.nf_total_carbohydrate,
+        fill: "#f7e948",
+      },
+      { name: "total fats", value: a.nf_total_fat, fill: "#f748b1" },
     ])
     .pop();
 
@@ -74,7 +89,7 @@ const Chart = ({ data }: props) => {
         fill="#8884d8"
       >
         {pieData.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          <Cell key={`cell-${index}`} />
         ))}
       </Pie>
       <Tooltip content={CustomTooltip} />
