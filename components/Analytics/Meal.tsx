@@ -1,3 +1,5 @@
+import Chart from "./Chart";
+
 interface props {
   data: any;
   diet: string;
@@ -8,6 +10,9 @@ interface props {
 // find a charting library to display the following data (and update it, every time a new item is added)
 // might be tricky for indivudal, so have it as a counter that adds/subtracts from like a donut chart or something
 
+// store the breakfast data and be passed down here
+
+// etc etc with lunch and breakfast
 const Meal = ({ data, diet }: props) => {
   //console.log(data);
   return (
@@ -34,6 +39,7 @@ const Meal = ({ data, diet }: props) => {
         : ""}
       {/*diet === "lunch" && data?.map((a) => a.nf_calories)*/}
       {/*data?.map((a) => a.nf_calories)*/}
+      <Chart />
     </div>
   );
 };
