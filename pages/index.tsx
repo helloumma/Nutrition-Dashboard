@@ -29,6 +29,7 @@ export default function Home() {
       meal: string;
       name: string;
       image: string;
+      nutrients: any;
     }[]
   >([]);
 
@@ -95,16 +96,23 @@ export default function Home() {
         // Extract and use the nutrients data as needed
         console.log("Nutrients data:", data.foods);
         setNutrients(data.foods);
+
+        const newItem = {
+          meal,
+          name,
+          image,
+          nutrients: data.foods, // Use the updated nutrients state
+        };
+        setSearchItems((prevItems) => [...prevItems, newItem]);
+        setValue("");
       } else {
         console.error("Error fetching nutrients data:", response);
       }
     } catch (error) {
       console.error("Error fetching nutrients data:", error);
     }
-    const newItem = { meal, name, image };
-    setSearchItems((prevItems) => [...prevItems, newItem]);
-    setValue("");
   };
+
   // TO DO
   // then do the meal analytics (basic stuff for now)
   // show correct nutrients for correct items on correct board [bug]
@@ -137,6 +145,29 @@ export default function Home() {
               onSubmitAC={() => onSubmitAC(value)}
               valueAC={value}
             />
+            <div>
+              {data
+                ?.filter((item) => {
+                  const searchTerm = value;
+                  const fullName = item.food_name.toLowerCase();
+
+                  return (
+                    (searchTerm &&
+                      fullName.startsWith(searchTerm) &&
+                      fullName !== searchTerm) ||
+                    fullName == searchTerm
+                  );
+                })
+                ?.map((item) => (
+                  <div
+                    key={item.food_name}
+                    onClick={() => onSubmitAC(item.food_name)}
+                  >
+                    {item.food_name}
+                    <img src={item.photo.thumb} />
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
         <div className="flex">
@@ -166,30 +197,6 @@ export default function Home() {
           <div className="w-full">
             <OverallAnalytics />
           </div>
-        </div>
-
-        <div>
-          {data
-            ?.filter((item) => {
-              const searchTerm = value;
-              const fullName = item.food_name.toLowerCase();
-
-              return (
-                (searchTerm &&
-                  fullName.startsWith(searchTerm) &&
-                  fullName !== searchTerm) ||
-                fullName == searchTerm
-              );
-            })
-            ?.map((item) => (
-              <div
-                key={item.food_name}
-                onClick={() => onSubmitAC(item.food_name)}
-              >
-                {item.food_name}
-                <img src={item.photo.thumb} />
-              </div>
-            ))}
         </div>
       </main>
     </>

@@ -7,7 +7,6 @@ interface props {
 const Chart = ({ data }: props) => {
   const COLORS = ["#8884d8", "#82ca9d", "#FFBB28", "#FF8042", "#AF19FF"];
 
-  // map over data into chart {name: a.name, value: a.nf_calories} etc.
   const test = data
     ?.map((a) => [
       { name: "calories", value: a.nf_calories },
