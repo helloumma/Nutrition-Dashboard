@@ -6,7 +6,23 @@ interface props {
 
 const Chart = ({ data }: props) => {
   const COLORS = ["#8884d8", "#82ca9d", "#FFBB28", "#FF8042", "#AF19FF"];
-  console.log(data);
+
+  // map over data into chart {name: a.name, value: a.nf_calories} etc.
+  const test = data
+    ?.map((a) => [
+      { name: "calories", value: a.nf_calories },
+      { name: "cholesterol", value: a.nf_cholesterol },
+      { name: "fiber", value: a.nf_dietary_fiber },
+      { name: "potassium", value: a.nf_potassium },
+      { name: "protein", value: a.nf_protein },
+      { name: "saturated fat", value: a.nf_saturated_fat },
+      { name: "sodium", value: a.nf_sodium },
+      { name: "sugars", value: a.nf_sugars },
+      { name: "carbohydrates", value: a.nf_total_carbohydrate },
+      { name: "total fats", value: a.nf_total_fat },
+    ])
+    .pop();
+
   const pieData = [
     {
       name: "Apple",
@@ -49,7 +65,7 @@ const Chart = ({ data }: props) => {
   return (
     <PieChart width={730} height={300}>
       <Pie
-        data={pieData}
+        data={test}
         color="#000000"
         dataKey="value"
         nameKey="name"
