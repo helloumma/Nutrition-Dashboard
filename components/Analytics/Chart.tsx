@@ -5,6 +5,7 @@ interface props {
 }
 
 const Chart = ({ data }: props) => {
+  console.log(data, "chart");
   const COLORS = [
     "#8884d8",
     "#82ca9d",
@@ -18,7 +19,37 @@ const Chart = ({ data }: props) => {
     "#f748b1",
   ];
 
-  const test = data
+  //nutrients data needs to be combined into one array which calculates the
+  //values for each value - so you can have one graph that changes every time
+  //something is added on the board
+
+  // might need some props for different boards for calcs
+
+  const addData = data?.reduce(
+    (acc, curr) => ({
+      nf_calories: acc.nf_calories + curr.nf_calories,
+      nf_cholesterol: acc.nf_cholesterol + curr.nf_cholesterol,
+      nf_dietary_fiber: acc.nf_dietary_fiber + curr.nf_dietary_fiber,
+      nf_potassium: acc.nf_potassium + curr.nf_potassium,
+      nf_protein: acc.nf_protein + curr.nf_protein,
+      nf_saturated_fat: acc.nf_saturated_fat + curr.nf_saturated_fat,
+      nf_sodium: acc.nf_sodium + curr.nf_sodium,
+      nf_sugars: acc.nf_sugars + curr.nf_sugars,
+    }),
+    {
+      nf_calories: 0,
+      nf_cholesterol: 0,
+      nf_dietary_fiber: 0,
+      nf_potassium: 0,
+      nf_protein: 0,
+      nf_saturated_fat: 0,
+      nf_sodium: 0,
+      nf_sugars: 0,
+    }
+  );
+
+  console.log("addData", addData);
+  const test = [addData]
     ?.map((a) => [
       { name: "calories", value: a.nf_calories, fill: "#8884d8" },
       { name: "cholesterol", value: a.nf_cholesterol, fill: "#82ca9d" },
@@ -36,7 +67,7 @@ const Chart = ({ data }: props) => {
       { name: "total fats", value: a.nf_total_fat, fill: "#f748b1" },
     ])
     .pop();
-
+  console.log("data", data);
   const pieData = [
     {
       name: "Apple",
