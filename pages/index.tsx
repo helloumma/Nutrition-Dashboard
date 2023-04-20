@@ -119,6 +119,7 @@ export default function Home() {
   // create data hooks [wait until state management/react-query etc resolved tho]
   // send all the data that comes through meal analytics to overall to render charts too
   // type checking (put types/generics/interfaces into one doc - do after state management/data handling)
+  // have a hover over with a button to remove each item on each board - and then do the computation/popping off arrays etc.
 
   // STYLING
   // move the search and dropdown menu as a side panel
@@ -135,15 +136,13 @@ export default function Home() {
       </Head>
       <main>
         <div className="flex">
-          <div className="w-full"></div>
-          <div className="w-full">
+          <div className="h-screen border-r border-black p-4">
             <MealType
               breakfast={breakfastMeal}
               lunch={lunchMeal}
               dinner={dinnertMeal}
             />
-          </div>
-          <div className="w-full">
+
             <MockAutoComplete
               onChangeAC={onChangeAC}
               dataAC={Array.isArray(data) ? data : []}
@@ -174,8 +173,7 @@ export default function Home() {
                 ))}
             </div>
           </div>
-        </div>
-        <div className="flex">
+
           <div className="w-full">
             <Breakfast
               searchItems={searchItems.filter(

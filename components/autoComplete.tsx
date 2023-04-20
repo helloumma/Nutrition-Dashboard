@@ -9,11 +9,16 @@ const AutoComplete = ({ onChangeAC, onSubmitAC, valueAC }: props) => (
   <>
     <input
       type="text"
-      className="rounded border-2 border-red-400"
+      placeholder="search item..."
+      className=" border border-black0 h-10 mt-8"
       value={valueAC}
       onChange={onChangeAC}
     />
-    <button type="submit" className="bg-red-400" onClick={onSubmitAC}>
+    <button
+      type="submit"
+      className="bg-black h-10 w-full flex justify-center mt-4 text-white flex justify-center items-center	"
+      onClick={onSubmitAC}
+    >
       add
     </button>
   </>
