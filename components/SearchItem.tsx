@@ -6,7 +6,7 @@ interface props {
 
 const SearchItem = ({ name, image, nutrients }: props) => {
   return (
-    <div className="p-4 m-6 border border-black ">
+    <div className="p-4 m-6 border border-black h-128">
       <img src={image} />
       {nutrients?.map((a: any) => (
         <div key={a.food_name}>
