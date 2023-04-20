@@ -24,7 +24,7 @@ const Breakfast = ({ searchItems, nurtrients, diet }: props) => {
 
   const test = searchItems
     ?.map((a) => a?.nutrients)
-    ?.reduce((a, b) => a.concat(b, []));
+    ?.reduce((a, b) => a?.concat(b, []), []);
 
   console.log(test);
 

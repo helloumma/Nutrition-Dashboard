@@ -9,7 +9,9 @@ interface props {
 }
 const Lunch = ({ searchItems, nurtrients, diet }: props) => {
   //console.log(searchItems, "searchitems");
-
+  const test = searchItems
+    ?.map((a) => a?.nutrients)
+    ?.reduce((a, b) => a?.concat(b, []), []);
   return (
     <div>
       Lunch
@@ -23,7 +25,7 @@ const Lunch = ({ searchItems, nurtrients, diet }: props) => {
       ))}
       {/* nutrient data array needs to be sent to meal analytics component */}
       {/*<MealAnalytics data={nurtrients} diet={diet} />*/}
-      <LunchChart data={nurtrients} diet={diet} />
+      <LunchChart data={test} diet={diet} />
     </div>
   );
 };

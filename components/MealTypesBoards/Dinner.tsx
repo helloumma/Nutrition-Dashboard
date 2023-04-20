@@ -9,7 +9,9 @@ interface props {
 }
 const Dinner = ({ searchItems, nurtrients, diet }: props) => {
   //console.log(searchItems, "searchitems");
-
+  const test = searchItems
+    ?.map((a) => a?.nutrients)
+    ?.reduce((a, b) => a?.concat(b, []), []);
   return (
     <div>
       Dinner
@@ -22,7 +24,7 @@ const Dinner = ({ searchItems, nurtrients, diet }: props) => {
         />
       ))}
       {/*<MealAnalytics data={nurtrients} diet={diet} />*/}
-      <DinnerChart data={nurtrients} diet={diet} />
+      <DinnerChart data={test} diet={diet} />
     </div>
   );
 };
