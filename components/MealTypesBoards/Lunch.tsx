@@ -1,5 +1,6 @@
 import SearchItem from "../SearchItem";
 import { MealAnalytics } from "..";
+import { LunchChart } from "..";
 
 interface props {
   searchItems: { image: string; nutrients: any; name: string }[];
@@ -21,7 +22,8 @@ const Lunch = ({ searchItems, nurtrients, diet }: props) => {
         />
       ))}
       {/* nutrient data array needs to be sent to meal analytics component */}
-      <MealAnalytics data={nurtrients} diet={diet} />
+      {/*<MealAnalytics data={nurtrients} diet={diet} />*/}
+      <LunchChart data={nurtrients} diet={diet} />
     </div>
   );
 };

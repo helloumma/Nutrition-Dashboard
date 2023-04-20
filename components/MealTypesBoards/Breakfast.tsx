@@ -1,5 +1,6 @@
 import SearchItem from "../SearchItem";
 import { MealAnalytics } from "..";
+import { BreakfastChart } from "..";
 
 interface props {
   searchItems:
@@ -14,7 +15,19 @@ interface props {
 }
 const Breakfast = ({ searchItems, nurtrients, diet }: props) => {
   //console.log(searchItems, "searchitems");
-  console.log(searchItems);
+  // could add all nutrients and then send it to the chart here
+  /*console.log(
+    searchItems
+      ?.map((a) => a?.nutrients)
+      .reduce((a, b) => a.nf_calories + b.nf_calories)
+  );*/
+
+  const test = searchItems
+    ?.map((a) => a?.nutrients)
+    ?.reduce((a, b) => a.concat(b, []));
+
+  console.log(test);
+
   return (
     <div>
       Breakfast
@@ -26,7 +39,8 @@ const Breakfast = ({ searchItems, nurtrients, diet }: props) => {
           nutrients={a.nutrients}
         />
       ))}
-      <MealAnalytics data={nurtrients} diet={diet} />
+      {/*<MealAnalytics data={nurtrients} diet={diet} />*/}
+      <BreakfastChart data={test} diet={diet} />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import SearchItem from "../SearchItem";
 import { MealAnalytics } from "..";
+import { DinnerChart } from "..";
 
 interface props {
   searchItems: { image: string; nutrients: any; name: string }[] | null;
@@ -20,7 +21,8 @@ const Dinner = ({ searchItems, nurtrients, diet }: props) => {
           nutrients={a.nutrients}
         />
       ))}
-      <MealAnalytics data={nurtrients} diet={diet} />
+      {/*<MealAnalytics data={nurtrients} diet={diet} />*/}
+      <DinnerChart data={nurtrients} diet={diet} />
     </div>
   );
 };
