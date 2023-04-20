@@ -19,11 +19,7 @@ const Chart = ({ data }: props) => {
     "#f748b1",
   ];
 
-  //nutrients data needs to be combined into one array which calculates the
-  //values for each value - so you can have one graph that changes every time
-  //something is added on the board
-
-  // might need some props for different boards for calcs
+  // might need some props for different boards for calcs\\
 
   const addData = data?.reduce(
     (acc, curr) => ({
