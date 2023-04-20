@@ -57,7 +57,10 @@ const Overall = ({ data }: props) => {
   console.log("overall", dataFormatted);
   return (
     <div>
-      <Chart data={dataFormatted} overall={true} />
+      Overall
+      <div className="bg-blue-400 p-2 m-6 rounded text-white">
+        <Chart data={dataFormatted} overall={true} />
+      </div>
     </div>
   );
 };
