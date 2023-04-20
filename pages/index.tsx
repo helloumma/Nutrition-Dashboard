@@ -119,6 +119,12 @@ export default function Home() {
   // create data hooks [wait until state management/react-query etc resolved tho]
   // send all the data that comes through meal analytics to overall to render charts too
   // type checking (put types/generics/interfaces into one doc - do after state management/data handling)
+
+  // STYLING
+  // move the search and dropdown menu as a side panel
+  // [search + dropdown][analytics]
+  //                    [searched items]
+  // make search + dropdown collaposable?
   return (
     <>
       <Head>
