@@ -88,7 +88,7 @@ const Chart = ({ data, overall }: props) => {
 
   const legendWrapperStyle = {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "center",
   };
 
@@ -125,7 +125,8 @@ const Chart = ({ data, overall }: props) => {
         ))}
       </Pie>
       <Tooltip content={CustomTooltip} />
-      <Legend wrapperStyle={legendWrapperStyle} />
+
+      <Legend layout="vertical" verticalAlign="middle" align="right" />
     </PieChart>
   );
 };
