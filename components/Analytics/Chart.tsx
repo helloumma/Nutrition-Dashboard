@@ -2,9 +2,10 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 interface props {
   data: any;
+  overall?: boolean;
 }
 
-const Chart = ({ data }: props) => {
+const Chart = ({ data, overall }: props) => {
   console.log(data, "chart");
   const COLORS = [
     "#8884d8",
@@ -111,7 +112,7 @@ const Chart = ({ data }: props) => {
   return (
     <PieChart width={350} height={350}>
       <Pie
-        data={test}
+        data={overall ? data : test}
         color="#000000"
         dataKey="value"
         nameKey="name"

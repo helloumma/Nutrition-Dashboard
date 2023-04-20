@@ -194,7 +194,7 @@ export default function Home() {
             />
           </div>
           <div className="w-full">
-            <OverallAnalytics />
+            <OverallAnalytics data={searchItems} />
           </div>
         </div>
       </main>
