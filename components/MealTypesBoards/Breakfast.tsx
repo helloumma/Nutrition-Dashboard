@@ -28,8 +28,8 @@ const Breakfast = ({ searchItems, nurtrients, diet }: props) => {
   console.log(test, "breakfast");
 
   return (
-    <div>
-      Breakfast
+    <>
+      <h1 className="text-6xl text-black font-black text-center">Breakfast</h1>
       <BreakfastChart data={test} diet={diet} />
       {searchItems?.map((a) => (
         <SearchItem
@@ -40,7 +40,7 @@ const Breakfast = ({ searchItems, nurtrients, diet }: props) => {
         />
       ))}
       {/*<MealAnalytics data={nurtrients} diet={diet} />*/}
-    </div>
+    </>
   );
 };
 

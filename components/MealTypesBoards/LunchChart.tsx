@@ -6,8 +6,7 @@ interface props {
 }
 
 const LunchChart = ({ data, diet }: props) => (
-  <div className="bg-blue-400 p-2 m-6 rounded text-white">
-    Meal Analytics [lunch]
+  <div className="border border-black p-2 m-6  text-white">
     <Chart data={data} />
   </div>
 );

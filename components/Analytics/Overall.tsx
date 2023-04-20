@@ -56,12 +56,12 @@ const Overall = ({ data }: props) => {
     .pop();
   console.log("overall", dataFormatted);
   return (
-    <div>
-      Overall
-      <div className="bg-blue-400 p-2 m-6 rounded text-white">
+    <>
+      <h1 className="text-6xl text-black font-black text-center">Overall</h1>
+      <div className="border border-black p-2 m-6 text-white">
         <Chart data={dataFormatted} overall={true} />
       </div>
-    </div>
+    </>
   );
 };
 

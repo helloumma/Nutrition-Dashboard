@@ -12,8 +12,8 @@ const Lunch = ({ searchItems, nurtrients, diet }: props) => {
     ?.map((a) => a?.nutrients)
     ?.reduce((a, b) => a?.concat(b, []), []);
   return (
-    <div>
-      Lunch
+    <>
+      <h1 className="text-6xl text-black font-black text-center">Lunch</h1>
       <LunchChart data={test} diet={diet} />
       {searchItems?.map((a) => (
         <SearchItem
@@ -25,7 +25,7 @@ const Lunch = ({ searchItems, nurtrients, diet }: props) => {
       ))}
       {/* nutrient data array needs to be sent to meal analytics component */}
       {/*<MealAnalytics data={nurtrients} diet={diet} />*/}
-    </div>
+    </>
   );
 };
 

@@ -136,7 +136,7 @@ export default function Home() {
       </Head>
       <main>
         <div className="flex">
-          <div className="h-screen border-r border-black p-4">
+          <div className="h-screen border-r-4 border-double	border-black p-4">
             <MealType
               breakfast={breakfastMeal}
               lunch={lunchMeal}

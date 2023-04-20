@@ -8,7 +8,7 @@ interface props {
 
 const MealType = ({ breakfast, lunch, dinner }: props) => (
   <div className="dropdown dropdown-hover">
-    <label className="bg-black m-8 p-4 text-white cursor-pointer">
+    <label className="bg-black m-8 p-4 w-20 text-white cursor-pointer">
       Meal Type
     </label>
     <ul className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
