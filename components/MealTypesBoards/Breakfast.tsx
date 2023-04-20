@@ -30,6 +30,7 @@ const Breakfast = ({ searchItems, nurtrients, diet }: props) => {
   return (
     <div>
       Breakfast
+      <BreakfastChart data={test} diet={diet} />
       {searchItems?.map((a) => (
         <SearchItem
           key={Math.random()}
@@ -39,7 +40,6 @@ const Breakfast = ({ searchItems, nurtrients, diet }: props) => {
         />
       ))}
       {/*<MealAnalytics data={nurtrients} diet={diet} />*/}
-      <BreakfastChart data={test} diet={diet} />
     </div>
   );
 };

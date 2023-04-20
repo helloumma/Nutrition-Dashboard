@@ -14,6 +14,7 @@ const Lunch = ({ searchItems, nurtrients, diet }: props) => {
   return (
     <div>
       Lunch
+      <LunchChart data={test} diet={diet} />
       {searchItems?.map((a) => (
         <SearchItem
           key={a.name[0]}
@@ -24,7 +25,6 @@ const Lunch = ({ searchItems, nurtrients, diet }: props) => {
       ))}
       {/* nutrient data array needs to be sent to meal analytics component */}
       {/*<MealAnalytics data={nurtrients} diet={diet} />*/}
-      <LunchChart data={test} diet={diet} />
     </div>
   );
 };

@@ -14,6 +14,7 @@ const Dinner = ({ searchItems, nurtrients, diet }: props) => {
   return (
     <div>
       Dinner
+      <DinnerChart data={test} diet={diet} />
       {searchItems?.map((a) => (
         <SearchItem
           key={a.name[0]}
@@ -23,7 +24,6 @@ const Dinner = ({ searchItems, nurtrients, diet }: props) => {
         />
       ))}
       {/*<MealAnalytics data={nurtrients} diet={diet} />*/}
-      <DinnerChart data={test} diet={diet} />
     </div>
   );
 };
