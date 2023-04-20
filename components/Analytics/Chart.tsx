@@ -126,7 +126,12 @@ const Chart = ({ data, overall }: props) => {
       </Pie>
       <Tooltip content={CustomTooltip} />
 
-      <Legend layout="vertical" verticalAlign="middle" align="right" />
+      <Legend
+        layout="vertical"
+        verticalAlign="middle"
+        align="right"
+        iconType="circle"
+      />
     </PieChart>
   );
 };
