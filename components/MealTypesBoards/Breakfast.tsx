@@ -1,5 +1,4 @@
 import SearchItem from "../SearchItem";
-import { MealAnalytics } from "..";
 import { BreakfastChart } from "..";
 
 interface props {

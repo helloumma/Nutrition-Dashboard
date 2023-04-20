@@ -19,8 +19,6 @@ const Chart = ({ data }: props) => {
     "#f748b1",
   ];
 
-  // might need some props for different boards for calcs\\
-
   const addData = data?.reduce(
     (acc, curr) => ({
       nf_calories: acc.nf_calories + curr.nf_calories,
