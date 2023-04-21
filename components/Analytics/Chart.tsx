@@ -6,20 +6,6 @@ interface props {
 }
 
 const Chart = ({ data, overall }: props) => {
-  console.log(data, "chart");
-  const COLORS = [
-    "#8884d8",
-    "#82ca9d",
-    "#FFBB28",
-    "#FF8042",
-    "#AF19FF",
-    "#ffb0ab",
-    "#30f0bd",
-    "#a8b8e6",
-    "#f7e948",
-    "#f748b1",
-  ];
-
   const addData = data?.reduce(
     (acc, curr) => ({
       nf_calories: acc.nf_calories + curr.nf_calories,
@@ -53,7 +39,7 @@ const Chart = ({ data, overall }: props) => {
       { name: "protein", value: a.nf_protein, fill: "#6366f1" },
       { name: "saturated fat", value: a.nf_saturated_fat, fill: "#f9a8d4" },
       { name: "sodium", value: a.nf_sodium, fill: "#fb7185" },
-      { name: "sugars", value: a.nf_sugars, fill: "#f43f5e" },
+      { name: "sugars", value: a.nf_sugars, fill: "#a8b8e6" },
       {
         name: "carbohydrates",
         value: a.nf_total_carbohydrate,
