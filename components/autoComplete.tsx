@@ -16,10 +16,10 @@ const AutoComplete = ({ onChangeAC, onSubmitAC, valueAC }: props) => (
     />
     <button
       type="submit"
-      className="bg-black h-10 w-full flex justify-center mt-4 text-white flex justify-center items-center	"
+      className="bg-black h-10 w-full flex justify-center mt-4 text-white flex justify-center items-center	font-semibold	"
       onClick={onSubmitAC}
     >
-      add
+      Add
     </button>
   </>
 );

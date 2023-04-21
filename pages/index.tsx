@@ -123,6 +123,7 @@ export default function Home() {
   // BEST PRACTISES
   // add react-query for data handling
   // create data hooks
+  // error handling for 500 api request or typos or searched for query not in data
   // look into state management (context API or zustand)
   // testing + coverage via vitest
   // READ ME docs

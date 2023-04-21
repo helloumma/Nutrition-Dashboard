@@ -1,4 +1,5 @@
 import { MouseEventHandler } from "react";
+import Image from "next/image";
 
 interface props {
   breakfast?: MouseEventHandler<HTMLButtonElement>;
@@ -8,8 +9,15 @@ interface props {
 
 const MealType = ({ breakfast, lunch, dinner }: props) => (
   <div className="dropdown dropdown-hover w-full ">
-    <label className="bg-black p-4 text-white cursor-pointer flex w-full">
+    <label className="bg-black p-4 text-white cursor-pointer flex w-full justify-center font-extrabold	">
       Meal Type
+      <Image
+        className="rotate-180	"
+        src="/chevron.svg"
+        height={32}
+        width={32}
+        alt="chevron"
+      />
     </label>
     <ul className="w-full border border-black dropdown-content menu shadow p-1 bg-base-100 -box ">
       <li>
