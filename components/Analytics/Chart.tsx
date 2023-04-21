@@ -110,7 +110,7 @@ const Chart = ({ data, overall }: props) => {
           <Cell key={`cell-${index}`} />
         ))}
       </Pie>
-      <Tooltip content={CustomTooltip} />
+      <Tooltip />
 
       <Legend
         layout="vertical"
