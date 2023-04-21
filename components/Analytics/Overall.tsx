@@ -76,7 +76,12 @@ const Overall = ({ data }: props) => {
     <>
       <h1 className="text-6xl text-black font-black text-center">Overall</h1>
       <div className="border border-black p-2 m-6 text-white">
-        <ComposedChart width={1300} height={400} data={dataFormatted}>
+        <ComposedChart
+          width={1300}
+          height={400}
+          data={dataFormatted}
+          key={Math.random()}
+        >
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />

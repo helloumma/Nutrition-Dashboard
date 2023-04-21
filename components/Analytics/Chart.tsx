@@ -110,6 +110,7 @@ const Chart = ({ data, overall }: props) => {
         cx="50%"
         cy="50%"
         outerRadius={75}
+        key={Math.random()}
       >
         {pieData.map((entry, index) => (
           <Cell key={`cell-${index}`} />
