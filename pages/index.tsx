@@ -113,19 +113,19 @@ export default function Home() {
     }
   };
 
-  // TO DO
+  // BUGS/FIXES
+  // search => allow user to click on the picture and add to board
+  // search should send the correct data, not first item in array
+  // type checking - interfaces and generics
+  // the re-rendering of the dropdown menu in breakfast
 
-  // pass through and render the name of item clicked on auto-complete with picture [bug]
-  // create data hooks [wait until state management/react-query etc resolved tho]
-  // send all the data that comes through meal analytics to overall to render charts too
-  // type checking (put types/generics/interfaces into one doc - do after state management/data handling)
-  // have a hover over with a button to remove each item on each board - and then do the computation/popping off arrays etc.
+  // BEST PRACTISES
+  // add react-query for data handling
+  // create data hooks
+  // look into state management (context API or zustand)
+  // testing + coverage via vitest
+  // READ ME docs
 
-  // STYLING
-  // move the search and dropdown menu as a side panel
-  // [search + dropdown][analytics]
-  //                    [searched items]
-  // make search + dropdown collaposable?
   return (
     <>
       <Head>
