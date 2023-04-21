@@ -11,6 +11,7 @@ import {
 import { ChangeEvent, useState } from "react";
 
 import MockAutoComplete from "../components/autoComplete";
+import { isTypeNode } from "typescript";
 
 export default function Home() {
   const [dietType, setDietType] = useState<Boolean>(false);
@@ -180,7 +181,11 @@ export default function Home() {
                     onClick={() => onSubmitAC(item.food_name)}
                   >
                     {item.food_name}
-                    <img src={item.photo.thumb} />
+                    <img
+                      src={item.photo.thumb}
+                      onClick={() => setImage(item.photo.thumb)}
+                      alt={item.food_name}
+                    />
                   </div>
                 ))}
             </div>

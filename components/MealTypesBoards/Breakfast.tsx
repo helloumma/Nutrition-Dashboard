@@ -20,7 +20,7 @@ const Breakfast = ({ searchItems, nurtrients, diet }: props) => {
       {searchItems?.map((a) => (
         <SearchItem
           key={Math.random()}
-          name={a.name[0]}
+          name={a.name}
           image={a.image[0]}
           nutrients={a.nutrients}
         />
