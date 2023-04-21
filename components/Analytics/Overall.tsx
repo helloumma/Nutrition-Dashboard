@@ -38,20 +38,20 @@ const Overall = ({ data }: props) => {
 
   const dataFormatted = [addData]
     ?.map((a) => [
-      { name: "calories", value: a.nf_calories, fill: "#8884d8" },
-      { name: "cholesterol", value: a.nf_cholesterol, fill: "#82ca9d" },
-      { name: "fiber", value: a.nf_dietary_fiber, fill: "#FFBB28" },
-      { name: "potassium", value: a.nf_potassium, fill: "#FF8042" },
-      { name: "protein", value: a.nf_protein, fill: "#AF19FF" },
-      { name: "saturated fat", value: a.nf_saturated_fat, fill: "#ffb0ab" },
-      { name: "sodium", value: a.nf_sodium, fill: "#30f0bd" },
-      { name: "sugars", value: a.nf_sugars, fill: "#a8b8e6" },
+      { name: "calories", value: a.nf_calories, fill: "#6ee7b7" },
+      { name: "cholesterol", value: a.nf_cholesterol, fill: "#06b6d4" },
+      { name: "fiber", value: a.nf_dietary_fiber, fill: "#93c5fd" },
+      { name: "potassium", value: a.nf_potassium, fill: "#3b82f6" },
+      { name: "protein", value: a.nf_protein, fill: "#6366f1" },
+      { name: "saturated fat", value: a.nf_saturated_fat, fill: "#f9a8d4" },
+      { name: "sodium", value: a.nf_sodium, fill: "#fb7185" },
+      { name: "sugars", value: a.nf_sugars, fill: "#f43f5e" },
       {
         name: "carbohydrates",
         value: a.nf_total_carbohydrate,
-        fill: "#f7e948",
+        fill: "#fb923c",
       },
-      { name: "total fats", value: a.nf_total_fat, fill: "#f748b1" },
+      { name: "total fats", value: a.nf_total_fat, fill: "#fbbf24" },
     ])
     .pop();
   console.log("overall", dataFormatted);
