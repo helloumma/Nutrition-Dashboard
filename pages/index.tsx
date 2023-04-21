@@ -149,7 +149,7 @@ export default function Home() {
       </Head>
       <main>
         <div className="flex">
-          <div className="w-2/12 h-screen border-r-4 border-double	border-black p-4">
+          <div className="w-2/12 h-screen  p-4">
             <MealType
               breakfast={breakfastMeal}
               lunch={lunchMeal}
@@ -185,7 +185,7 @@ export default function Home() {
                 ))}
             </div>
           </div>
-          <div className="w-10/12">
+          <div className="w-10/12 border-l-4 border-double	border-black">
             <div className="w-full">
               <OverallAnalytics data={searchItems} />
             </div>
