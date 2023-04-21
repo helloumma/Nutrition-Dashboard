@@ -16,6 +16,9 @@ const Chart = ({ data, overall }: props) => {
       nf_saturated_fat: acc.nf_saturated_fat + curr.nf_saturated_fat,
       nf_sodium: acc.nf_sodium + curr.nf_sodium,
       nf_sugars: acc.nf_sugars + curr.nf_sugars,
+      nf_total_carbohydrate:
+        acc.nf_total_carbohydrate + curr.nf_total_carbohydrate,
+      nf_total_fat: acc.nf_total_fat + curr.nf_total_fat,
     }),
     {
       nf_calories: 0,
@@ -26,6 +29,8 @@ const Chart = ({ data, overall }: props) => {
       nf_saturated_fat: 0,
       nf_sodium: 0,
       nf_sugars: 0,
+      nf_total_carbohydrate: 0,
+      nf_total_fat: 0,
     }
   );
 

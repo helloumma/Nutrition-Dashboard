@@ -119,8 +119,6 @@ export default function Home() {
   // add branded and common items to search
   // type checking - interfaces and generics
   // the re-rendering of the dropdown menu in breakfast
-  // tooltip hover on pie charts
-  // x-axis labels need to match up to bars on ovreall graph
 
   // BEST PRACTISES
   // add react-query for data handling
