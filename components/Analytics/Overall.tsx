@@ -75,7 +75,6 @@ const Overall = ({ data }: props) => {
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
-          <Legend />
           <Bar dataKey="value" barSize={75} fill="#413ea0" />
           <Line type="monotone" dataKey="value" stroke="#000" />
         </ComposedChart>
