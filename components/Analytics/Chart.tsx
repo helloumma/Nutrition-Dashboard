@@ -44,7 +44,7 @@ const Chart = ({ data, overall }: props) => {
       { name: "protein", value: a.nf_protein, fill: "#6366f1" },
       { name: "saturated fat", value: a.nf_saturated_fat, fill: "#f9a8d4" },
       { name: "sodium", value: a.nf_sodium, fill: "#fb7185" },
-      { name: "sugars", value: a.nf_sugars, fill: "#a8b8e6" },
+      { name: "sugars", value: a.nf_sugars, fill: "#f43f5e" },
       {
         name: "carbohydrates",
         value: a.nf_total_carbohydrate,
