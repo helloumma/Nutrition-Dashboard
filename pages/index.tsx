@@ -119,6 +119,7 @@ export default function Home() {
   // add branded and common items to search
   // type checking - interfaces and generics
   // the re-rendering of the dropdown menu in breakfast
+  // hydration error with recharts
 
   // BEST PRACTISES
   // add react-query for data handling
@@ -128,6 +129,16 @@ export default function Home() {
   // testing + coverage via vitest
   // READ ME docs
 
+  // [next week]
+  // 1. type checks; types/interfaces/generics
+  // 2. add react-query
+  // 3. fix search
+  // 4. create data hooks
+  // 5. add state management
+  // 6. fix the re-rednering and hydration issues
+  // 7. add error handling
+  // 8. testing
+  // 9. readme.md
   return (
     <>
       <Head>

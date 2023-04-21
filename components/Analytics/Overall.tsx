@@ -81,6 +81,7 @@ const Overall = ({ data }: props) => {
           height={400}
           data={dataFormatted}
           key={Math.random()}
+          id={Math.random()}
         >
           <XAxis dataKey="name" />
           <YAxis />

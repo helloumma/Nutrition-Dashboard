@@ -2,25 +2,11 @@ import SearchItem from "../SearchItem";
 import { BreakfastChart } from "..";
 
 interface props {
-  searchItems:
-    | {
-        image: string;
-        nutrients: any;
-        name: string;
-      }[]
-    | null;
+  searchItems: { image: string; nutrients: any; name: string }[] | null;
   nurtrients: any;
   diet: string;
 }
 const Breakfast = ({ searchItems, nurtrients, diet }: props) => {
-  //console.log(searchItems, "searchitems");
-  // could add all nutrients and then send it to the chart here
-  /*console.log(
-    searchItems
-      ?.map((a) => a?.nutrients)
-      .reduce((a, b) => a.nf_calories + b.nf_calories)
-  );*/
-
   const test = searchItems
     ?.map((a) => a?.nutrients)
     ?.reduce((a, b) => a?.concat(b, []), []);
@@ -39,7 +25,6 @@ const Breakfast = ({ searchItems, nurtrients, diet }: props) => {
           nutrients={a.nutrients}
         />
       ))}
-      {/*<MealAnalytics data={nurtrients} diet={diet} />*/}
     </>
   );
 };
