@@ -10,7 +10,7 @@ const AutoComplete = ({ onChangeAC, onSubmitAC, valueAC }: props) => (
     <input
       type="text"
       placeholder="search item..."
-      className=" border border-black0 h-10 mt-8"
+      className=" border border-black0 h-10 mt-8 w-full"
       value={valueAC}
       onChange={onChangeAC}
     />

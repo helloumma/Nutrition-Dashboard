@@ -116,8 +116,10 @@ export default function Home() {
   // BUGS/FIXES
   // search => allow user to click on the picture and add to board
   // search should send the correct data, not first item in array
+  // add branded and common items to search
   // type checking - interfaces and generics
   // the re-rendering of the dropdown menu in breakfast
+  // tooltip hover on charts
 
   // BEST PRACTISES
   // add react-query for data handling
@@ -136,13 +138,12 @@ export default function Home() {
       </Head>
       <main>
         <div className="flex">
-          <div className="h-screen border-r-4 border-double	border-black p-4">
+          <div className="w-2/12 h-screen border-r-4 border-double	border-black p-4">
             <MealType
               breakfast={breakfastMeal}
               lunch={lunchMeal}
               dinner={dinnertMeal}
             />
-
             <MockAutoComplete
               onChangeAC={onChangeAC}
               dataAC={Array.isArray(data) ? data : []}
@@ -173,32 +174,39 @@ export default function Home() {
                 ))}
             </div>
           </div>
-
-          <div className="w-full">
-            <Breakfast
-              searchItems={searchItems.filter(
-                (item) => item.meal === "breakfast"
-              )}
-              nurtrients={nutrients}
-              diet={"breakfast"}
-            />
-          </div>
-          <div className="w-full">
-            <Lunch
-              searchItems={searchItems.filter((item) => item.meal === "lunch")}
-              nurtrients={nutrients}
-              diet={"lunch"}
-            />
-          </div>
-          <div className="w-full">
-            <Dinner
-              searchItems={searchItems.filter((item) => item.meal === "dinner")}
-              nurtrients={nutrients}
-              diet={"dinner"}
-            />
-          </div>
-          <div className="w-full">
-            <OverallAnalytics data={searchItems} />
+          <div className="w-10/12">
+            <div className="w-full">
+              <OverallAnalytics data={searchItems} />
+            </div>
+            <div className="flex">
+              <div className="w-full">
+                <Breakfast
+                  searchItems={searchItems.filter(
+                    (item) => item.meal === "breakfast"
+                  )}
+                  nurtrients={nutrients}
+                  diet={"breakfast"}
+                />
+              </div>
+              <div className="w-full">
+                <Lunch
+                  searchItems={searchItems.filter(
+                    (item) => item.meal === "lunch"
+                  )}
+                  nurtrients={nutrients}
+                  diet={"lunch"}
+                />
+              </div>
+              <div className="w-full">
+                <Dinner
+                  searchItems={searchItems.filter(
+                    (item) => item.meal === "dinner"
+                  )}
+                  nurtrients={nutrients}
+                  diet={"dinner"}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </main>
