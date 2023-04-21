@@ -67,18 +67,17 @@ const Overall = ({ data }: props) => {
     ])
     .pop();
   console.log("overall", dataFormatted);
-  // have three lines for breakfast lunch and dinner???
   return (
     <>
       <h1 className="text-6xl text-black font-black text-center">Overall</h1>
       <div className="border border-black p-2 m-6 text-white">
         <ComposedChart width={1300} height={400} data={dataFormatted}>
-          <XAxis dataKey="name" scale="band" />
+          <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="value" barSize={20} fill="#413ea0" />
-          <Line type="monotone" dataKey="value" stroke="#ff7300" />
+          <Bar dataKey="value" barSize={75} fill="#413ea0" />
+          <Line type="monotone" dataKey="value" stroke="#000" />
         </ComposedChart>
       </div>
     </>
