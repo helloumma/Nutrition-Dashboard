@@ -1,9 +1,9 @@
 import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from "recharts";
 import { overall } from "@/types/types";
 
-interface props {
+/*interface props {
   data: any;
-}
+}*/
 
 const Overall = ({ data }: overall) => {
   const test = data
