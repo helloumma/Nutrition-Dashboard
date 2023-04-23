@@ -1,10 +1,11 @@
 import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from "recharts";
+import { overall } from "@/types/types";
 
 interface props {
   data: any;
 }
 
-const Overall = ({ data }: props) => {
+const Overall = ({ data }: overall) => {
   const test = data
     ?.map((a) => a?.nutrients)
     ?.reduce((a, b) => a?.concat(b, []), []);
@@ -12,7 +13,7 @@ const Overall = ({ data }: props) => {
   //console.log(test, "overall");
 
   const addData = test?.reduce(
-    (acc, curr) => ({
+    (acc: any, curr: any) => ({
       nf_calories: acc.nf_calories + curr.nf_calories,
       nf_cholesterol: acc.nf_cholesterol + curr.nf_cholesterol,
       nf_dietary_fiber: acc.nf_dietary_fiber + curr.nf_dietary_fiber,

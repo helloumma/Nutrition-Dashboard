@@ -46,6 +46,12 @@ export interface chart {
   }[];
   overall?: boolean;
 }
+
+export interface overall {
+  data: {
+    nutrients: any;
+  }[];
+}
 // chart
 /*export interface props {
   data: any;
@@ -53,9 +59,9 @@ export interface chart {
 }*/
 
 // overall
-export interface props {
+/*export interface props {
   data: any;
-}
+}*/
 
 // breakfast
 /*export interface props {
