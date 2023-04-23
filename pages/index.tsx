@@ -161,6 +161,7 @@ export default function Home() {
                       src={item.photo.thumb}
                       onClick={() => onSubmitAC(item.food_name)}
                       alt={item.food_name}
+                      className="cursor-pointer"
                     />
                   </div>
                 ))}
