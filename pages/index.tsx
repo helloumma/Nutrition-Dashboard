@@ -95,8 +95,6 @@ export default function Home() {
   };
 
   // BUGS/FIXES
-  // search => allow user to click on the picture and add to board
-  // search should send the correct data, not first item in array
   // add branded and common items to search
   // type checking - interfaces and generics
   // the re-rendering of the dropdown menu in breakfast
@@ -113,12 +111,12 @@ export default function Home() {
   // [next week]
   // 1. type checks; types/interfaces/generics
   // 2. add react-query
-  // 3. fix search
-  // 4. create data hooks
-  // 5. add state management
-  // 6. fix the re-rednering and hydration issues
-  // 7. add error handling
-  // 8. testing
+  // 3. create data hooks
+  // 4. add state management
+  // 5. fix the re-rendering and hydration issues
+  // 6. add error handling
+  // 7. testing
+  // 8. responsive styling
   // 9. readme.md
   return (
     <>
