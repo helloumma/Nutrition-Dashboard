@@ -155,8 +155,7 @@ export default function Home() {
                   );
                 })
                 ?.map((item: { food_name: string; photo: any; thumb: any }) => (
-                  <div key={item.food_name}>
-                    {item.food_name}
+                  <div className="flex" key={item.food_name}>
                     <Image
                       src={item.photo.thumb}
                       onClick={() => onSubmitAC(item.food_name)}
@@ -165,6 +164,8 @@ export default function Home() {
                       width={75}
                       height={200}
                     />
+
+                    {item.food_name}
                   </div>
                 ))}
             </div>
