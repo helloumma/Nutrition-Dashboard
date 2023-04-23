@@ -1,11 +1,13 @@
-interface props {
-  nutrients: any;
-}
+import { data } from "../types/types";
 
-const SearchItem = ({ nutrients }: props) => {
+/*interface props {
+  nutrients: {}[];
+}*/
+
+const SearchItem = ({ data }: data) => {
   return (
     <div className="p-4 m-6 border border-black h-128">
-      {nutrients?.map((a: any) => (
+      {data?.map((a: any) => (
         <div key={a.food_name}>
           <p className="border-b-8 border-black text-4xl text-black font-black">
             {a.food_name}

@@ -1,24 +1,23 @@
 import SearchItem from "../SearchItem";
 import { BreakfastChart } from "..";
+import { meal } from "../../types/types";
 
-interface props {
+/*interface props {
   searchItems: { nutrients: any; name: string }[] | null;
   nurtrients: any;
   diet: string;
-}
-const Breakfast = ({ searchItems, nurtrients, diet }: props) => {
+}*/
+const Breakfast = ({ searchItems, diet }: meal) => {
   const test = searchItems
     ?.map((a) => a?.nutrients)
     ?.reduce((a, b) => a?.concat(b, []), []);
 
-  //console.log(test, "breakfast");
-
   return (
     <>
       <h1 className="text-6xl text-black font-black text-center">Breakfast</h1>
-      <BreakfastChart data={test} diet={diet} />
+      <BreakfastChart data={test} />
       {searchItems?.map((a) => (
-        <SearchItem key={a.name[0]} nutrients={a.nutrients} />
+        <SearchItem key={a.name[0]} data={a.nutrients} />
       ))}
     </>
   );

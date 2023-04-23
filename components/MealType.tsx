@@ -1,13 +1,13 @@
-import { MouseEventHandler } from "react";
 import Image from "next/image";
+import { mealType } from "../types/types";
 
-interface props {
+/*interface props {
   breakfast?: MouseEventHandler<HTMLButtonElement>;
   lunch?: MouseEventHandler<HTMLButtonElement>;
   dinner?: MouseEventHandler<HTMLButtonElement>;
-}
+}*/
 
-const MealType = ({ breakfast, lunch, dinner }: props) => (
+const MealType = ({ breakfast, lunch, dinner }: mealType) => (
   <div className="dropdown dropdown-hover w-full ">
     <label className="bg-black p-4 text-white cursor-pointer flex w-full justify-center font-extrabold	">
       Meal Type

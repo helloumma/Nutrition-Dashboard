@@ -175,7 +175,6 @@ export default function Home() {
                   searchItems={searchItems.filter(
                     (item) => item.meal === "breakfast"
                   )}
-                  nurtrients={nutrients}
                   diet={"breakfast"}
                 />
               </div>
@@ -184,7 +183,6 @@ export default function Home() {
                   searchItems={searchItems.filter(
                     (item) => item.meal === "lunch"
                   )}
-                  nurtrients={nutrients}
                   diet={"lunch"}
                 />
               </div>
@@ -193,7 +191,6 @@ export default function Home() {
                   searchItems={searchItems.filter(
                     (item) => item.meal === "dinner"
                   )}
-                  nurtrients={nutrients}
                   diet={"dinner"}
                 />
               </div>
