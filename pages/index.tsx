@@ -11,6 +11,8 @@ import { ChangeEvent, useState } from "react";
 
 import MockAutoComplete from "../components/autoComplete";
 
+import { search } from "@/types/types";
+
 export default function Home() {
   const [mealType, setMealType] = useState<Boolean>(false);
   const [meal, setMeal] = useState<string>("");
@@ -18,13 +20,7 @@ export default function Home() {
   const [data, setData] = useState<[]>([]);
   const [name, setName] = useState<string>("");
   const [nutrients, setNutrients] = useState();
-  const [searchItems, setSearchItems] = useState<
-    {
-      meal: string;
-      name: string;
-      nutrients: any;
-    }[]
-  >([]);
+  const [searchItems, setSearchItems] = useState<search>([]);
 
   const breakfastMeal = () => {
     setMealType(true);

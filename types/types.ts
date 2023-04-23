@@ -47,3 +47,9 @@ export interface overall {
     nutrients: any;
   }[];
 }
+
+export type search = {
+  meal: string;
+  name: string;
+  nutrients: any;
+}[];
