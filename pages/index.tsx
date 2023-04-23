@@ -40,6 +40,7 @@ export default function Home() {
     setMeal("dinner");
   };
 
+  //fix e type
   const onChangeAC = (e: any) => {
     setValue(e.target.value);
     fetchData();
@@ -142,7 +143,7 @@ export default function Home() {
             />
             <div>
               {data
-                ?.filter((item) => {
+                ?.filter((item: { food_name: string }) => {
                   const searchTerm = value;
                   const fullName = item.food_name.toLowerCase();
                   return (
@@ -152,17 +153,23 @@ export default function Home() {
                     fullName == searchTerm
                   );
                 })
-                ?.map((item) => (
-                  <div key={item.food_name}>
-                    {item.food_name}
-                    <img
-                      src={item.photo.thumb}
-                      onClick={() => onSubmitAC(item.food_name)}
-                      alt={item.food_name}
-                      className="cursor-pointer"
-                    />
-                  </div>
-                ))}
+                ?.map(
+                  (item: {
+                    food_name: string;
+                    photo: string;
+                    thumb: string;
+                  }) => (
+                    <div key={item.food_name}>
+                      {item.food_name}
+                      <img
+                        src={item.photo.thumb}
+                        onClick={() => onSubmitAC(item.food_name)}
+                        alt={item.food_name}
+                        className="cursor-pointer"
+                      />
+                    </div>
+                  )
+                )}
             </div>
           </div>
           <div className="w-10/12 border-l-4 border-double	border-black">

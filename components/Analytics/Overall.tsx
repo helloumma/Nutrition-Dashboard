@@ -1,14 +1,14 @@
 import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from "recharts";
-import { overall } from "@/types/types";
+import { data } from "@/types/types";
 
 /*interface props {
   data: any;
 }*/
 
-const Overall = ({ data }: overall) => {
+const Overall = <overall extends data>({ data }: overall) => {
   const test = data
-    ?.map((a) => a?.nutrients)
-    ?.reduce((a, b) => a?.concat(b, []), []);
+    ?.map((a: any) => a?.nutrients)
+    ?.reduce((a: string, b: any | []) => a?.concat(b, []), []);
 
   //console.log(test, "overall");
 

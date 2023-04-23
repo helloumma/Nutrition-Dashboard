@@ -36,12 +36,11 @@ export interface mealType {
 export interface autoComplete {
   onChangeAC: ChangeEventHandler<HTMLInputElement> | undefined;
   dataAC: [];
-  onSubmitAC:
-    | ChangeEventHandler<HTMLInputElement>
-    | MouseEventHandler<HTMLButtonElement>
-    | undefined;
+  onSubmitAC: MouseEventHandler<HTMLButtonElement> | undefined;
   valueAC: string;
 }
+
+// fix this - might need to be changed, once duplicate calcs on nutrients has changed
 
 export interface overall {
   data: {
