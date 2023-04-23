@@ -6,7 +6,7 @@ import {
   Lunch,
   Dinner,
 } from "../components";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import MockAutoComplete from "../components/autoComplete";
 
@@ -41,7 +41,7 @@ export default function Home() {
   };
 
   //fix e type
-  const onChangeAC = (e: any) => {
+  const onChangeAC = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     fetchData();
   };
