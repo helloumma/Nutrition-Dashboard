@@ -1,15 +1,4 @@
-import {
-  Bar,
-  CartesianGrid,
-  ComposedChart,
-  Legend,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from "recharts";
 
 interface props {
   data: any;

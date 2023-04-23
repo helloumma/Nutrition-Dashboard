@@ -31,11 +31,26 @@ export interface autoComplete {
   valueAC: string;
 }
 
-// chart
-export interface props {
-  data: any;
+export interface chart {
+  data: {
+    nf_calories: number;
+    nf_cholesterol: number;
+    nf_dietary_fiber: number;
+    nf_potassium: number;
+    nf_protein: number;
+    nf_saturated_fat: number;
+    nf_sodium: number;
+    nf_sugars: number;
+    nf_total_carbohydrate: number;
+    nf_total_fat: number;
+  }[];
   overall?: boolean;
 }
+// chart
+/*export interface props {
+  data: any;
+  overall?: boolean;
+}*/
 
 // overall
 export interface props {

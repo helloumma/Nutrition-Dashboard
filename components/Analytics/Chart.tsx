@@ -1,11 +1,23 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { chart } from "@/types/types";
 
-interface props {
-  data: any;
+/*interface props {
+  data: {
+    nf_calories: number;
+    nf_cholesterol: number;
+    nf_dietary_fiber: number;
+    nf_potassium: number;
+    nf_protein: number;
+    nf_saturated_fat: number;
+    nf_sodium: number;
+    nf_sugars: number;
+    nf_total_carbohydrate: number;
+    nf_total_fat: number;
+  }[];
   overall?: boolean;
-}
+}*/
 
-const Chart = ({ data, overall }: props) => {
+const Chart = ({ data, overall }: chart) => {
   const addData = data?.reduce(
     (acc, curr) => ({
       nf_calories: acc.nf_calories + curr.nf_calories,
@@ -83,7 +95,7 @@ const Chart = ({ data, overall }: props) => {
     justifyContent: "center",
   };
 
-  const CustomTooltip = ({ active, payload, label }) => {
+  /*const CustomTooltip = ({ active, payload, label }) => {
     if (active) {
       return (
         <div
@@ -99,7 +111,8 @@ const Chart = ({ data, overall }: props) => {
       );
     }
     return null;
-  };
+  };*/
+
   return (
     <PieChart width={350} height={350}>
       <Pie
