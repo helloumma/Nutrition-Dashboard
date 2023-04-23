@@ -1,5 +1,5 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
-import { chart } from "@/types/types";
+import { data } from "@/types/types";
 
 /*interface props {
   data: {
@@ -17,7 +17,7 @@ import { chart } from "@/types/types";
   overall?: boolean;
 }*/
 
-const Chart = ({ data, overall }: chart) => {
+const Chart = ({ data, overall }: data) => {
   const addData = data?.reduce(
     (acc, curr) => ({
       nf_calories: acc.nf_calories + curr.nf_calories,
