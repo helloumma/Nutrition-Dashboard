@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import {
   MealType,
   OverallAnalytics,
@@ -153,23 +154,19 @@ export default function Home() {
                     fullName == searchTerm
                   );
                 })
-                ?.map(
-                  (item: {
-                    food_name: string;
-                    photo: string;
-                    thumb: string;
-                  }) => (
-                    <div key={item.food_name}>
-                      {item.food_name}
-                      <img
-                        src={item.photo.thumb}
-                        onClick={() => onSubmitAC(item.food_name)}
-                        alt={item.food_name}
-                        className="cursor-pointer"
-                      />
-                    </div>
-                  )
-                )}
+                ?.map((item: { food_name: string; photo: any; thumb: any }) => (
+                  <div key={item.food_name}>
+                    {item.food_name}
+                    <Image
+                      src={item.photo.thumb}
+                      onClick={() => onSubmitAC(item.food_name)}
+                      alt={item.food_name}
+                      className="cursor-pointer"
+                      width={75}
+                      height={200}
+                    />
+                  </div>
+                ))}
             </div>
           </div>
           <div className="w-10/12 border-l-4 border-double	border-black">
