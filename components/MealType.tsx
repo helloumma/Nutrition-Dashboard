@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { mealType } from "../types/types";
+import { mealType } from "@/types/types";
 
 /*interface props {
   breakfast?: MouseEventHandler<HTMLButtonElement>;

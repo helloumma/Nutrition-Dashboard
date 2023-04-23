@@ -1,6 +1,6 @@
 import SearchItem from "../SearchItem";
 import { DinnerChart } from "..";
-import { meal } from "../../types/types";
+import { meal } from "@/types/types";
 
 /*interface props {
   searchItems: { nutrients: any; name: string }[] | null;

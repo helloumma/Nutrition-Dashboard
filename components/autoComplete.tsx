@@ -1,11 +1,17 @@
-interface props {
-  onChangeAC: any;
-  dataAC: any;
-  onSubmitAC: any;
-  valueAC: any;
-}
+//import { ChangeEventHandler, MouseEventHandler } from "react";
+import { autoComplete } from "@/types/types";
 
-const AutoComplete = ({ onChangeAC, onSubmitAC, valueAC }: props) => (
+/*interface props {
+  onChangeAC: ChangeEventHandler<HTMLInputElement> | undefined;
+  dataAC: [];
+  onSubmitAC:
+    | ChangeEventHandler<HTMLInputElement>
+    | MouseEventHandler<HTMLButtonElement>
+    | undefined;
+  valueAC: string;
+}*/
+
+const AutoComplete = ({ onChangeAC, onSubmitAC, valueAC }: autoComplete) => (
   <>
     <input
       type="text"

@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import { ChangeEventHandler, MouseEventHandler } from "react";
 
 export interface meal {
   searchItems: { nutrients: any; name: string }[] | null;
@@ -19,6 +19,16 @@ export interface mealType {
   breakfast?: MouseEventHandler<HTMLButtonElement>;
   lunch?: MouseEventHandler<HTMLButtonElement>;
   dinner?: MouseEventHandler<HTMLButtonElement>;
+}
+
+export interface autoComplete {
+  onChangeAC: ChangeEventHandler<HTMLInputElement> | undefined;
+  dataAC: [];
+  onSubmitAC:
+    | ChangeEventHandler<HTMLInputElement>
+    | MouseEventHandler<HTMLButtonElement>
+    | undefined;
+  valueAC: string;
 }
 
 // chart
@@ -72,12 +82,12 @@ export interface props {
 }*/
 
 // auto complete
-export interface props {
+/*export interface props {
   onChangeAC: any;
   dataAC: any;
   onSubmitAC: any;
   valueAC: any;
-}
+}*/
 
 // meal type
 /*export interface props {

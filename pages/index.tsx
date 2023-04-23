@@ -60,7 +60,7 @@ export default function Home() {
     return data.common;
   };
 
-  const onSubmitAC = async (searchTerm: any) => {
+  const onSubmitAC = async (searchTerm: string) => {
     setValue(searchTerm);
     try {
       const response = await fetch(
