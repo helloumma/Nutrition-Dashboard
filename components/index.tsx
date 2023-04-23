@@ -7,3 +7,4 @@ export { default as Dinner } from "./MealTypesBoards/Dinner";
 export { default as BreakfastChart } from "./MealTypesBoards/BreakfastChart";
 export { default as LunchChart } from "./MealTypesBoards/LunchChart";
 export { default as DinnerChart } from "./MealTypesBoards/DinnerChart";
+export { default as MockAutoComplete } from "./autoComplete";
