@@ -17,6 +17,8 @@ import { data } from "@/types/types";
   overall?: boolean;
 }*/
 
+// deal with calcs after react-query
+
 const Chart = ({ data, overall }: data) => {
   const addData = data?.reduce(
     (acc, curr) => ({
@@ -65,53 +67,6 @@ const Chart = ({ data, overall }: data) => {
       { name: "total fats", value: a.nf_total_fat, fill: "#fbbf24" },
     ])
     .pop();
-  //console.log("data", data);
-  const pieData = [
-    {
-      name: "Apple",
-      value: 54.85,
-    },
-    {
-      name: "Samsung",
-      value: 47.91,
-    },
-    {
-      name: "Redmi",
-      value: 16.85,
-    },
-    {
-      name: "One Plus",
-      value: 16.14,
-    },
-    {
-      name: "Others",
-      value: 10.25,
-    },
-  ];
-
-  const legendWrapperStyle = {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-  };
-
-  /*const CustomTooltip = ({ active, payload, label }) => {
-    if (active) {
-      return (
-        <div
-          className="custom-tooltip"
-          style={{
-            backgroundColor: "#ffff",
-            padding: "5px",
-            border: "1px solid #cccc",
-          }}
-        >
-          <label>{`${payload[0].name} : ${payload[0].value}%`}</label>
-        </div>
-      );
-    }
-    return null;
-  };*/
 
   return (
     <PieChart width={350} height={350}>
@@ -124,13 +79,8 @@ const Chart = ({ data, overall }: data) => {
         cy="50%"
         outerRadius={75}
         key={Math.random()}
-      >
-        {pieData.map((entry, index) => (
-          <Cell key={`cell-${index}`} />
-        ))}
-      </Pie>
+      ></Pie>
       <Tooltip />
-
       <Legend
         layout="vertical"
         verticalAlign="middle"

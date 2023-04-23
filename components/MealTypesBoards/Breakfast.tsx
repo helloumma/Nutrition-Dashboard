@@ -17,7 +17,7 @@ const Breakfast = ({ searchItems, diet }: meal) => {
       <h1 className="text-6xl text-black font-black text-center">Breakfast</h1>
       <BreakfastChart data={test} />
       {searchItems?.map((a) => (
-        <SearchItem key={a.name[0]} data={a.nutrients} />
+        <SearchItem key={a.name} data={a.nutrients} />
       ))}
     </>
   );

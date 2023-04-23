@@ -77,7 +77,7 @@ export default function Home() {
         setNutrients(data.foods);
         const newItem = {
           meal,
-          name,
+          name: data.foods.food_name,
           nutrients: data.foods, // Use the updated nutrients state
         };
         setSearchItems((prevItems) => [...prevItems, newItem]);
@@ -105,7 +105,7 @@ export default function Home() {
   // READ ME docs
 
   // [next week]
-  // 1. type checks; types/interfaces/generics
+  // 1. type checks; types/interfaces/generics [done - 23/04]
   // 2. add react-query
   // 3. create data hooks
   // 4. add state management
@@ -114,6 +114,7 @@ export default function Home() {
   // 7. testing
   // 8. responsive styling
   // 9. readme.md
+
   return (
     <>
       <Head>

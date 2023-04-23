@@ -11,6 +11,7 @@ const Overall = ({ data }: overall) => {
     ?.reduce((a, b) => a?.concat(b, []), []);
 
   //console.log(test, "overall");
+  // deal with calcs after react-query
 
   const addData = test?.reduce(
     (acc: any, curr: any) => ({
