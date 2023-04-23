@@ -1,13 +1,10 @@
 interface props {
-  name: string;
-  image: string;
   nutrients: any;
 }
 
-const SearchItem = ({ name, image, nutrients }: props) => {
+const SearchItem = ({ nutrients }: props) => {
   return (
     <div className="p-4 m-6 border border-black h-128">
-      <img src={image} />
       {nutrients?.map((a: any) => (
         <div key={a.food_name}>
           <p className="border-b-8 border-black text-4xl text-black font-black">

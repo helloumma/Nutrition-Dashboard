@@ -34,7 +34,7 @@ const Chart = ({ data, overall }: props) => {
     }
   );
 
-  console.log("addData", addData);
+  //console.log("addData", addData);
   const test = [addData]
     ?.map((a) => [
       { name: "calories", value: a.nf_calories, fill: "#6ee7b7" },
@@ -53,7 +53,7 @@ const Chart = ({ data, overall }: props) => {
       { name: "total fats", value: a.nf_total_fat, fill: "#fbbf24" },
     ])
     .pop();
-  console.log("data", data);
+  //console.log("data", data);
   const pieData = [
     {
       name: "Apple",

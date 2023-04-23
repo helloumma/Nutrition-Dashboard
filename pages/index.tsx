@@ -1,35 +1,26 @@
 import Head from "next/head";
 import {
   MealType,
-  DietType,
-  Search,
   OverallAnalytics,
   Breakfast,
   Lunch,
   Dinner,
 } from "../components";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 
 import MockAutoComplete from "../components/autoComplete";
-import { isTypeNode } from "typescript";
 
 export default function Home() {
-  const [dietType, setDietType] = useState<Boolean>(false);
   const [mealType, setMealType] = useState<Boolean>(false);
-  const [diet, setDiet] = useState<string>("");
   const [meal, setMeal] = useState<string>("");
-  const [search, setSearch] = useState<string>("");
   const [value, setValue] = useState<string>("");
   const [data, setData] = useState<[]>([]);
   const [name, setName] = useState<string>("");
-  const [image, setImage] = useState<string>("");
   const [nutrients, setNutrients] = useState();
-
   const [searchItems, setSearchItems] = useState<
     {
       meal: string;
       name: string;
-      image: string;
       nutrients: any;
     }[]
   >([]);
@@ -64,20 +55,14 @@ export default function Home() {
         },
       }
     ).then((res) => res.json());
-    //const responseData = await data.json();
-    //const commonArray = responseData.common;
-    //console.log(data);
     setData(data.common);
     setName(data.common?.map((a: any) => a.food_name));
-    setImage(data.common?.map((a: any) => a.photo.thumb));
     return data.common;
   };
 
   const onSubmitAC = async (searchTerm: any) => {
     setValue(searchTerm);
-    console.log("search", searchTerm);
     try {
-      // Make API call to fetch nutrients data
       const response = await fetch(
         `https://trackapi.nutritionix.com/v2/natural/nutrients`,
         {
@@ -91,17 +76,12 @@ export default function Home() {
         }
       );
 
-      // Check if response is successful
       if (response.ok) {
         const data = await response.json();
-        // Extract and use the nutrients data as needed
-        console.log("Nutrients data:", data.foods);
         setNutrients(data.foods);
-
         const newItem = {
           meal,
           name,
-          image,
           nutrients: data.foods, // Use the updated nutrients state
         };
         setSearchItems((prevItems) => [...prevItems, newItem]);
@@ -167,7 +147,6 @@ export default function Home() {
                 ?.filter((item) => {
                   const searchTerm = value;
                   const fullName = item.food_name.toLowerCase();
-
                   return (
                     (searchTerm &&
                       fullName.startsWith(searchTerm) &&
@@ -176,14 +155,11 @@ export default function Home() {
                   );
                 })
                 ?.map((item) => (
-                  <div
-                    key={item.food_name}
-                    onClick={() => onSubmitAC(item.food_name)}
-                  >
+                  <div key={item.food_name}>
                     {item.food_name}
                     <img
                       src={item.photo.thumb}
-                      onClick={() => setImage(item.photo.thumb)}
+                      onClick={() => onSubmitAC(item.food_name)}
                       alt={item.food_name}
                     />
                   </div>

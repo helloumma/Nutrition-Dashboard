@@ -10,7 +10,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import Chart from "../Analytics/Chart";
 
 interface props {
   data: any;
@@ -71,7 +70,7 @@ const Overall = ({ data }: props) => {
       { name: "total fats", value: a.nf_total_fat, fill: "#fbbf24" },
     ])
     .pop();
-  console.log("overall", dataFormatted);
+  //console.log("overall", dataFormatted);
   return (
     <>
       <h1 className="text-6xl text-black font-black text-center">Overall</h1>
@@ -81,7 +80,7 @@ const Overall = ({ data }: props) => {
           height={400}
           data={dataFormatted}
           key={Math.random()}
-          id={Math.random()}
+          id={Math.random().toString()}
         >
           <XAxis dataKey="name" />
           <YAxis />
