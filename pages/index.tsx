@@ -57,7 +57,7 @@ export default function Home() {
     return data.common;
   };
 
-  const onSubmitAC = async (searchTerm: string) => {
+  const onSubmitAC = async (searchTerm: string): Promise<search> => {
     setValue(searchTerm);
     try {
       const response = await fetch(
@@ -89,6 +89,7 @@ export default function Home() {
     } catch (error) {
       console.error("Error fetching nutrients data:", error);
     }
+    return searchItems;
   };
 
   // BUGS/FIXES
