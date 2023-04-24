@@ -17,7 +17,7 @@ const Dinner = ({ searchItems, diet }: meal) => {
       <h1 className="text-6xl text-black font-black text-center">Dinner</h1>
       <DinnerChart data={test} />
       {searchItems?.map((a) => (
-        <SearchItem key={a.name} data={a.nutrients} />
+        <SearchItem key={Math.random()} data={a.nutrients} />
       ))}
     </>
   );

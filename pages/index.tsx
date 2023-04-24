@@ -57,7 +57,7 @@ export default function Home() {
     return data.common;
   };
 
-  const onSubmitAC = async (searchTerm: string): Promise<search> => {
+  const onSubmitAC = async (searchTerm: string) => {
     setValue(searchTerm);
     try {
       const response = await fetch(
@@ -89,7 +89,6 @@ export default function Home() {
     } catch (error) {
       console.error("Error fetching nutrients data:", error);
     }
-    return searchItems;
   };
 
   // BUGS/FIXES
@@ -152,7 +151,7 @@ export default function Home() {
                   );
                 })
                 ?.map((item: { food_name: string; photo: any; thumb: any }) => (
-                  <div className="flex" key={item.food_name}>
+                  <div className="flex" key={Math.random()}>
                     <Image
                       src={item.photo.thumb}
                       onClick={() => onSubmitAC(item.food_name)}
