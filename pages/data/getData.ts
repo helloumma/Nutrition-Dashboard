@@ -1,4 +1,30 @@
-const fetchData = async (): Promise<getData> => {
+import { getData } from "@/types/types";
+import { useQuery } from "@tanstack/react-query";
+
+export const useFetchData = (value: string) => {
+  const fetchData = async () => {
+    const response = await fetch(
+      `https://trackapi.nutritionix.com/v2/search/instant?query=${value}&common=true&branded=true`,
+      {
+        headers: {
+          "x-app-id": `${process.env.ID}`,
+          "x-app-key": `${process.env.API_KEY}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data.common;
+  };
+
+  return useQuery<getData[]>(["foods", value], fetchData);
+};
+
+/*const fetchData = async (): Promise<getData> => {
   const data = await fetch(
     `https://trackapi.nutritionix.com/v2/search/instant?query=${value}&common=true&branded=true`,
     {
@@ -17,4 +43,4 @@ const { data: foodData, isLoading } = useQuery<getData>({
   queryKey: ["foods", value],
   queryFn: fetchData,
 });
-console.log("query", foodData);
+console.log("query", foodData);*/

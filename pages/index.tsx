@@ -10,6 +10,7 @@ import {
 } from "../components";
 import { ChangeEvent, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useFetchData } from "./data/getData";
 
 import { search, getData, ResponseData } from "@/types/types";
 
@@ -21,6 +22,8 @@ export default function Home() {
   const [nutrients, setNutrients] = useState();
   const [searchItems, setSearchItems] = useState<search>([]);
 
+  const { data: test, isLoading, error } = useFetchData(value);
+  console.log("hook data", test);
   const breakfastMeal = () => {
     setMealType(true);
     setMeal("breakfast");
@@ -41,7 +44,7 @@ export default function Home() {
     // fetchData();
   };
 
-  const fetchData = async (): Promise<getData> => {
+  /*const fetchData = async (): Promise<getData> => {
     const data = await fetch(
       `https://trackapi.nutritionix.com/v2/search/instant?query=${value}&common=true&branded=true`,
       {
@@ -55,7 +58,10 @@ export default function Home() {
 
     return data.common;
   };
-
+  const { data: foodData, isLoading } = useQuery<getData>({
+    queryKey: ["foods", value],
+    queryFn: fetchData,
+  });*/
   //const { data: foodData } = useQuery(["foods", data], () => fetchData());
   //console.log(foodData);
 
@@ -74,10 +80,6 @@ export default function Home() {
 
   //const { data: foodData } = useQuery<getData[]>({ queryKey: ["foods", value], queryFn: fetchData2 })
 
-  const { data: foodData, isLoading } = useQuery<getData>({
-    queryKey: ["foods", value],
-    queryFn: fetchData,
-  });
   //console.log("query", foodData);
 
   const onSubmitAC = async (searchTerm: string): Promise<search> => {
@@ -165,7 +167,7 @@ export default function Home() {
             />
             <MockAutoComplete
               onChangeAC={onChangeAC}
-              dataAC={foodData}
+              dataAC={test}
               onSubmitAC={() => onSubmitAC(value)}
               valueAC={value}
               isLoading={isLoading}
