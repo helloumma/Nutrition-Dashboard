@@ -1,16 +1,5 @@
-//import { ChangeEventHandler, MouseEventHandler } from "react";
 import { autoComplete } from "@/types/types";
 import Image from "next/image";
-
-/*interface props {
-  onChangeAC: ChangeEventHandler<HTMLInputElement> | undefined;
-  dataAC: [];
-  onSubmitAC:
-    | ChangeEventHandler<HTMLInputElement>
-    | MouseEventHandler<HTMLButtonElement>
-    | undefined;
-  valueAC: string;
-}*/
 
 const AutoComplete = ({
   onChangeAC,

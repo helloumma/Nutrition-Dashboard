@@ -1,22 +1,5 @@
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-
-type NutrientData = {
-  foods: any;
-};
-
-type SearchTerm = {
-  query: string;
-};
-
-type SearchResult = {
-  meal: string;
-  name: string;
-  nutrients: any;
-};
-
-type SearchResponse = {
-  searchItems: SearchResult[];
-};
+import { SearchTerm, SearchResult, SearchResponse } from "@/types/types";
 
 export const useNutrientsMutation = (): UseMutationResult<
   SearchResponse,

@@ -17,7 +17,6 @@ export default function Home() {
   const [mealType, setMealType] = useState<Boolean>(false);
   const [meal, setMeal] = useState<string>("");
   const [value, setValue] = useState<string>("");
-  const [nutrients, setNutrients] = useState();
   const [searchItems, setSearchItems] = useState<search>([]);
 
   const { data: test, isLoading, error } = useFetchData(value);
@@ -51,49 +50,6 @@ export default function Home() {
   const onChangeAC = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
-
-  const onSubmitAC = async (searchTerm: string): Promise<search> => {
-    setValue(searchTerm);
-    try {
-      const response = await fetch(
-        `https://trackapi.nutritionix.com/v2/natural/nutrients`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Headers":
-              "X-Requested-With, content-type, Authorization",
-            "x-app-id": `${process.env.ID}`,
-            "x-app-key": `${process.env.API_KEY}`,
-          },
-          body: JSON.stringify({ query: value }),
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        setNutrients(data.foods);
-        const newItem = {
-          meal,
-          name: data.foods.food_name,
-          nutrients: data.foods, // Use the updated nutrients state
-        };
-        setSearchItems((prevItems) => [...prevItems, newItem]);
-        setValue("");
-      } else {
-        console.error("Error fetching nutrients data:", response);
-      }
-    } catch (error) {
-      console.error("Error fetching nutrients data:", error);
-    }
-    return searchItems;
-  };
-
-  /* const { data: nutrientData } = useQuery<search>({
-    queryKey: ["search"],
-    queryFn: () => onSubmitAC(),
-  });*/
-  //console.log("query", nutrientData);
 
   // add branded and common items to search
   // type checking - interfaces and generics

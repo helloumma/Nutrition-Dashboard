@@ -69,3 +69,18 @@ export interface getData {
 export interface ResponseData {
   common: getData[];
 }
+
+export type SearchTerm = {
+  query: string;
+  meal: string;
+};
+
+export type SearchResult = {
+  meal: string;
+  name: string;
+  nutrients: any;
+};
+
+export type SearchResponse = {
+  searchItems: SearchResult[];
+};
