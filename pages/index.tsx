@@ -10,7 +10,6 @@ import {
 } from "../components";
 import { ChangeEvent, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { tuple } from "react-query/types";
 
 import { search, getData, ResponseData } from "@/types/types";
 
@@ -19,7 +18,6 @@ export default function Home() {
   const [meal, setMeal] = useState<string>("");
   const [value, setValue] = useState<string>("");
   const [data, setData] = useState<[]>([]);
-  const [name, setName] = useState<string>("");
   const [nutrients, setNutrients] = useState();
   const [searchItems, setSearchItems] = useState<search>([]);
 
@@ -40,7 +38,7 @@ export default function Home() {
 
   const onChangeAC = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-    fetchData();
+    // fetchData();
   };
 
   const fetchData = async (): Promise<getData> => {
@@ -54,7 +52,7 @@ export default function Home() {
       }
     ).then((res) => res.json());
     setData(data.common);
-    setName(data.common?.map((a: any) => a.food_name));
+
     return data.common;
   };
 
@@ -76,7 +74,7 @@ export default function Home() {
 
   //const { data: foodData } = useQuery<getData[]>({ queryKey: ["foods", value], queryFn: fetchData2 })
 
-  const { data: foodData } = useQuery<getData>({
+  const { data: foodData, isLoading } = useQuery<getData>({
     queryKey: ["foods", value],
     queryFn: fetchData,
   });
@@ -117,7 +115,12 @@ export default function Home() {
     return searchItems;
   };
 
-  // BUGS/FIXES
+  /*const { data: nutrientData } = useQuery<search>({
+    queryKey: ["search"],
+    queryFn: onSubmitAC,
+  });
+  console.log("query", nutrientData);*/
+
   // add branded and common items to search
   // type checking - interfaces and generics
   // the re-rendering of the dropdown menu in breakfast
@@ -160,37 +163,11 @@ export default function Home() {
             />
             <MockAutoComplete
               onChangeAC={onChangeAC}
-              dataAC={Array.isArray(data) ? data : []}
+              dataAC={foodData}
               onSubmitAC={() => onSubmitAC(value)}
               valueAC={value}
+              isLoading={isLoading}
             />
-            <div>
-              {data
-                ?.filter((item: { food_name: string }) => {
-                  const searchTerm = value;
-                  const fullName = item.food_name.toLowerCase();
-                  return (
-                    (searchTerm &&
-                      fullName.startsWith(searchTerm) &&
-                      fullName !== searchTerm) ||
-                    fullName == searchTerm
-                  );
-                })
-                ?.map((item: { food_name: string; photo: any; thumb: any }) => (
-                  <div className="flex" key={Math.random()}>
-                    <Image
-                      src={item.photo.thumb}
-                      onClick={() => onSubmitAC(item.food_name)}
-                      alt={item.food_name}
-                      className="cursor-pointer"
-                      width={75}
-                      height={200}
-                    />
-
-                    {item.food_name}
-                  </div>
-                ))}
-            </div>
           </div>
           <div className="w-10/12 border-l-4 border-double	border-black">
             <div className="w-full">
