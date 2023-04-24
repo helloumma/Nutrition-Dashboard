@@ -89,6 +89,8 @@ export default function Home() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Headers":
+              "X-Requested-With, content-type, Authorization",
             "x-app-id": `${process.env.ID}`,
             "x-app-key": `${process.env.API_KEY}`,
           },
