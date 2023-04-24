@@ -52,7 +52,7 @@ export default function Home() {
     setValue(e.target.value);
   };
 
-  /*const onSubmitAC = async (searchTerm: string): Promise<search> => {
+  const onSubmitAC = async (searchTerm: string): Promise<search> => {
     setValue(searchTerm);
     try {
       const response = await fetch(
@@ -87,7 +87,7 @@ export default function Home() {
       console.error("Error fetching nutrients data:", error);
     }
     return searchItems;
-  };*/
+  };
 
   /* const { data: nutrientData } = useQuery<search>({
     queryKey: ["search"],

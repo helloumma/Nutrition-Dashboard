@@ -52,7 +52,7 @@ const AutoComplete = ({
               <div className="flex" key={Math.random()}>
                 <Image
                   src={item.photo.thumb}
-                  onClick={() => onSubmitAC(item.food_name)}
+                  onClick={onSubmitAC}
                   alt={item.food_name}
                   className="cursor-pointer"
                   width={75}
