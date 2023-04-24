@@ -64,3 +64,7 @@ export interface getData {
   tag_id: string;
   tag_name: string;
 }
+
+export interface ResponseData {
+  common: getData[];
+}

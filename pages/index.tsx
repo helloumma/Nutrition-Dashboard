@@ -10,8 +10,9 @@ import {
 } from "../components";
 import { ChangeEvent, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { tuple } from "react-query/types";
 
-import { search, getData } from "@/types/types";
+import { search, getData, ResponseData } from "@/types/types";
 
 export default function Home() {
   const [mealType, setMealType] = useState<Boolean>(false);
@@ -56,6 +57,30 @@ export default function Home() {
     setName(data.common?.map((a: any) => a.food_name));
     return data.common;
   };
+
+  //const { data: foodData } = useQuery(["foods", data], () => fetchData());
+  //console.log(foodData);
+
+  const fetchData2 = async (value: string): Promise<getData[]> => {
+    const data = await fetch(
+      `https://trackapi.nutritionix.com/v2/search/instant?query=${value}&common=true&branded=true`,
+      {
+        headers: {
+          "x-app-id": `${process.env.ID}`,
+          "x-app-key": `${process.env.API_KEY}`,
+        },
+      }
+    ).then<ResponseData>((res) => res.json());
+    return data.common;
+  };
+
+  //const { data: foodData } = useQuery<getData[]>({ queryKey: ["foods", value], queryFn: fetchData2 })
+
+  const { data: foodData } = useQuery<getData>({
+    queryKey: ["foods", value],
+    queryFn: fetchData,
+  });
+  console.log("query", foodData);
 
   const onSubmitAC = async (searchTerm: string): Promise<search> => {
     setValue(searchTerm);
