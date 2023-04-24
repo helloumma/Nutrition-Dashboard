@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import {
   MealType,
   OverallAnalytics,
@@ -9,21 +8,31 @@ import {
   MockAutoComplete,
 } from "../components";
 import { ChangeEvent, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useFetchData } from "./data/getData";
+import { useNutrientsMutation } from "./data/getNutrients";
 
-import { search, getData, ResponseData } from "@/types/types";
+import { search } from "@/types/types";
 
 export default function Home() {
   const [mealType, setMealType] = useState<Boolean>(false);
   const [meal, setMeal] = useState<string>("");
   const [value, setValue] = useState<string>("");
-  const [data, setData] = useState<[]>([]);
   const [nutrients, setNutrients] = useState();
   const [searchItems, setSearchItems] = useState<search>([]);
 
   const { data: test, isLoading, error } = useFetchData(value);
-  console.log("hook data", test);
+  const {
+    mutateAsync,
+    isLoading: loading,
+    error: nutrientError,
+  } = useNutrientsMutation();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    const response = await mutateAsync({ query: value, meal: meal });
+    setSearchItems((prevItems) => [...prevItems, ...response.searchItems]);
+    setValue("");
+  };
+
   const breakfastMeal = () => {
     setMealType(true);
     setMeal("breakfast");
@@ -34,55 +43,16 @@ export default function Home() {
     setMeal("lunch");
   };
 
-  const dinnertMeal = () => {
+  const dinnerMeal = () => {
     setMealType(true);
     setMeal("dinner");
   };
 
   const onChangeAC = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-    // fetchData();
   };
 
-  /*const fetchData = async (): Promise<getData> => {
-    const data = await fetch(
-      `https://trackapi.nutritionix.com/v2/search/instant?query=${value}&common=true&branded=true`,
-      {
-        headers: {
-          "x-app-id": `${process.env.ID}`,
-          "x-app-key": `${process.env.API_KEY}`,
-        },
-      }
-    ).then((res) => res.json());
-    setData(data.common);
-
-    return data.common;
-  };
-  const { data: foodData, isLoading } = useQuery<getData>({
-    queryKey: ["foods", value],
-    queryFn: fetchData,
-  });*/
-  //const { data: foodData } = useQuery(["foods", data], () => fetchData());
-  //console.log(foodData);
-
-  const fetchData2 = async (value: string): Promise<getData[]> => {
-    const data = await fetch(
-      `https://trackapi.nutritionix.com/v2/search/instant?query=${value}&common=true&branded=true`,
-      {
-        headers: {
-          "x-app-id": `${process.env.ID}`,
-          "x-app-key": `${process.env.API_KEY}`,
-        },
-      }
-    ).then<ResponseData>((res) => res.json());
-    return data.common;
-  };
-
-  //const { data: foodData } = useQuery<getData[]>({ queryKey: ["foods", value], queryFn: fetchData2 })
-
-  //console.log("query", foodData);
-
-  const onSubmitAC = async (searchTerm: string): Promise<search> => {
+  /*const onSubmitAC = async (searchTerm: string): Promise<search> => {
     setValue(searchTerm);
     try {
       const response = await fetch(
@@ -117,7 +87,7 @@ export default function Home() {
       console.error("Error fetching nutrients data:", error);
     }
     return searchItems;
-  };
+  };*/
 
   /* const { data: nutrientData } = useQuery<search>({
     queryKey: ["search"],
@@ -140,8 +110,8 @@ export default function Home() {
 
   // [next week]
   // 1. type checks; types/interfaces/generics [done - 23/04]
-  // 2. add react-query
-  // 3. create data hooks
+  // 2. add react-query [done - 24/04]
+  // 3. create data hooks [done - 24/04]
   // 4. add state management
   // 5. fix the re-rendering and hydration issues
   // 6. add error handling - formik
@@ -163,12 +133,12 @@ export default function Home() {
             <MealType
               breakfast={breakfastMeal}
               lunch={lunchMeal}
-              dinner={dinnertMeal}
+              dinner={dinnerMeal}
             />
             <MockAutoComplete
               onChangeAC={onChangeAC}
               dataAC={test}
-              onSubmitAC={() => onSubmitAC(value)}
+              onSubmitAC={handleSubmit}
               valueAC={value}
               isLoading={isLoading}
             />
