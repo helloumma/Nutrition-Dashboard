@@ -9,8 +9,9 @@ import {
   MockAutoComplete,
 } from "../components";
 import { ChangeEvent, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
-import { search } from "@/types/types";
+import { search, getData } from "@/types/types";
 
 export default function Home() {
   const [mealType, setMealType] = useState<Boolean>(false);
@@ -41,7 +42,7 @@ export default function Home() {
     fetchData();
   };
 
-  const fetchData = async () => {
+  const fetchData = async (): Promise<getData> => {
     const data = await fetch(
       `https://trackapi.nutritionix.com/v2/search/instant?query=${value}&common=true&branded=true`,
       {
@@ -56,7 +57,7 @@ export default function Home() {
     return data.common;
   };
 
-  const onSubmitAC = async (searchTerm: string) => {
+  const onSubmitAC = async (searchTerm: string): Promise<search> => {
     setValue(searchTerm);
     try {
       const response = await fetch(
@@ -88,6 +89,7 @@ export default function Home() {
     } catch (error) {
       console.error("Error fetching nutrients data:", error);
     }
+    return searchItems;
   };
 
   // BUGS/FIXES
@@ -110,7 +112,7 @@ export default function Home() {
   // 3. create data hooks
   // 4. add state management
   // 5. fix the re-rendering and hydration issues
-  // 6. add error handling
+  // 6. add error handling - formik
   // 7. testing
   // 8. responsive styling
   // 9. readme.md

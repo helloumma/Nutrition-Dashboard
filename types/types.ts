@@ -53,3 +53,14 @@ export type search = {
   name: string;
   nutrients: any;
 }[];
+
+export interface getData {
+  common_type: null;
+  food_name: string;
+  locale: string;
+  photo: {
+    thumb: string;
+  };
+  tag_id: string;
+  tag_name: string;
+}
