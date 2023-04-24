@@ -78,7 +78,7 @@ export default function Home() {
     queryKey: ["foods", value],
     queryFn: fetchData,
   });
-  console.log("query", foodData);
+  //console.log("query", foodData);
 
   const onSubmitAC = async (searchTerm: string): Promise<search> => {
     setValue(searchTerm);
@@ -117,11 +117,11 @@ export default function Home() {
     return searchItems;
   };
 
-  /*const { data: nutrientData } = useQuery<search>({
+  /* const { data: nutrientData } = useQuery<search>({
     queryKey: ["search"],
-    queryFn: onSubmitAC,
-  });
-  console.log("query", nutrientData);*/
+    queryFn: () => onSubmitAC(),
+  });*/
+  //console.log("query", nutrientData);
 
   // add branded and common items to search
   // type checking - interfaces and generics
