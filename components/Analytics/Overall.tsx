@@ -1,3 +1,7 @@
+import dynamic from "next/dynamic";
+
+import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from "recharts";
 import { overall } from "@/types/types";
 
@@ -12,6 +16,12 @@ const Overall = ({ data }: overall) => {
 
   //console.log(test, "overall");
   // deal with calcs after react-query
+
+  const [chartId, setChartId] = useState("");
+
+  useEffect(() => {
+    setChartId(uuidv4());
+  }, []);
 
   const addData = test?.reduce(
     (acc: any, curr: any) => ({
@@ -70,8 +80,7 @@ const Overall = ({ data }: overall) => {
           width={1300}
           height={400}
           data={dataFormatted}
-          key={Math.random()}
-          id={Math.random().toString()}
+          id={chartId}
         >
           <XAxis dataKey="name" />
           <YAxis />

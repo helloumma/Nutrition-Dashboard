@@ -1,5 +1,9 @@
+import dynamic from "next/dynamic";
 import SearchItem from "../SearchItem";
 import { BreakfastChart } from "..";
+const BreakfastChartNoSSR = dynamic(() => import("./BreakfastChart"), {
+  ssr: false,
+});
 import { meal } from "@/types/types";
 
 /*interface props {
@@ -15,7 +19,7 @@ const Breakfast = ({ searchItems, diet }: meal) => {
   return (
     <>
       <h1 className="text-6xl text-black font-black text-center">Breakfast</h1>
-      <BreakfastChart data={test} />
+      <BreakfastChartNoSSR data={test} />
       {searchItems?.map((a) => (
         <SearchItem key={Math.random()} data={a.nutrients} />
       ))}

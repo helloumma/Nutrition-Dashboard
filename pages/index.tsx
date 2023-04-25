@@ -1,4 +1,5 @@
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import {
   MealType,
   OverallAnalytics,
@@ -12,6 +13,10 @@ import { useFetchData } from "./data/getData";
 import { useNutrientsMutation } from "./data/getNutrients";
 
 import { search } from "@/types/types";
+
+const OverallNoSSR = dynamic(() => import("../components/Analytics/Overall"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [mealType, setMealType] = useState<Boolean>(false);
@@ -99,7 +104,7 @@ export default function Home() {
           </div>
           <div className="w-10/12 border-l-4 border-double	border-black">
             <div className="w-full">
-              <OverallAnalytics data={searchItems} />
+              <OverallNoSSR data={searchItems} />
             </div>
             <div className="flex">
               <div className="w-full">
