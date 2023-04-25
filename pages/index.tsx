@@ -9,8 +9,8 @@ import {
   MockAutoComplete,
 } from "../components";
 import { ChangeEvent, useCallback, useState } from "react";
-import { useFetchData } from "./data/getData";
-import { useNutrientsMutation } from "./data/getNutrients";
+import { useFetchData } from "../data/getData";
+import { useNutrientsMutation } from "../data/getNutrients";
 
 import { search } from "@/types/types";
 
