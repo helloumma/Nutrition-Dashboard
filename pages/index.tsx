@@ -71,8 +71,8 @@ export default function Home() {
   // 1. type checks; types/interfaces/generics [done - 23/04]
   // 2. add react-query [done - 24/04]
   // 3. create data hooks [done - 24/04]
-  // 4. add state management
-  // 5. fix the re-rendering and hydration issues
+  // 4. add state management [done - 25/04]
+  // 5. fix the re-rendering and hydration issues [done - 25/04]
   // 6. add error handling - formik
   // 7. testing
   // 8. responsive styling
