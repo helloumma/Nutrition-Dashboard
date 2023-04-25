@@ -17,6 +17,7 @@ This dashboard shows a visual representation of nutrients for searched items usi
 - React-query
 - Formik
 - Vitest
+- Tailwind CSS + Daisy UI
 
 ### 🔧How to Run the App
 
