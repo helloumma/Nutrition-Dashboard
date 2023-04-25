@@ -29,7 +29,7 @@ export const useNutrientsMutation = (): UseMutationResult<
 
     const data = await response.json();
     const newItem = {
-      meal, // Replace with the appropriate value
+      meal,
       name: data.foods.food_name,
       nutrients: data.foods,
     };

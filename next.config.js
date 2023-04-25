@@ -9,6 +9,7 @@ const nextConfig = {
     domains: [
       "d2eawub7utcl6.cloudfront.net",
       "nix-tag-images.s3.amazonaws.com",
+      "s3.amazonaws.com",
     ],
   },
 };

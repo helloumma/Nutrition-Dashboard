@@ -7,7 +7,7 @@ import {
   Dinner,
   MockAutoComplete,
 } from "../components";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import { useFetchData } from "./data/getData";
 import { useNutrientsMutation } from "./data/getNutrients";
 
@@ -26,39 +26,37 @@ export default function Home() {
     error: nutrientError,
   } = useNutrientsMutation();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault;
     const response = await mutateAsync({ query: value, meal: meal });
     setSearchItems((prevItems) => [...prevItems, ...response.searchItems]);
     setValue("");
   };
 
-  const breakfastMeal = () => {
+  const breakfastMeal = useCallback(() => {
     setMealType(true);
     setMeal("breakfast");
-  };
+  }, []);
 
-  const lunchMeal = () => {
+  const lunchMeal = useCallback(() => {
     setMealType(true);
     setMeal("lunch");
-  };
+  }, []);
 
-  const dinnerMeal = () => {
+  const dinnerMeal = useCallback(() => {
     setMealType(true);
     setMeal("dinner");
-  };
+  }, []);
 
   const onChangeAC = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
   // add branded and common items to search
-  // type checking - interfaces and generics
   // the re-rendering of the dropdown menu in breakfast
   // hydration error with recharts
 
   // BEST PRACTISES
-  // add react-query for data handling
-  // create data hooks
   // error handling for 500 api request or typos or searched for query not in data
   // look into state management (context API or zustand)
   // testing + coverage via vitest
