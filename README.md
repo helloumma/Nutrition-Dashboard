@@ -33,3 +33,4 @@ https://nutrition-dashboard-umma.vercel.app/
 - Increase testing and validation
 - Clean up data fetching
 - Responsive design
+- Feature to enable users to remove items within each board
