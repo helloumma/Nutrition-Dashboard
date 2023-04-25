@@ -36,17 +36,17 @@ export default function Home() {
   const breakfastMeal = useCallback(() => {
     setMealType(true);
     setMeal("breakfast");
-  }, []);
+  }, [setMeal, setMealType]);
 
   const lunchMeal = useCallback(() => {
     setMealType(true);
     setMeal("lunch");
-  }, []);
+  }, [setMeal, setMealType]);
 
   const dinnerMeal = useCallback(() => {
     setMealType(true);
     setMeal("dinner");
-  }, []);
+  }, [setMeal, setMealType]);
 
   const onChangeAC = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
