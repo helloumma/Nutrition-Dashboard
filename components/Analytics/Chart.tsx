@@ -1,25 +1,25 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { data } from "@/types/types";
 
-interface props {
-  data: any;
+/*interface props {
+  data: {
+    nf_calories: number;
+    nf_cholesterol: number;
+    nf_dietary_fiber: number;
+    nf_potassium: number;
+    nf_protein: number;
+    nf_saturated_fat: number;
+    nf_sodium: number;
+    nf_sugars: number;
+    nf_total_carbohydrate: number;
+    nf_total_fat: number;
+  }[];
   overall?: boolean;
-}
+}*/
 
-const Chart = ({ data, overall }: props) => {
-  console.log(data, "chart");
-  const COLORS = [
-    "#8884d8",
-    "#82ca9d",
-    "#FFBB28",
-    "#FF8042",
-    "#AF19FF",
-    "#ffb0ab",
-    "#30f0bd",
-    "#a8b8e6",
-    "#f7e948",
-    "#f748b1",
-  ];
+// deal with calcs after react-query
 
+const Chart = ({ data, overall }: data) => {
   const addData = data?.reduce(
     (acc, curr) => ({
       nf_calories: acc.nf_calories + curr.nf_calories,
@@ -30,6 +30,9 @@ const Chart = ({ data, overall }: props) => {
       nf_saturated_fat: acc.nf_saturated_fat + curr.nf_saturated_fat,
       nf_sodium: acc.nf_sodium + curr.nf_sodium,
       nf_sugars: acc.nf_sugars + curr.nf_sugars,
+      nf_total_carbohydrate:
+        acc.nf_total_carbohydrate + curr.nf_total_carbohydrate,
+      nf_total_fat: acc.nf_total_fat + curr.nf_total_fat,
     }),
     {
       nf_calories: 0,
@@ -40,75 +43,31 @@ const Chart = ({ data, overall }: props) => {
       nf_saturated_fat: 0,
       nf_sodium: 0,
       nf_sugars: 0,
+      nf_total_carbohydrate: 0,
+      nf_total_fat: 0,
     }
   );
 
-  console.log("addData", addData);
+  //console.log("addData", addData);
   const test = [addData]
     ?.map((a) => [
-      { name: "calories", value: a.nf_calories, fill: "#8884d8" },
-      { name: "cholesterol", value: a.nf_cholesterol, fill: "#82ca9d" },
-      { name: "fiber", value: a.nf_dietary_fiber, fill: "#FFBB28" },
-      { name: "potassium", value: a.nf_potassium, fill: "#FF8042" },
-      { name: "protein", value: a.nf_protein, fill: "#AF19FF" },
-      { name: "saturated fat", value: a.nf_saturated_fat, fill: "#ffb0ab" },
-      { name: "sodium", value: a.nf_sodium, fill: "#30f0bd" },
-      { name: "sugars", value: a.nf_sugars, fill: "#a8b8e6" },
+      { name: "calories", value: a.nf_calories, fill: "#6ee7b7" },
+      { name: "cholesterol", value: a.nf_cholesterol, fill: "#06b6d4" },
+      { name: "fiber", value: a.nf_dietary_fiber, fill: "#93c5fd" },
+      { name: "potassium", value: a.nf_potassium, fill: "#3b82f6" },
+      { name: "protein", value: a.nf_protein, fill: "#6366f1" },
+      { name: "saturated fat", value: a.nf_saturated_fat, fill: "#f9a8d4" },
+      { name: "sodium", value: a.nf_sodium, fill: "#fb7185" },
+      { name: "sugars", value: a.nf_sugars, fill: "#f43f5e" },
       {
         name: "carbohydrates",
         value: a.nf_total_carbohydrate,
-        fill: "#f7e948",
+        fill: "#fb923c",
       },
-      { name: "total fats", value: a.nf_total_fat, fill: "#f748b1" },
+      { name: "total fats", value: a.nf_total_fat, fill: "#fbbf24" },
     ])
     .pop();
-  console.log("data", data);
-  const pieData = [
-    {
-      name: "Apple",
-      value: 54.85,
-    },
-    {
-      name: "Samsung",
-      value: 47.91,
-    },
-    {
-      name: "Redmi",
-      value: 16.85,
-    },
-    {
-      name: "One Plus",
-      value: 16.14,
-    },
-    {
-      name: "Others",
-      value: 10.25,
-    },
-  ];
 
-  const legendWrapperStyle = {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-  };
-
-  const CustomTooltip = ({ active, payload, label }) => {
-    if (active) {
-      return (
-        <div
-          className="custom-tooltip"
-          style={{
-            backgroundColor: "#ffff",
-            padding: "5px",
-            border: "1px solid #cccc",
-          }}
-        >
-          <label>{`${payload[0].name} : ${payload[0].value}%`}</label>
-        </div>
-      );
-    }
-    return null;
-  };
   return (
     <PieChart width={350} height={350}>
       <Pie
@@ -119,13 +78,15 @@ const Chart = ({ data, overall }: props) => {
         cx="50%"
         cy="50%"
         outerRadius={75}
-      >
-        {pieData.map((entry, index) => (
-          <Cell key={`cell-${index}`} />
-        ))}
-      </Pie>
-      <Tooltip content={CustomTooltip} />
-      <Legend wrapperStyle={legendWrapperStyle} />
+        key={Math.random()}
+      ></Pie>
+      <Tooltip />
+      <Legend
+        layout="vertical"
+        verticalAlign="middle"
+        align="right"
+        iconType="circle"
+      />
     </PieChart>
   );
 };

@@ -1,200 +1,137 @@
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import {
   MealType,
-  DietType,
-  Search,
   OverallAnalytics,
   Breakfast,
   Lunch,
   Dinner,
+  MockAutoComplete,
 } from "../components";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
+import { useFetchData } from "./data/getData";
+import { useNutrientsMutation } from "./data/getNutrients";
 
-import MockAutoComplete from "../components/autoComplete";
+import { search } from "@/types/types";
+
+const OverallNoSSR = dynamic(() => import("../components/Analytics/Overall"), {
+  ssr: false,
+});
 
 export default function Home() {
-  const [dietType, setDietType] = useState<Boolean>(false);
   const [mealType, setMealType] = useState<Boolean>(false);
-  const [diet, setDiet] = useState<string>("");
   const [meal, setMeal] = useState<string>("");
-  const [search, setSearch] = useState<string>("");
   const [value, setValue] = useState<string>("");
-  const [data, setData] = useState<[]>([]);
-  const [name, setName] = useState<string>("");
-  const [image, setImage] = useState<string>("");
-  const [nutrients, setNutrients] = useState();
+  const [searchItems, setSearchItems] = useState<search>([]);
 
-  const [searchItems, setSearchItems] = useState<
-    {
-      meal: string;
-      name: string;
-      image: string;
-      nutrients: any;
-    }[]
-  >([]);
+  const { data: test, isLoading, error } = useFetchData(value);
+  const {
+    mutateAsync,
+    isLoading: loading,
+    error: nutrientError,
+  } = useNutrientsMutation();
 
-  const breakfastMeal = () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault;
+    const response = await mutateAsync({ query: value, meal: meal });
+    setSearchItems((prevItems) => [...prevItems, ...response.searchItems]);
+    setValue("");
+  };
+
+  const breakfastMeal = useCallback(() => {
     setMealType(true);
     setMeal("breakfast");
-  };
+  }, [setMeal, setMealType]);
 
-  const lunchMeal = () => {
+  const lunchMeal = useCallback(() => {
     setMealType(true);
     setMeal("lunch");
-  };
+  }, [setMeal, setMealType]);
 
-  const dinnertMeal = () => {
+  const dinnerMeal = useCallback(() => {
     setMealType(true);
     setMeal("dinner");
-  };
+  }, [setMeal, setMealType]);
 
-  const onChangeAC = (e: any) => {
+  const onChangeAC = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-    fetchData();
   };
 
-  const fetchData = async () => {
-    const data = await fetch(
-      `https://trackapi.nutritionix.com/v2/search/instant?query=${value}&common=true&branded=true`,
-      {
-        headers: {
-          "x-app-id": `${process.env.ID}`,
-          "x-app-key": `${process.env.API_KEY}`,
-        },
-      }
-    ).then((res) => res.json());
-    //const responseData = await data.json();
-    //const commonArray = responseData.common;
-    //console.log(data);
-    setData(data.common);
-    setName(data.common?.map((a: any) => a.food_name));
-    setImage(data.common?.map((a: any) => a.photo.thumb));
-    return data.common;
-  };
+  // add branded and common items to search
+  // the re-rendering of the dropdown menu in breakfast
+  // hydration error with recharts
 
-  const onSubmitAC = async (searchTerm: any) => {
-    setValue(searchTerm);
-    console.log("search", searchTerm);
-    try {
-      // Make API call to fetch nutrients data
-      const response = await fetch(
-        `https://trackapi.nutritionix.com/v2/natural/nutrients`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-app-id": `${process.env.ID}`,
-            "x-app-key": `${process.env.API_KEY}`,
-          },
-          body: JSON.stringify({ query: value }),
-        }
-      );
+  // BEST PRACTISES
+  // error handling for 500 api request or typos or searched for query not in data
+  // look into state management (context API or zustand)
+  // testing + coverage via vitest
+  // READ ME docs
 
-      // Check if response is successful
-      if (response.ok) {
-        const data = await response.json();
-        // Extract and use the nutrients data as needed
-        console.log("Nutrients data:", data.foods);
-        setNutrients(data.foods);
+  // [next week]
+  // 1. type checks; types/interfaces/generics [done - 23/04]
+  // 2. add react-query [done - 24/04]
+  // 3. create data hooks [done - 24/04]
+  // 4. add state management [done - 25/04]
+  // 5. fix the re-rendering and hydration issues [done - 25/04]
+  // 6. add error handling - formik
+  // 7. testing
+  // 8. responsive styling
+  // 9. readme.md
 
-        const newItem = {
-          meal,
-          name,
-          image,
-          nutrients: data.foods, // Use the updated nutrients state
-        };
-        setSearchItems((prevItems) => [...prevItems, newItem]);
-        setValue("");
-      } else {
-        console.error("Error fetching nutrients data:", response);
-      }
-    } catch (error) {
-      console.error("Error fetching nutrients data:", error);
-    }
-  };
-
-  // TO DO
-
-  // pass through and render the name of item clicked on auto-complete with picture [bug]
-  // create data hooks [wait until state management/react-query etc resolved tho]
-  // send all the data that comes through meal analytics to overall to render charts too
-  // type checking (put types/generics/interfaces into one doc - do after state management/data handling)
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Nutrition Dashboard</title>
         <meta name="description" content="Generated by create next app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <div className="flex">
-          <div className="w-full"></div>
-          <div className="w-full">
+          <div className="w-2/12 h-screen  p-4">
             <MealType
               breakfast={breakfastMeal}
               lunch={lunchMeal}
-              dinner={dinnertMeal}
+              dinner={dinnerMeal}
             />
-          </div>
-          <div className="w-full">
             <MockAutoComplete
               onChangeAC={onChangeAC}
-              dataAC={Array.isArray(data) ? data : []}
-              onSubmitAC={() => onSubmitAC(value)}
+              dataAC={test}
+              onSubmitAC={handleSubmit}
               valueAC={value}
+              isLoading={isLoading}
             />
-            <div>
-              {data
-                ?.filter((item) => {
-                  const searchTerm = value;
-                  const fullName = item.food_name.toLowerCase();
-
-                  return (
-                    (searchTerm &&
-                      fullName.startsWith(searchTerm) &&
-                      fullName !== searchTerm) ||
-                    fullName == searchTerm
-                  );
-                })
-                ?.map((item) => (
-                  <div
-                    key={item.food_name}
-                    onClick={() => onSubmitAC(item.food_name)}
-                  >
-                    {item.food_name}
-                    <img src={item.photo.thumb} />
-                  </div>
-                ))}
+          </div>
+          <div className="w-10/12 border-l-4 border-double	border-black">
+            <div className="w-full">
+              <OverallNoSSR data={searchItems} />
             </div>
-          </div>
-        </div>
-        <div className="flex">
-          <div className="w-full">
-            <Breakfast
-              searchItems={searchItems.filter(
-                (item) => item.meal === "breakfast"
-              )}
-              nurtrients={nutrients}
-              diet={"breakfast"}
-            />
-          </div>
-          <div className="w-full">
-            <Lunch
-              searchItems={searchItems.filter((item) => item.meal === "lunch")}
-              nurtrients={nutrients}
-              diet={"lunch"}
-            />
-          </div>
-          <div className="w-full">
-            <Dinner
-              searchItems={searchItems.filter((item) => item.meal === "dinner")}
-              nurtrients={nutrients}
-              diet={"dinner"}
-            />
-          </div>
-          <div className="w-full">
-            <OverallAnalytics data={searchItems} />
+            <div className="flex">
+              <div className="w-full">
+                <Breakfast
+                  searchItems={searchItems.filter(
+                    (item) => item.meal === "breakfast"
+                  )}
+                  diet={"breakfast"}
+                />
+              </div>
+              <div className="w-full">
+                <Lunch
+                  searchItems={searchItems.filter(
+                    (item) => item.meal === "lunch"
+                  )}
+                  diet={"lunch"}
+                />
+              </div>
+              <div className="w-full">
+                <Dinner
+                  searchItems={searchItems.filter(
+                    (item) => item.meal === "dinner"
+                  )}
+                  diet={"dinner"}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </main>

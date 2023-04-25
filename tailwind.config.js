@@ -3,7 +3,11 @@ module.exports = {
   content: [],
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        128: "28em",
+      },
+    },
   },
   plugins: [require("daisyui")],
 };

@@ -1,21 +1,56 @@
-interface props {
-  onChangeAC: any;
-  dataAC: any;
-  onSubmitAC: any;
-  valueAC: any;
-}
+import { autoComplete } from "@/types/types";
+import Image from "next/image";
 
-const AutoComplete = ({ onChangeAC, onSubmitAC, valueAC }: props) => (
+const AutoComplete = ({
+  onChangeAC,
+  onSubmitAC,
+  dataAC,
+  valueAC,
+  isLoading,
+}: autoComplete) => (
   <>
     <input
       type="text"
-      className="rounded border-2 border-red-400"
+      placeholder="search item..."
+      className=" border border-black0 h-10 mt-8 w-full"
       value={valueAC}
       onChange={onChangeAC}
     />
-    <button type="submit" className="bg-red-400" onClick={onSubmitAC}>
-      add
+    <button
+      type="submit"
+      className="bg-black h-10 w-full flex justify-center mt-4 text-white flex justify-center items-center	font-semibold	"
+      onClick={onSubmitAC}
+    >
+      Add
     </button>
+    <div>
+      {isLoading
+        ? "loading"
+        : dataAC
+            ?.filter((item: { food_name: string }) => {
+              const searchTerm = valueAC;
+              const fullName = item.food_name.toLowerCase();
+              return (
+                (searchTerm &&
+                  fullName.startsWith(searchTerm) &&
+                  fullName !== searchTerm) ||
+                fullName == searchTerm
+              );
+            })
+            ?.map((item: { food_name: string; photo: any; thumb: any }) => (
+              <div className="flex" key={Math.random()}>
+                <Image
+                  src={item.photo.thumb}
+                  onClick={onSubmitAC}
+                  alt={item.food_name}
+                  className="cursor-pointer"
+                  width={75}
+                  height={200}
+                />
+                {item.food_name}
+              </div>
+            ))}
+    </div>
   </>
 );
 export default AutoComplete;

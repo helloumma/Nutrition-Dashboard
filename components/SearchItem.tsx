@@ -1,31 +1,66 @@
-interface props {
-  name: string;
-  image: string;
-  nutrients: any;
-}
+import { data } from "@/types/types";
 
-const SearchItem = ({ name, image, nutrients }: props) => {
+/*interface props {
+  nutrients: {}[];
+}*/
+
+const SearchItem = ({ data }: data) => {
   return (
-    <div className="bg-emerald-400 p-4 m-6 rounded text-white">
-      <p>{name}</p>
-      <p>
-        <img src={image} />
-        {nutrients?.map((a: any) => (
-          <div key={a.food_name}>
-            <p>food name: {a.food_name}</p>
-            <p>calories: {a.nf_calories}</p>
-            <p>cholesterol: {a.nf_cholesterol}</p>
-            <p>fiber: {a.nf_dietary_fiber}</p>
-            <p>potassium: {a.nf_potassium}</p>
-            <p>protein: {a.nf_protein}</p>
-            <p>saturated fat: {a.nf_saturated_fat}</p>
-            <p>total fat: {a.nf_total_fat}</p>
-            <p>sodium: {a.nf_sodium}</p>
-            <p>sugars: {a.nf_sugars}</p>
-            <p>carbohydrates: {a.nf_total_carbohydrate}</p>
+    <div className="p-4 m-6 border border-black h-128">
+      {data?.map((a: any) => (
+        <div key={Math.random()}>
+          <p className="border-b-8 border-black text-4xl text-black font-black">
+            {a.food_name}
+          </p>
+          <div className="flex justify-between border-b-4 border-black text-2xl">
+            <p className="font-extrabold text-black">calories</p>
+            <p className="font-black text-black">{a.nf_calories}</p>
           </div>
-        ))}
-      </p>
+          <div className="flex justify-between border-b border-black">
+            <p className="font-semibold text-black">cholesterol</p>
+            <p>{a.nf_cholesterol}</p>
+          </div>
+          <div className="flex justify-between border-b border-black">
+            <p className="font-semibold text-black">fiber</p>
+            <p>{a.nf_dietary_fiber}</p>
+          </div>
+
+          <div className="flex justify-between border-b border-black">
+            <p className="font-semibold text-black">potassium</p>
+            <p>{a.nf_potassium}</p>
+          </div>
+
+          <div className="flex justify-between border-b border-black">
+            <p className="font-semibold text-black">protein</p>
+            <p>{a.nf_protein}</p>
+          </div>
+
+          <div className="flex justify-between border-b border-black">
+            <p className="font-semibold text-black">saturated fat</p>
+            <p>{a.nf_saturated_fat}</p>
+          </div>
+
+          <div className="flex justify-between border-b border-black">
+            <p className="font-semibold text-black">total fat</p>
+            <p>{a.nf_total_fat}</p>
+          </div>
+
+          <div className="flex justify-between border-b-8 border-black">
+            <p className="font-semibold text-black">sodium</p>
+            <p>{a.nf_sodium}</p>
+          </div>
+
+          <div className="flex justify-between border-b border-black">
+            <p className="text-black">sugars</p>
+            <p>{a.nf_sugars}</p>
+          </div>
+
+          <div className="flex justify-between border-b-4 border-black">
+            <p className="text-black">carbohydrates</p>
+            <p>{a.nf_total_carbohydrate}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

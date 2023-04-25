@@ -1,13 +1,12 @@
 import Chart from "../Analytics/Chart";
+import { data } from "@/types/types";
 
-interface props {
+/*interface props {
   data: any;
-  diet: string;
-}
+}*/
 
-const LunchChart = ({ data, diet }: props) => (
-  <div className="bg-blue-400 p-2 m-6 rounded text-white">
-    Meal Analytics [lunch]
+const LunchChart = ({ data }: data) => (
+  <div className="border border-black p-2 m-6  text-white">
     <Chart data={data} />
   </div>
 );

@@ -1,46 +1,29 @@
+import dynamic from "next/dynamic";
 import SearchItem from "../SearchItem";
 import { BreakfastChart } from "..";
+const BreakfastChartNoSSR = dynamic(() => import("./BreakfastChart"), {
+  ssr: false,
+});
+import { meal } from "@/types/types";
 
-interface props {
-  searchItems:
-    | {
-        image: string;
-        nutrients: any;
-        name: string;
-      }[]
-    | null;
+/*interface props {
+  searchItems: { nutrients: any; name: string }[] | null;
   nurtrients: any;
   diet: string;
-}
-const Breakfast = ({ searchItems, nurtrients, diet }: props) => {
-  //console.log(searchItems, "searchitems");
-  // could add all nutrients and then send it to the chart here
-  /*console.log(
-    searchItems
-      ?.map((a) => a?.nutrients)
-      .reduce((a, b) => a.nf_calories + b.nf_calories)
-  );*/
-
+}*/
+const Breakfast = ({ searchItems, diet }: meal) => {
   const test = searchItems
     ?.map((a) => a?.nutrients)
     ?.reduce((a, b) => a?.concat(b, []), []);
 
-  console.log(test, "breakfast");
-
   return (
-    <div>
-      Breakfast
+    <>
+      <h1 className="text-6xl text-black font-black text-center">Breakfast</h1>
+      <BreakfastChartNoSSR data={test} />
       {searchItems?.map((a) => (
-        <SearchItem
-          key={Math.random()}
-          name={a.name[0]}
-          image={a.image[0]}
-          nutrients={a.nutrients}
-        />
+        <SearchItem key={Math.random()} data={a.nutrients} />
       ))}
-      {/*<MealAnalytics data={nurtrients} diet={diet} />*/}
-      <BreakfastChart data={test} diet={diet} />
-    </div>
+    </>
   );
 };
 

@@ -1,15 +1,16 @@
 import Chart from "../Analytics/Chart";
+import { data } from "@/types/types";
 
-interface props {
-  data: any;
-  diet: string;
-}
+/*interface props {
+  data: {}[];
+}*/
 
-const BreakfastChart = ({ data, diet }: props) => (
-  <div className="bg-blue-400 p-2 m-6 rounded text-white">
-    Meal Analytics [breakfast]
-    <Chart data={data} />
-  </div>
-);
+const BreakfastChart = ({ data }: data) => {
+  return (
+    <div className="border border-black p-2 m-6 text-white">
+      <Chart data={data} />
+    </div>
+  );
+};
 
 export default BreakfastChart;

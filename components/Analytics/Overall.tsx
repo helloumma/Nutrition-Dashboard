@@ -1,18 +1,30 @@
-import Chart from "../Analytics/Chart";
+import dynamic from "next/dynamic";
 
-interface props {
+import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from "recharts";
+import { overall } from "@/types/types";
+
+/*interface props {
   data: any;
-}
+}*/
 
-const Overall = ({ data }: props) => {
+const Overall = ({ data }: overall) => {
   const test = data
     ?.map((a) => a?.nutrients)
     ?.reduce((a, b) => a?.concat(b, []), []);
 
   //console.log(test, "overall");
+  // deal with calcs after react-query
+
+  const [chartId, setChartId] = useState("");
+
+  useEffect(() => {
+    setChartId(uuidv4());
+  }, []);
 
   const addData = test?.reduce(
-    (acc, curr) => ({
+    (acc: any, curr: any) => ({
       nf_calories: acc.nf_calories + curr.nf_calories,
       nf_cholesterol: acc.nf_cholesterol + curr.nf_cholesterol,
       nf_dietary_fiber: acc.nf_dietary_fiber + curr.nf_dietary_fiber,
@@ -21,6 +33,9 @@ const Overall = ({ data }: props) => {
       nf_saturated_fat: acc.nf_saturated_fat + curr.nf_saturated_fat,
       nf_sodium: acc.nf_sodium + curr.nf_sodium,
       nf_sugars: acc.nf_sugars + curr.nf_sugars,
+      nf_total_carbohydrate:
+        acc.nf_total_carbohydrate + curr.nf_total_carbohydrate,
+      nf_total_fat: acc.nf_total_fat + curr.nf_total_fat,
     }),
     {
       nf_calories: 0,
@@ -31,6 +46,8 @@ const Overall = ({ data }: props) => {
       nf_saturated_fat: 0,
       nf_sodium: 0,
       nf_sugars: 0,
+      nf_total_carbohydrate: 0,
+      nf_total_fat: 0,
     }
   );
 
@@ -38,30 +55,41 @@ const Overall = ({ data }: props) => {
 
   const dataFormatted = [addData]
     ?.map((a) => [
-      { name: "calories", value: a.nf_calories, fill: "#8884d8" },
-      { name: "cholesterol", value: a.nf_cholesterol, fill: "#82ca9d" },
-      { name: "fiber", value: a.nf_dietary_fiber, fill: "#FFBB28" },
-      { name: "potassium", value: a.nf_potassium, fill: "#FF8042" },
-      { name: "protein", value: a.nf_protein, fill: "#AF19FF" },
-      { name: "saturated fat", value: a.nf_saturated_fat, fill: "#ffb0ab" },
-      { name: "sodium", value: a.nf_sodium, fill: "#30f0bd" },
-      { name: "sugars", value: a.nf_sugars, fill: "#a8b8e6" },
+      { name: "calories", value: a.nf_calories, fill: "#6ee7b7" },
+      { name: "cholesterol", value: a.nf_cholesterol, fill: "#06b6d4" },
+      { name: "fiber", value: a.nf_dietary_fiber, fill: "#93c5fd" },
+      { name: "potassium", value: a.nf_potassium, fill: "#3b82f6" },
+      { name: "protein", value: a.nf_protein, fill: "#6366f1" },
+      { name: "saturated fat", value: a.nf_saturated_fat, fill: "#f9a8d4" },
+      { name: "sodium", value: a.nf_sodium, fill: "#fb7185" },
+      { name: "sugars", value: a.nf_sugars, fill: "#f43f5e" },
       {
         name: "carbohydrates",
         value: a.nf_total_carbohydrate,
-        fill: "#f7e948",
+        fill: "#fb923c",
       },
-      { name: "total fats", value: a.nf_total_fat, fill: "#f748b1" },
+      { name: "total fats", value: a.nf_total_fat, fill: "#fbbf24" },
     ])
     .pop();
-  console.log("overall", dataFormatted);
+  //console.log("overall", dataFormatted);
   return (
-    <div>
-      Overall
-      <div className="bg-blue-400 p-2 m-6 rounded text-white">
-        <Chart data={dataFormatted} overall={true} />
+    <>
+      <h1 className="text-6xl text-black font-black text-center">Overall</h1>
+      <div className="border border-black p-2 m-6 text-white">
+        <ComposedChart
+          width={1300}
+          height={400}
+          data={dataFormatted}
+          id={chartId}
+        >
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Bar dataKey="value" barSize={75} fill="#413ea0" />
+          <Line type="monotone" dataKey="value" stroke="#000" />
+        </ComposedChart>
       </div>
-    </div>
+    </>
   );
 };
 
