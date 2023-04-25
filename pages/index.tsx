@@ -57,10 +57,6 @@ export default function Home() {
     setValue(e.target.value);
   };
 
-  // add branded and common items to search
-  // the re-rendering of the dropdown menu in breakfast
-  // hydration error with recharts
-
   // BEST PRACTISES
   // error handling for 500 api request or typos or searched for query not in data
   // look into state management (context API or zustand)
@@ -76,8 +72,8 @@ export default function Home() {
   // 6. add error handling - formik
   // 7. testing
   // 8. responsive styling
-  // 9. readme.md
-
+  // 9. readme.md [done - 25/04]
+  // 10. deploy [done - 25/04]
   return (
     <>
       <Head>

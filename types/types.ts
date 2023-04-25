@@ -22,11 +22,6 @@ export interface data {
   overall?: boolean;
 }
 
-// to do: use this to either create a generic or to go deeper with the Array<T> stuff
-export type dataDetails = {
-  food_name: string;
-};
-
 export interface mealType {
   breakfast?: MouseEventHandler<HTMLButtonElement>;
   lunch?: MouseEventHandler<HTMLButtonElement>;
@@ -40,8 +35,6 @@ export interface autoComplete {
   valueAC: string;
   isLoading: any;
 }
-
-// fix this - might need to be changed, once duplicate calcs on nutrients has changed
 
 export interface overall {
   data: {

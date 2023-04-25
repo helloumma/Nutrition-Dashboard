@@ -35,3 +35,4 @@ https://nutrition-dashboard-umma.vercel.app/
 - Clean up data fetching
 - Responsive design
 - Feature to enable users to remove items within each board
+- Dropdown menu re-rendering bug

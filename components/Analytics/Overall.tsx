@@ -1,21 +1,12 @@
-import dynamic from "next/dynamic";
-
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from "recharts";
 import { overall } from "@/types/types";
 
-/*interface props {
-  data: any;
-}*/
-
 const Overall = ({ data }: overall) => {
   const test = data
     ?.map((a) => a?.nutrients)
     ?.reduce((a, b) => a?.concat(b, []), []);
-
-  //console.log(test, "overall");
-  // deal with calcs after react-query
 
   const [chartId, setChartId] = useState("");
 
@@ -51,8 +42,6 @@ const Overall = ({ data }: overall) => {
     }
   );
 
-  //console.log("overall", addData);
-
   const dataFormatted = [addData]
     ?.map((a) => [
       { name: "calories", value: a.nf_calories, fill: "#6ee7b7" },
@@ -71,7 +60,6 @@ const Overall = ({ data }: overall) => {
       { name: "total fats", value: a.nf_total_fat, fill: "#fbbf24" },
     ])
     .pop();
-  //console.log("overall", dataFormatted);
   return (
     <>
       <h1 className="text-6xl text-black font-black text-center">Overall</h1>

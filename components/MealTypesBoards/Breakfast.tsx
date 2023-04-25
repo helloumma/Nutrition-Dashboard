@@ -1,16 +1,11 @@
 import dynamic from "next/dynamic";
 import SearchItem from "../SearchItem";
-import { BreakfastChart } from "..";
+import { meal } from "@/types/types";
+
 const BreakfastChartNoSSR = dynamic(() => import("./BreakfastChart"), {
   ssr: false,
 });
-import { meal } from "@/types/types";
 
-/*interface props {
-  searchItems: { nutrients: any; name: string }[] | null;
-  nurtrients: any;
-  diet: string;
-}*/
 const Breakfast = ({ searchItems, diet }: meal) => {
   const test = searchItems
     ?.map((a) => a?.nutrients)
