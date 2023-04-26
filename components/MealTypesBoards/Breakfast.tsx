@@ -6,7 +6,7 @@ const BreakfastChartNoSSR = dynamic(() => import("./BreakfastChart"), {
   ssr: false,
 });
 
-const Breakfast = ({ searchItems, diet }: meal) => {
+const Breakfast = ({ searchItems }: meal) => {
   const test = searchItems
     ?.map((a) => a?.nutrients)
     ?.reduce((a, b) => a?.concat(b, []), []);
