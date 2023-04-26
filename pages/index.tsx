@@ -2,7 +2,6 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import {
   MealType,
-  OverallAnalytics,
   Breakfast,
   Lunch,
   Dinner,
@@ -31,10 +30,15 @@ export default function Home() {
     error: nutrientError,
   } = useNutrientsMutation();
 
+  const onSubmitAC = (values: any) => {
+    setValue(values.searchItem);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault;
     const response = await mutateAsync({ query: value, meal: meal });
     setSearchItems((prevItems) => [...prevItems, ...response.searchItems]);
+    onSubmitAC(value);
     setValue("");
   };
 
