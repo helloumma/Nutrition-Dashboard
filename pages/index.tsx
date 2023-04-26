@@ -61,23 +61,11 @@ export default function Home() {
     setValue(e.target.value);
   };
 
-  // BEST PRACTISES
-  // error handling for 500 api request or typos or searched for query not in data
-  // look into state management (context API or zustand)
-  // testing + coverage via vitest
-  // READ ME docs
+  // TO DO
+  // 6. add error handling - formik [half done - 26/04]
+  // 7. testing [done - 26/04 to 27/04]
+  // 8. responsive styling [28/04]
 
-  // [next week]
-  // 1. type checks; types/interfaces/generics [done - 23/04]
-  // 2. add react-query [done - 24/04]
-  // 3. create data hooks [done - 24/04]
-  // 4. add state management [done - 25/04]
-  // 5. fix the re-rendering and hydration issues [done - 25/04]
-  // 6. add error handling - formik
-  // 7. testing
-  // 8. responsive styling
-  // 9. readme.md [done - 25/04]
-  // 10. deploy [done - 25/04]
   return (
     <>
       <Head>

@@ -1,0 +1,166 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders correctly 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="dropdown dropdown-hover w-full "
+      >
+        <label
+          class="bg-black p-4 text-white cursor-pointer flex w-full justify-center font-extrabold	"
+        >
+          Meal Type
+          <img
+            alt="chevron"
+            class="rotate-180	"
+            data-nimg="1"
+            decoding="async"
+            height="32"
+            loading="lazy"
+            src="/chevron.svg"
+            style="color: transparent;"
+            width="32"
+          />
+        </label>
+        <ul
+          class="w-full border border-black dropdown-content menu shadow p-1 bg-base-100 -box "
+        >
+          <li>
+            <button>
+              <a
+                href=""
+              >
+                Breakfast
+              </a>
+            </button>
+          </li>
+          <li>
+            <button>
+              <a
+                href=""
+              >
+                Lunch
+              </a>
+            </button>
+          </li>
+          <li>
+            <button>
+              <a
+                href=""
+              >
+                Dinner
+              </a>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="dropdown dropdown-hover w-full "
+    >
+      <label
+        class="bg-black p-4 text-white cursor-pointer flex w-full justify-center font-extrabold	"
+      >
+        Meal Type
+        <img
+          alt="chevron"
+          class="rotate-180	"
+          data-nimg="1"
+          decoding="async"
+          height="32"
+          loading="lazy"
+          src="/chevron.svg"
+          style="color: transparent;"
+          width="32"
+        />
+      </label>
+      <ul
+        class="w-full border border-black dropdown-content menu shadow p-1 bg-base-100 -box "
+      >
+        <li>
+          <button>
+            <a
+              href=""
+            >
+              Breakfast
+            </a>
+          </button>
+        </li>
+        <li>
+          <button>
+            <a
+              href=""
+            >
+              Lunch
+            </a>
+          </button>
+        </li>
+        <li>
+          <button>
+            <a
+              href=""
+            >
+              Dinner
+            </a>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

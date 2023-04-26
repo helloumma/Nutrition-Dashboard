@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
 import { expect, it } from "vitest";
-import Home from "./index";
+import { SearchItem } from ".";
 
 it("renders correctly", () => {
-  const result = render(<Home />);
+  const result = render(<SearchItem data={[]} />);
   expect(result).toMatchSnapshot();
 });
