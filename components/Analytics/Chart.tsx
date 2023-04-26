@@ -1,4 +1,4 @@
-import { PieChart, Pie, Tooltip, Legend } from "recharts";
+import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { data } from "@/types/types";
 
 const Chart = ({ data, overall }: data) => {
@@ -50,25 +50,27 @@ const Chart = ({ data, overall }: data) => {
     .pop();
 
   return (
-    <PieChart width={350} height={350}>
-      <Pie
-        data={overall ? data : test}
-        color="#000000"
-        dataKey="value"
-        nameKey="name"
-        cx="50%"
-        cy="50%"
-        outerRadius={75}
-        key={Math.random()}
-      ></Pie>
-      <Tooltip />
-      <Legend
-        layout="vertical"
-        verticalAlign="middle"
-        align="right"
-        iconType="circle"
-      />
-    </PieChart>
+    <ResponsiveContainer width="100%" height={350}>
+      <PieChart>
+        <Pie
+          data={overall ? data : test}
+          color="#000000"
+          dataKey="value"
+          nameKey="name"
+          cx="50%"
+          cy="50%"
+          outerRadius={75}
+          key={Math.random()}
+        ></Pie>
+        <Tooltip />
+        <Legend
+          layout="vertical"
+          verticalAlign="middle"
+          align="right"
+          iconType="circle"
+        />
+      </PieChart>
+    </ResponsiveContainer>
   );
 };
 export default Chart;

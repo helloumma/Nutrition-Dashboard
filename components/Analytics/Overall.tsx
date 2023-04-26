@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Bar, ComposedChart, Line, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  ComposedChart,
+  Line,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { overall } from "@/types/types";
 
 const Overall = ({ data }: overall) => {
@@ -64,18 +72,15 @@ const Overall = ({ data }: overall) => {
     <>
       <h1 className="text-6xl text-black font-black text-center">Overall</h1>
       <div className="border border-black p-2 m-6 text-white">
-        <ComposedChart
-          width={1300}
-          height={400}
-          data={dataFormatted}
-          id={chartId}
-        >
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Bar dataKey="value" barSize={75} fill="#413ea0" />
-          <Line type="monotone" dataKey="value" stroke="#000" />
-        </ComposedChart>
+        <ResponsiveContainer width="100%" height={400}>
+          <ComposedChart data={dataFormatted} id={chartId}>
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="value" barSize={75} fill="#413ea0" />
+            <Line type="monotone" dataKey="value" stroke="#000" />
+          </ComposedChart>
+        </ResponsiveContainer>
       </div>
     </>
   );
