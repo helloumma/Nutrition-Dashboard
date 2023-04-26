@@ -41,7 +41,6 @@ npx vitest --coverage
   - Enable users to be able to click on an item within multiple list items
 - Increase testing and validation
 - Clean up data fetching
-- Responsive design
 - Feature to enable users to remove items within each board
 - Dropdown menu re-rendering bug
 - Reusable components and clean up calculations on charts
