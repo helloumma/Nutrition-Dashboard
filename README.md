@@ -27,6 +27,14 @@ This dashboard shows a visual representation of nutrients for searched items usi
 
 https://nutrition-dashboard-umma.vercel.app/
 
+### 🕵️‍♀️ Testing
+
+```bash
+npx vitest
+
+npx vitest --coverage
+```
+
 ### 💭Future Improvements
 
 - Fix bugs within the search
