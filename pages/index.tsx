@@ -95,29 +95,31 @@ export default function Home() {
               <OverallNoSSR data={searchItems} />
             </div>
             <div className="flex">
-              <div className="w-full">
-                <Breakfast
-                  searchItems={searchItems.filter(
-                    (item) => item.meal === "breakfast"
-                  )}
-                  diet={"breakfast"}
-                />
-              </div>
-              <div className="w-full">
-                <Lunch
-                  searchItems={searchItems.filter(
-                    (item) => item.meal === "lunch"
-                  )}
-                  diet={"lunch"}
-                />
-              </div>
-              <div className="w-full">
-                <Dinner
-                  searchItems={searchItems.filter(
-                    (item) => item.meal === "dinner"
-                  )}
-                  diet={"dinner"}
-                />
+              <div className="w-full flex">
+                <div className="w-1/3">
+                  <Breakfast
+                    searchItems={searchItems.filter(
+                      (item) => item.meal === "breakfast"
+                    )}
+                    diet={"breakfast"}
+                  />
+                </div>
+                <div className="w-1/3">
+                  <Lunch
+                    searchItems={searchItems.filter(
+                      (item) => item.meal === "lunch"
+                    )}
+                    diet={"lunch"}
+                  />
+                </div>
+                <div className="w-1/3">
+                  <Dinner
+                    searchItems={searchItems.filter(
+                      (item) => item.meal === "dinner"
+                    )}
+                    diet={"dinner"}
+                  />
+                </div>
               </div>
             </div>
           </div>
