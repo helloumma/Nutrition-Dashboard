@@ -61,11 +61,6 @@ export default function Home() {
     setValue(e.target.value);
   };
 
-  // TO DO
-  // 6. add error handling - formik [half done - 26/04]
-  // 7. testing [done - 26/04 to 27/04]
-  // 8. responsive styling [28/04]
-
   return (
     <>
       <Head>
