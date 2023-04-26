@@ -61,11 +61,6 @@ export default function Home() {
     setValue(e.target.value);
   };
 
-  // TO DO
-  // 6. add error handling - formik [half done - 26/04]
-  // 7. testing [done - 26/04 to 27/04]
-  // 8. responsive styling [28/04]
-
   return (
     <>
       <Head>
@@ -76,7 +71,7 @@ export default function Home() {
       </Head>
       <main>
         <div className="flex">
-          <div className="w-2/12 h-screen  p-4">
+          <div className="w-2/12 h-screen p-4">
             <MealType
               breakfast={breakfastMeal}
               lunch={lunchMeal}
@@ -94,8 +89,8 @@ export default function Home() {
             <div className="w-full">
               <OverallNoSSR data={searchItems} />
             </div>
-            <div className="flex">
-              <div className="w-full">
+            <div className="w-full flex flex-wrap">
+              <div className="xs:w-full sm:w-full md:w-1/3">
                 <Breakfast
                   searchItems={searchItems.filter(
                     (item) => item.meal === "breakfast"
@@ -103,7 +98,7 @@ export default function Home() {
                   diet={"breakfast"}
                 />
               </div>
-              <div className="w-full">
+              <div className="xs:w-full sm:w-full md:w-1/3">
                 <Lunch
                   searchItems={searchItems.filter(
                     (item) => item.meal === "lunch"
@@ -111,7 +106,7 @@ export default function Home() {
                   diet={"lunch"}
                 />
               </div>
-              <div className="w-full">
+              <div className="xs:w-full sm:w-full md:w-1/3">
                 <Dinner
                   searchItems={searchItems.filter(
                     (item) => item.meal === "dinner"
