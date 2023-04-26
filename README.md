@@ -44,3 +44,4 @@ npx vitest --coverage
 - Responsive design
 - Feature to enable users to remove items within each board
 - Dropdown menu re-rendering bug
+- Reusable components and clean up calculations on charts
