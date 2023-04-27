@@ -13,7 +13,9 @@ const Breakfast = ({ searchItems }: meal) => {
 
   return (
     <>
-      <h1 className="text-6xl text-black font-black text-center">Breakfast</h1>
+      <h1 className="sm:text-5xl md:text-6xl text-6xl text-black font-black text-center">
+        Breakfast
+      </h1>
       <BreakfastChartNoSSR data={test} />
       {searchItems?.map((a) => (
         <SearchItem key={Math.random()} data={a.nutrients} />

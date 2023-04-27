@@ -12,7 +12,9 @@ const Lunch = ({ searchItems, diet }: meal) => {
     ?.reduce((a, b) => a?.concat(b, []), []);
   return (
     <>
-      <h1 className="text-6xl text-black font-black text-center">Lunch</h1>
+      <h1 className="sm:text-5xl md:text-6xl text-6xl text-black font-black text-center">
+        Lunch
+      </h1>
       <LunchChartNoSSR data={test} />
       {searchItems?.map((a) => (
         <SearchItem key={Math.random()} data={a.nutrients} />
