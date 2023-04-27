@@ -70,7 +70,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="flex sm:flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row">
           <div className="md:w-2/12 sm:w-full w-full md:h-screen p-4">
             <MealType
               breakfast={breakfastMeal}
@@ -85,11 +85,11 @@ export default function Home() {
               isLoading={isLoading}
             />
           </div>
-          <div className="sm:w-screen w-10/12 md:w-10/12 md:border-l-4 sm:border-t-4 md:border-t-0 border-double	border-black">
+          <div className="w-screen md:w-10/12 md:w-10/12 md:border-l-4 border-t-4 md:border-t-0 border-double	border-black">
             <div className="sm:w-screen md:w-full">
               <OverallNoSSR data={searchItems} />
             </div>
-            <div className="md:w-full w-full sm:wdith-screen flex flex-wrap">
+            <div className="md:w-full w-full  flex md:flex-row flex-col">
               <div className="xs:w-full sm:w-full md:w-1/3">
                 <Breakfast
                   searchItems={searchItems.filter(
