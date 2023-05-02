@@ -15,7 +15,6 @@ This dashboard shows a visual representation of nutrients for searched items usi
 - React hooks
 - NextJS
 - React-query
-- Formik
 - Vitest
 - Tailwind CSS + Daisy UI
 
