@@ -25,6 +25,8 @@ const AutoComplete = ({
   // need error message for if no results found on whats searched not on input as such
   // use formik for the red border but write code for if data.length < 0 or something
   // isError with react-query (don't forget to pass down the prop to this component)
+  console.log(dataAC?.length);
+  let dataLen = dataAC?.length;
   return (
     <>
       <input
@@ -43,11 +45,13 @@ const AutoComplete = ({
         Add
       </button>
       <div>
-        {(dataAC < 0 || error) && (
+        {(dataLen < 0 || error) && (
           <p className="text-red-500">No results found</p>
         )}
         {isLoading
           ? "loading"
+            ? dataLen
+            : "no results"
           : dataAC
               ?.filter((item: { food_name: string }) => {
                 const searchTerm = valueAC;
