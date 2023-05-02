@@ -9,6 +9,7 @@ const AutoComplete = ({
   dataAC,
   valueAC,
   isLoading,
+  error,
 }: autoComplete) => {
   const formik = useFormik({
     initialValues: {
@@ -17,32 +18,34 @@ const AutoComplete = ({
     validationSchema: Yup.object({
       searchItem: Yup.string().required("Search item is required"),
     }),
+
     onSubmit: onSubmitAC,
   });
+
+  // need error message for if no results found on whats searched not on input as such
+  // use formik for the red border but write code for if data.length < 0 or something
+  // isError with react-query (don't forget to pass down the prop to this component)
   return (
     <>
       <input
         type="text"
         placeholder="search item..."
-        className={`border ${
-          formik.errors.searchItem
-            ? "border-red-500"
-            : valueAC
-            ? "border-black"
-            : ""
-        } h-10 mt-8 w-full`}
-        {...formik.getFieldProps("searchItem")}
+        className={`border h-10 mt-8 w-full`}
         value={valueAC}
         onChange={onChangeAC}
+        onBlur={formik.handleBlur}
       />
       <button
         type="submit"
-        className="bg-black h-10 w-full flex justify-center mt-4 text-white flex justify-center items-center	font-semibold	"
+        className="bg-black h-10 w-full flex justify-center mt-4 text-white flex justify-center items-center font-semibold	"
         onClick={onSubmitAC}
       >
         Add
       </button>
       <div>
+        {(dataAC < 0 || error) && (
+          <p className="text-red-500">No results found</p>
+        )}
         {isLoading
           ? "loading"
           : dataAC
