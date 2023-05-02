@@ -83,6 +83,7 @@ export default function Home() {
               onSubmitAC={handleSubmit}
               valueAC={value}
               isLoading={isLoading}
+              error={error}
             />
           </div>
           <div className="w-screen md:w-10/12 md:w-10/12 md:border-l-4 border-t-4 md:border-t-0 border-double	border-black">

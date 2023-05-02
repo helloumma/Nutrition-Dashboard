@@ -34,6 +34,7 @@ export interface autoComplete {
   onSubmitAC: MouseEventHandler<HTMLButtonElement> | undefined | any;
   valueAC: string;
   isLoading: any;
+  error: any;
 }
 
 export interface overall {
