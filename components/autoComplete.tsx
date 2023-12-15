@@ -1,4 +1,4 @@
-import { autoComplete } from "@/types/types";
+import { autoComplete } from "@/libs/search/types";
 import Image from "next/image";
 
 const AutoComplete = ({

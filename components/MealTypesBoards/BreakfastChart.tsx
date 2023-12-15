@@ -1,5 +1,5 @@
 import Chart from "../Analytics/Chart";
-import { data } from "@/types/types";
+import { data } from "@/libs/data/types";
 
 const BreakfastChart = ({ data }: data) => {
   return (

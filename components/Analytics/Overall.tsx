@@ -9,7 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { overall } from "@/types/types";
+import { overall } from "@/libs/data/types";
 
 const Overall = ({ data }: overall) => {
   const test = data

@@ -1,4 +1,4 @@
-import { data } from "@/types/types";
+import { data } from "@/libs/data/types";
 
 const SearchItem = ({ data }: data) => {
   return (

@@ -9,7 +9,7 @@ import {
 } from "../components";
 import { ChangeEvent, useCallback, useState } from "react";
 
-import { search } from "@/types/types";
+import { search } from "@/libs/search/types";
 
 import { fetchData } from "./api/getData";
 import { useNutrientsData } from "./api/getNutrients";

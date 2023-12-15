@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { mealType } from "@/types/types";
+import { mealType } from "@/libs/meal/types";
 
 const MealType = ({ breakfast, lunch, dinner }: mealType) => {
   return (

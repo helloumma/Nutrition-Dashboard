@@ -1,5 +1,5 @@
 import { PieChart, Pie, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import { data } from "@/types/types";
+import { data } from "@/libs/data/types";
 
 const Chart = ({ data, overall }: data) => {
   const addData = data?.reduce(

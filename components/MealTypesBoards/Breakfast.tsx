@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import SearchItem from "../SearchItem";
-import { meal } from "@/types/types";
+import { meal } from "@/libs/meal/types";
 
 const BreakfastChartNoSSR = dynamic(() => import("./BreakfastChart"), {
   ssr: false,
