@@ -5,8 +5,6 @@ export interface autoComplete {
   dataAC: any;
   onSubmitAC: MouseEventHandler<HTMLButtonElement> | undefined | any;
   valueAC: string;
-  isLoading: any;
-  error: any;
 }
 
 export type search = {

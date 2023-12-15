@@ -1,12 +1,12 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import { MealType, Meal, MockAutoComplete } from "../components";
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
 import { search } from "@/libs/search/types";
 
 import { fetchData } from "./api/getData";
-import { useNutrientsData } from "./api/getNutrients";
+import { nutrientsData } from "./api/getNutrients";
 
 const OverallNoSSR = dynamic(() => import("../components/Analytics/Overall"), {
   ssr: false,
@@ -17,9 +17,7 @@ export default function Home() {
   const [meal, setMeal] = useState<string>("");
   const [value, setValue] = useState<string>("");
   const [searchItems, setSearchItems] = useState<search>([]);
-
-  const newData = fetchData(value);
-  const newNutrients = useNutrientsData(searchItems, meal);
+  const [data, setData] = useState<[]>([]);
 
   const onSubmitAC = (values: any) => {
     setValue(values.searchItem);
@@ -27,8 +25,8 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault;
-    const response = await newNutrients({ query: value, meal: meal });
-    setSearchItems((prevItems) => [...prevItems, ...response.searchItems]);
+    const newNutrients = await nutrientsData(value, meal);
+    setSearchItems((prevItems) => [...prevItems, ...newNutrients.searchItems]);
     onSubmitAC(value);
     setValue("");
   };
@@ -52,6 +50,17 @@ export default function Home() {
     setValue(e.target.value);
   };
 
+  useEffect(() => {
+    const fetchAsyncData = async () => {
+      const fetchedData = await fetchData(value);
+      setData(fetchedData); // Update the newData state with the fetched data
+    };
+
+    if (value) {
+      fetchAsyncData();
+    }
+  }, [value]);
+
   return (
     <>
       <Head>
@@ -70,7 +79,7 @@ export default function Home() {
             />
             <MockAutoComplete
               onChangeAC={onChangeAC}
-              dataAC={newData}
+              dataAC={data}
               onSubmitAC={handleSubmit}
               valueAC={value}
             />

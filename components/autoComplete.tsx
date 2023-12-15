@@ -7,6 +7,7 @@ const AutoComplete = ({
   dataAC,
   valueAC,
 }: autoComplete) => {
+  console.log(dataAC);
   return (
     <>
       <input
@@ -25,7 +26,7 @@ const AutoComplete = ({
       </button>
       <div>
         {dataAC
-          .filter((item: { food_name: string }) => {
+          ?.filter((item: { food_name: string }) => {
             const searchTerm = valueAC;
             const fullName = item.food_name.toLowerCase();
             return (
@@ -35,19 +36,24 @@ const AutoComplete = ({
               fullName == searchTerm
             );
           })
-          .map((item: { food_name: string; photo: any; thumb: any }) => (
-            <div className="flex" key={Math.random()}>
-              <Image
-                src={item.photo.thumb}
-                onClick={onSubmitAC}
-                alt={item.food_name}
-                className="cursor-pointer"
-                width={75}
-                height={200}
-              />
-              {item.food_name}
-            </div>
-          ))}
+          .map(
+            (
+              item: { food_name: string; photo: any; thumb: any },
+              i: number
+            ) => (
+              <div className="flex" key={i + 1}>
+                <Image
+                  src={item.photo.thumb}
+                  onClick={onSubmitAC}
+                  alt={item.food_name}
+                  className="cursor-pointer"
+                  width={75}
+                  height={200}
+                />
+                {item.food_name}
+              </div>
+            )
+          )}
       </div>
     </>
   );
