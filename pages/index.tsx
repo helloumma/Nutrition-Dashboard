@@ -1,12 +1,6 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import {
-  MealType,
-  Breakfast,
-  Lunch,
-  Dinner,
-  MockAutoComplete,
-} from "../components";
+import { MealType, Meal, MockAutoComplete } from "../components";
 import { ChangeEvent, useCallback, useState } from "react";
 
 import { search } from "@/libs/search/types";
@@ -87,27 +81,27 @@ export default function Home() {
             </div>
             <div className="md:w-full w-full  flex md:flex-row flex-col">
               <div className="xs:w-full sm:w-full md:w-1/3">
-                <Breakfast
+                <Meal
                   searchItems={searchItems.filter(
                     (item) => item.meal === "breakfast"
                   )}
-                  diet={"breakfast"}
+                  title={"Breakfast"}
                 />
               </div>
               <div className="xs:w-full sm:w-full md:w-1/3">
-                <Lunch
+                <Meal
                   searchItems={searchItems.filter(
                     (item) => item.meal === "lunch"
                   )}
-                  diet={"lunch"}
+                  title={"Lunch"}
                 />
               </div>
               <div className="xs:w-full sm:w-full md:w-1/3">
-                <Dinner
+                <Meal
                   searchItems={searchItems.filter(
                     (item) => item.meal === "dinner"
                   )}
-                  diet={"dinner"}
+                  title={"Dinner"}
                 />
               </div>
             </div>

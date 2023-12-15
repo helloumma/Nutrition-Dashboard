@@ -1,10 +1,6 @@
 export { default as MealType } from "./MealType";
 export { default as SearchItem } from "./SearchItem";
 export { default as OverallAnalytics } from "./Analytics/Overall";
-export { default as Breakfast } from "./MealTypesBoards/Breakfast";
-export { default as Lunch } from "./MealTypesBoards/Lunch";
-export { default as Dinner } from "./MealTypesBoards/Dinner";
-export { default as BreakfastChart } from "./MealTypesBoards/BreakfastChart";
-export { default as LunchChart } from "./MealTypesBoards/LunchChart";
-export { default as DinnerChart } from "./MealTypesBoards/DinnerChart";
+export { default as Meal } from "./MealTypesBoards/Meal";
+export { default as MealChart } from "./MealTypesBoards/MealChart";
 export { default as MockAutoComplete } from "./autoComplete";
