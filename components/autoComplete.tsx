@@ -1,4 +1,4 @@
-import { autoComplete } from "@/types/types";
+import { autoComplete } from "@/libs/search/types";
 import Image from "next/image";
 
 const AutoComplete = ({
@@ -6,9 +6,8 @@ const AutoComplete = ({
   onSubmitAC,
   dataAC,
   valueAC,
-  isLoading,
-  error,
 }: autoComplete) => {
+  console.log(dataAC);
   return (
     <>
       <input
@@ -26,26 +25,23 @@ const AutoComplete = ({
         Add
       </button>
       <div>
-        {isLoading ? (
-          "loading"
-        ) : error ? (
-          <p className="text-red-500">Error: {error.message}</p>
-        ) : dataAC?.length === 0 ? (
-          <p className="text-red-500">No results found</p>
-        ) : (
-          dataAC
-            .filter((item: { food_name: string }) => {
-              const searchTerm = valueAC;
-              const fullName = item.food_name.toLowerCase();
-              return (
-                (searchTerm &&
-                  fullName.startsWith(searchTerm) &&
-                  fullName !== searchTerm) ||
-                fullName == searchTerm
-              );
-            })
-            .map((item: { food_name: string; photo: any; thumb: any }) => (
-              <div className="flex" key={Math.random()}>
+        {dataAC
+          ?.filter((item: { food_name: string }) => {
+            const searchTerm = valueAC;
+            const fullName = item.food_name.toLowerCase();
+            return (
+              (searchTerm &&
+                fullName.startsWith(searchTerm) &&
+                fullName !== searchTerm) ||
+              fullName == searchTerm
+            );
+          })
+          .map(
+            (
+              item: { food_name: string; photo: any; thumb: any },
+              i: number
+            ) => (
+              <div className="flex" key={i + 1}>
                 <Image
                   src={item.photo.thumb}
                   onClick={onSubmitAC}
@@ -56,8 +52,8 @@ const AutoComplete = ({
                 />
                 {item.food_name}
               </div>
-            ))
-        )}
+            )
+          )}
       </div>
     </>
   );

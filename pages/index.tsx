@@ -1,17 +1,12 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import {
-  MealType,
-  Breakfast,
-  Lunch,
-  Dinner,
-  MockAutoComplete,
-} from "../components";
-import { ChangeEvent, useCallback, useState } from "react";
-import { useFetchData } from "../data/getData";
-import { useNutrientsMutation } from "../data/getNutrients";
+import { MealType, Meal, MockAutoComplete } from "../components";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
-import { search } from "@/types/types";
+import { search } from "@/libs/search/types";
+
+import { fetchData } from "./api/getData";
+import { nutrientsData } from "./api/getNutrients";
 
 const OverallNoSSR = dynamic(() => import("../components/Analytics/Overall"), {
   ssr: false,
@@ -22,13 +17,7 @@ export default function Home() {
   const [meal, setMeal] = useState<string>("");
   const [value, setValue] = useState<string>("");
   const [searchItems, setSearchItems] = useState<search>([]);
-
-  const { data: test, isLoading, error } = useFetchData(value);
-  const {
-    mutateAsync,
-    isLoading: loading,
-    error: nutrientError,
-  } = useNutrientsMutation();
+  const [data, setData] = useState<[]>([]);
 
   const onSubmitAC = (values: any) => {
     setValue(values.searchItem);
@@ -36,8 +25,8 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault;
-    const response = await mutateAsync({ query: value, meal: meal });
-    setSearchItems((prevItems) => [...prevItems, ...response.searchItems]);
+    const newNutrients = await nutrientsData(value, meal);
+    setSearchItems((prevItems) => [...prevItems, ...newNutrients.searchItems]);
     onSubmitAC(value);
     setValue("");
   };
@@ -61,6 +50,17 @@ export default function Home() {
     setValue(e.target.value);
   };
 
+  useEffect(() => {
+    const fetchAsyncData = async () => {
+      const fetchedData = await fetchData(value);
+      setData(fetchedData); 
+    };
+
+    if (value) {
+      fetchAsyncData();
+    }
+  }, [value]);
+
   return (
     <>
       <Head>
@@ -79,11 +79,9 @@ export default function Home() {
             />
             <MockAutoComplete
               onChangeAC={onChangeAC}
-              dataAC={test}
+              dataAC={data}
               onSubmitAC={handleSubmit}
               valueAC={value}
-              isLoading={isLoading}
-              error={error}
             />
           </div>
           <div className="w-screen md:w-10/12 md:w-10/12 md:border-l-4 border-t-4 md:border-t-0 border-double	border-black">
@@ -92,27 +90,27 @@ export default function Home() {
             </div>
             <div className="md:w-full w-full  flex md:flex-row flex-col">
               <div className="xs:w-full sm:w-full md:w-1/3">
-                <Breakfast
+                <Meal
                   searchItems={searchItems.filter(
                     (item) => item.meal === "breakfast"
                   )}
-                  diet={"breakfast"}
+                  title={"Breakfast"}
                 />
               </div>
               <div className="xs:w-full sm:w-full md:w-1/3">
-                <Lunch
+                <Meal
                   searchItems={searchItems.filter(
                     (item) => item.meal === "lunch"
                   )}
-                  diet={"lunch"}
+                  title={"Lunch"}
                 />
               </div>
               <div className="xs:w-full sm:w-full md:w-1/3">
-                <Dinner
+                <Meal
                   searchItems={searchItems.filter(
                     (item) => item.meal === "dinner"
                   )}
-                  diet={"dinner"}
+                  title={"Dinner"}
                 />
               </div>
             </div>

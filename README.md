@@ -36,9 +36,5 @@ npx vitest --coverage
 
 ### 💭Future Improvements
 
-- Fix bugs within the search
-  - Enable users to be able to click on an item within multiple list items
 - Increase testing and validation
-- Clean up data fetching
 - Feature to enable users to remove items within each board
-- Reusable components and clean up calculations on charts
