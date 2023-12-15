@@ -16,15 +16,15 @@ export async function nutrientsData(query: any, meal: any) {
     }
   );
 
-  // if (!response.ok) {
-  //   throw new Error("Network response was not ok");
-  // }
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
 
   const data = await response.json();
   console.log(data);
   const newItem = {
     meal,
-    name: data.foods.food_name,
+    name: data.foods?.food_name,
     nutrients: data.foods,
   };
   const searchItems: SearchResult[] = [newItem];

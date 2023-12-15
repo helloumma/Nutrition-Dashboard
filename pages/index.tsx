@@ -53,7 +53,7 @@ export default function Home() {
   useEffect(() => {
     const fetchAsyncData = async () => {
       const fetchedData = await fetchData(value);
-      setData(fetchedData); // Update the newData state with the fetched data
+      setData(fetchedData); 
     };
 
     if (value) {
