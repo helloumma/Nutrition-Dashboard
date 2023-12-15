@@ -42,3 +42,11 @@ npx vitest --coverage
 - Clean up data fetching
 - Feature to enable users to remove items within each board
 - Reusable components and clean up calculations on charts
+
+TO DO
+
+- move data calls to API folder
+- remove react-query
+- create libs folder and move types over
+- separate types out for each component
+- make mealType a reusable component

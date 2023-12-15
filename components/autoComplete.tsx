@@ -6,8 +6,6 @@ const AutoComplete = ({
   onSubmitAC,
   dataAC,
   valueAC,
-  isLoading,
-  error,
 }: autoComplete) => {
   return (
     <>
@@ -26,38 +24,30 @@ const AutoComplete = ({
         Add
       </button>
       <div>
-        {isLoading ? (
-          "loading"
-        ) : error ? (
-          <p className="text-red-500">Error: {error.message}</p>
-        ) : dataAC?.length === 0 ? (
-          <p className="text-red-500">No results found</p>
-        ) : (
-          dataAC
-            .filter((item: { food_name: string }) => {
-              const searchTerm = valueAC;
-              const fullName = item.food_name.toLowerCase();
-              return (
-                (searchTerm &&
-                  fullName.startsWith(searchTerm) &&
-                  fullName !== searchTerm) ||
-                fullName == searchTerm
-              );
-            })
-            .map((item: { food_name: string; photo: any; thumb: any }) => (
-              <div className="flex" key={Math.random()}>
-                <Image
-                  src={item.photo.thumb}
-                  onClick={onSubmitAC}
-                  alt={item.food_name}
-                  className="cursor-pointer"
-                  width={75}
-                  height={200}
-                />
-                {item.food_name}
-              </div>
-            ))
-        )}
+        {dataAC
+          .filter((item: { food_name: string }) => {
+            const searchTerm = valueAC;
+            const fullName = item.food_name.toLowerCase();
+            return (
+              (searchTerm &&
+                fullName.startsWith(searchTerm) &&
+                fullName !== searchTerm) ||
+              fullName == searchTerm
+            );
+          })
+          .map((item: { food_name: string; photo: any; thumb: any }) => (
+            <div className="flex" key={Math.random()}>
+              <Image
+                src={item.photo.thumb}
+                onClick={onSubmitAC}
+                alt={item.food_name}
+                className="cursor-pointer"
+                width={75}
+                height={200}
+              />
+              {item.food_name}
+            </div>
+          ))}
       </div>
     </>
   );

@@ -8,10 +8,11 @@ import {
   MockAutoComplete,
 } from "../components";
 import { ChangeEvent, useCallback, useState } from "react";
-import { useFetchData } from "../data/getData";
-import { useNutrientsMutation } from "../data/getNutrients";
 
 import { search } from "@/types/types";
+
+import { fetchData } from "./api/getData";
+import { useNutrientsData } from "./api/getNutrients";
 
 const OverallNoSSR = dynamic(() => import("../components/Analytics/Overall"), {
   ssr: false,
@@ -23,12 +24,8 @@ export default function Home() {
   const [value, setValue] = useState<string>("");
   const [searchItems, setSearchItems] = useState<search>([]);
 
-  const { data: test, isLoading, error } = useFetchData(value);
-  const {
-    mutateAsync,
-    isLoading: loading,
-    error: nutrientError,
-  } = useNutrientsMutation();
+  const newData = fetchData(value);
+  const newNutrients = useNutrientsData(searchItems, meal);
 
   const onSubmitAC = (values: any) => {
     setValue(values.searchItem);
@@ -36,7 +33,7 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault;
-    const response = await mutateAsync({ query: value, meal: meal });
+    const response = await newNutrients({ query: value, meal: meal });
     setSearchItems((prevItems) => [...prevItems, ...response.searchItems]);
     onSubmitAC(value);
     setValue("");
@@ -79,11 +76,9 @@ export default function Home() {
             />
             <MockAutoComplete
               onChangeAC={onChangeAC}
-              dataAC={test}
+              dataAC={newData}
               onSubmitAC={handleSubmit}
               valueAC={value}
-              isLoading={isLoading}
-              error={error}
             />
           </div>
           <div className="w-screen md:w-10/12 md:w-10/12 md:border-l-4 border-t-4 md:border-t-0 border-double	border-black">
